@@ -404,7 +404,7 @@ const SignUpPage = () => {
                   </button>
                   <p className="text-center text-gray-600 font-medium text-sm mt-2">
                     Already have an account?{" "}
-                    <a href="/freelancing/#/signin" className="text-blue-500">
+                    <a href="/signin" className="text-blue-500">
                       Sign in
                     </a>
                   </p>

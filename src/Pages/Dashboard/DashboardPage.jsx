@@ -2,7 +2,6 @@ import "./dashboardPage.css";
 import { LogOut } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { dashboardConfig } from "./dashboardConfig";
-pac;
 const DashboardPage = () => {
   const navigate = useNavigate();
 

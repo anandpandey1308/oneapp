@@ -203,7 +203,7 @@ const SignInPage = () => {
 
               <p className="text-center text-gray-600 font-medium text-sm mt-2">
                 Don't have an account?{" "}
-                <a href="/freelancing/#/signup" className="text-blue-500">
+                <a href="/signup" className="text-blue-500">
                   Sign up
                 </a>
               </p>

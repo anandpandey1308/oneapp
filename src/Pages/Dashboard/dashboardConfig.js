@@ -11,6 +11,7 @@ export const dashboardConfig = {
     { label: "Analytics", icon: BarChart, path: "/analytics" },
     { label: "Users", icon: Users, path: "/users" },
     { label: "Settings", icon: Settings, path: "/settings" },
+    { label: "w", icon: Settings, path: "/settings" },
   ],
   mainContent: [
     { title: "Overview", description: "Here's a quick overview of the stats." },
