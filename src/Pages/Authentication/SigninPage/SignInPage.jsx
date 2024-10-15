@@ -119,7 +119,7 @@ const SignInPage = () => {
               <div className="flex flex-col items-center justify-center gap-1">
                 <h2 className="text-xl md:text-2xl font-bold">Welcome Back!</h2>
                 <p className="text-base font-semibold text-gray-500">
-                  Sign in to your SuperProfile account
+                  Sign in to your OneApp account
                 </p>
               </div>
 

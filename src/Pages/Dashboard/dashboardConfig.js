@@ -1,31 +1,31 @@
-import { Home, BarChart, Users, Settings } from "lucide-react";
+import { FaHome, FaChartBar, FaUsers, FaCog, FaShoppingCart, FaCalendarAlt, FaBookOpen, FaLock, FaTelegramPlane, FaDiscord } from "react-icons/fa";
+import logo from '../../assets/oneapp.png';
 
 export const dashboardConfig = {
   logo: {
-    src: "https://via.placeholder.com/150",
+    src: logo,
     alt: "Logo",
     title: "MyApp",
   },
-  sidebar: [
-    { label: "Home", icon: Home, path: "/home" },
-    { label: "Analytics", icon: BarChart, path: "/analytics" },
-    { label: "Users", icon: Users, path: "/users" },
-    { label: "Settings", icon: Settings, path: "/settings" },
-    { label: "w", icon: Settings, path: "/settings" },
+  generalItems: [
+    { label: "Getting Started", icon: FaHome, path: "/" },
+    { label: "My Store", icon: FaShoppingCart, path: "/mystore" },
+    { label: "Audience", icon: FaUsers, path: "/audience" },
+    { label: "Payments", icon: FaChartBar, path: "/payments" },
   ],
-  mainContent: [
-    { title: "Overview", description: "Here's a quick overview of the stats." },
-    {
-      title: "Analytics",
-      description: "Track the latest trends and performance data here.",
-    },
-    {
-      title: "User Growth",
-      description: "Check user sign-ups and engagement metrics here.",
-    },
-    {
-      title: "Settings",
-      description: "Manage your app settings and configurations.",
-    },
+  appItems: [
+    { label: "Payment Pages", icon: FaChartBar, path: "/payment" },
+    { label: "Bookings", icon: FaCalendarAlt, path: "/booking" },
+    { label: "Events", icon: FaUsers, path: "/events" },
+    { label: "Courses", icon: FaBookOpen, path: "/courses" },
+    { label: "Telegram", icon: FaTelegramPlane, path: "/telegram" },
+    { label: "Locked Content", icon: FaLock, path: "/locked-content" },
+    { label: "Discord", icon: FaDiscord, path: "/discord" }
   ],
+  settingItems: [
+    { label: "Account Setting", icon: FaCog, path: "/profile" },
+    { label: "Feature Requests", icon: FaChartBar, path: "https://www.google.com" },
+    { label: "Help Center", icon: FaUsers, path: "https://www.google.com" },
+    { label: "Sign Out", icon: FaCog, path: "/signin"  },
+  ]
 };

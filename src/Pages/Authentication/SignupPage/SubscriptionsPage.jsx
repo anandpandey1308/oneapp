@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  Rocket,
   Video,
   GraduationCap,
   Package,
@@ -8,6 +7,7 @@ import {
   Lightbulb,
 } from "lucide-react";
 import StackedCard from "./StackedCardPage";
+import logo from "../../../assets/oneapp.png"
 
 const SubscriptionPage = () => {
   const [activePlan, setActivePlan] = useState("monthly");
@@ -46,11 +46,11 @@ const SubscriptionPage = () => {
     >
       <div className="flex justify-center items-start min-h-screen pt-8 px-4 sm:px-8">
         <div className="shadow-xl flex flex-col lg:flex-row bg-white rounded-[24px] w-full max-w-[1000px] relative overflow-hidden">
-          {/* Left Side Box */}
           <div className="flex-1 p-6 sm:p-10">
             <div className="flex flex-col items-center justify-center">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                <Rocket className="text-blue-500" size={24} />
+              <div className=" flex items-center justify-center mb-4">
+                
+                <img className="h-12 w-15" src={logo} alt="logo"/>
               </div>
               <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center">
                 A super subscription to start and scale your creator journey
@@ -162,7 +162,7 @@ const SubscriptionPage = () => {
             </div>
           </div>
 
-          {/* Right Side Box */}
+       
           <div className="flex-1 bg-gray-50 p-6 sm:p-8 overflow-y-auto">
             <div className="border text-center text-xs absolute p-2 rounded-lg bg-white top-4 right-32 font-bold">
               THE ULTIMATE PRODUCT BUNDLE
