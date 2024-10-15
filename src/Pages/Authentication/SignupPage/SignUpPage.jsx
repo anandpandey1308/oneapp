@@ -240,7 +240,7 @@ const SignUpPage = () => {
                   </div>
 
                   <button
-                    className="mt-6 w-[85%] bg-[#10172A] text-white py-2 px-4 rounded-full text-sm font-semibold hover:bg-blue-700 active:bg-blue-800 transition duration-200"
+                    className="mt-6 w-[85%] bg-orange-600 text-white py-2 px-4 rounded-full text-sm font-semibold active:bg-orange-600 transition duration-200"
                     onClick={handleOTPSubmit}
                   >
                     Confirm OTP
@@ -394,7 +394,7 @@ const SignUpPage = () => {
                     />
                   </div>
                   <button
-                    className={`w-[85%] flex justify-center text-sm items-center gap-2 bg-slate-900 text-white py-2 px-4 rounded-full ${
+                    className={`w-[85%] flex justify-center text-sm items-center gap-2 bg-orange-600 text-white py-2 px-4 rounded-full ${
                       !isFormValid() ? "opacity-50 cursor-not-allowed" : ""
                     }`}
                     onClick={handleGetStarted}

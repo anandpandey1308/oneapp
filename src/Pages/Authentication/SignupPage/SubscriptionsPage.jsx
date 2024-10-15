@@ -60,7 +60,7 @@ const SubscriptionPage = () => {
                 <button
                   className={`flex-1 py-2 px-4 h-10 ${
                     activePlan === "monthly"
-                      ? "bg-blue-500 text-white"
+                      ? "bg-orange-600	 text-white"
                       : "bg-gray-200 text-gray-700"
                   } ${activePlan === "monthly" ? "rounded-l-lg" : ""}`}
                   onClick={() => setActivePlan("monthly")}
@@ -70,7 +70,7 @@ const SubscriptionPage = () => {
                 <button
                   className={`flex-1 py-2 px-4 h-10 ${
                     activePlan === "halfYearly"
-                      ? "bg-blue-500 text-white"
+                      ? "bg-orange-600 text-white"
                       : "bg-gray-200 text-gray-700"
                   } `}
                   onClick={() => setActivePlan("halfYearly")}
@@ -85,7 +85,7 @@ const SubscriptionPage = () => {
                 <button
                   className={`flex-1 py-2 px-4 h-10 ${
                     activePlan === "yearly"
-                      ? "bg-blue-500 text-white"
+                      ? "bg-orange-600 text-white"
                       : "bg-gray-200 text-gray-700"
                   } ${activePlan === "yearly" ? "rounded-r-lg" : ""}`}
                   onClick={() => setActivePlan("yearly")}
@@ -143,7 +143,7 @@ const SubscriptionPage = () => {
                 </div>
               </div>
 
-              <button className="w-full bg-black text-white py-2 rounded-full font-semibold mb-2"
+              <button className="w-full bg-orange-600	 text-white py-2 rounded-full font-semibold mb-2"
               onClick={() => setShowStackedCard(true)}
               >
                 Start your 7-day Free Trial

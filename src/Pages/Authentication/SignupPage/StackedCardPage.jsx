@@ -245,7 +245,7 @@ const StackedCard = () => {
                 STEP {currentCard} of 2
               </p>
               <button
-                className="px-5 py-2 bg-black text-white rounded-full font-poppins font-semibold text-sm flex items-center gap-2"
+                className="px-5 py-2 bg-orange-600 text-white rounded-full font-poppins font-semibold text-sm flex items-center gap-2"
                 onClick={() => setCurrentCard((prev) => (prev === 1 ? 2 : 1))}
               >
                 Next
@@ -321,11 +321,11 @@ const StackedCard = () => {
                   <input
                     type="text"
                     placeholder="Domain"
-                    className="w-full p-2 text-sm border border-green-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full p-2 text-sm border border-orange-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                   />
                   <Check
                     size={16}
-                    className="absolute right-2 top-2 text-green-500"
+                    className="absolute right-2 top-2 text-orange-500"
                   />
                 </div>
               </div>
@@ -342,7 +342,7 @@ const StackedCard = () => {
                     Back
                   </button>
                   <button
-                    className="w-full md:w-[85%] bg-[#10172A] text-white py-2 px-4 rounded-full text-sm font-semibold hover:bg-blue-700 active:bg-blue-800 transition duration-200"
+                    className="w-full md:w-[85%] bg-orange-600 text-white py-2 px-4 rounded-full text-sm font-semibold hover:bg-blue-700 active:bg-blue-800 transition duration-200"
                     onClick={() => navigate("/dashboard")}
                   >
                     Finish

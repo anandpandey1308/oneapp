@@ -4,18 +4,18 @@ import "react-toastify/dist/ReactToastify.css";
 import SignInPage from "./Pages/Authentication/SigninPage/SignInPage";
 import SignUpPage from "./Pages/Authentication/SignupPage/SignUpPage";
 import DashboardPage from "./Pages/Dashboard/DashboardPage";
-import HomePage from "./Pages/Dashboard/DashboardPages/HomePage";
-import MyStorePage from "./Pages/Dashboard/DashboardPages/MyStorePage";
-import AudiencePage from "./Pages/Dashboard/DashboardPages/AudiencePage";
-import PaymentsPage from "./Pages/Dashboard/DashboardPages/PaymentsPage";
-import PaymentPage from "./Pages/Dashboard/DashboardPages/PaymentPage";
-import BookingPages from "./Pages/Dashboard/DashboardPages/BookingPages";
-import EventsPage from "./Pages/Dashboard/DashboardPages/EventsPage";
-import CoursesPage from "./Pages/Dashboard/DashboardPages/CoursesPage";
-import TelegramPage from "./Pages/Dashboard/DashboardPages/TelegramPage";
-import LockedContentPage from "./Pages/Dashboard/DashboardPages/LockedContentPage";
-import DiscordPage from "./Pages/Dashboard/DashboardPages/DiscordPage";
-import ProfilePage from "./Pages/Dashboard/DashboardPages/ProfilePage";
+import HomePage from "./Pages/Dashboard/DashboardPages/HomePage/HomePage.jsx";
+import MyStorePage from "./Pages/Dashboard/DashboardPages/MyStorePage/MyStorePage.jsx";
+import AudiencePage from "./Pages/Dashboard/DashboardPages/AudiencePage/AudiencePage.jsx";
+import PaymentsPage from "./Pages/Dashboard/DashboardPages/PaymentsPage/PaymentsPage.jsx";
+import PaymentPage from "./Pages/Dashboard/DashboardPages/PaymentPage/PaymentPage.jsx";
+import BookingPages from "./Pages/Dashboard/DashboardPages/BookingPages/BookingPages.jsx";
+import EventsPage from "./Pages/Dashboard/DashboardPages/EventsPage/EventsPage.jsx";
+import CoursesPage from "./Pages/Dashboard/DashboardPages/CoursesPage/CoursesPage.jsx";
+import TelegramPage from "./Pages/Dashboard/DashboardPages/TelegramPage/TelegramPage.jsx";
+import LockedContentPage from "./Pages/Dashboard/DashboardPages/LockedContentPage/LockedContentPage.jsx";
+import DiscordPage from "./Pages/Dashboard/DashboardPages/DiscordPage/DiscordPage.jsx";
+import ProfilePage from "./Pages/Dashboard/DashboardPages/ProfilePage/ProfilePage.jsx";
 
 const App = () => {
   return (

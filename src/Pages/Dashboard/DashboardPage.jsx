@@ -52,7 +52,7 @@ const DashboardPage = () => {
               {dashboardConfig.generalItems.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center text-sm py-3 px-4 cursor-pointer hover:bg-gray-700 hover:rounded-xl transition-all"
+                  className="flex items-center text-sm py-3 px-4 cursor-pointer hover:bg-orange-600 hover:rounded-xl transition-all"
                   onClick={() => {
                     navigate(`/dashboard${item.path}`);
                     setIsMobileMenuOpen(false);
@@ -71,7 +71,7 @@ const DashboardPage = () => {
               {dashboardConfig.appItems.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center text-sm py-3 px-4 cursor-pointer hover:bg-gray-700 hover:rounded-xl transition-all"
+                  className="flex items-center text-sm py-3 px-4 cursor-pointer hover:bg-orange-600 hover:rounded-xl transition-all"
                   onClick={() => {
                     navigate(`/dashboard${item.path}`);
                     setIsMobileMenuOpen(false);
@@ -88,7 +88,7 @@ const DashboardPage = () => {
         <div className="p-4">
           <hr className="border-gray-600 mb-2" />
           <div
-            className="flex items-center text-sm py-3 px-4 cursor-pointer hover:bg-gray-700 hover:rounded-xl transition-all"
+            className="flex items-center text-sm py-3 px-4 cursor-pointer hover:bg-orange-600	 hover:rounded-xl transition-all"
             onClick={toggleSettings}
           >
             <Settings className="w-5 h-5 mr-3" />
@@ -99,7 +99,7 @@ const DashboardPage = () => {
               {dashboardConfig.settingItems.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center py-2 cursor-pointer hover:bg-gray-600 hover:rounded-xl transition-all"
+                  className="flex items-center p-2 cursor-pointer hover:bg-orange-600 hover:rounded-xl transition-all"
                   onClick={() => handleSettingItemClick(item)}
                 >
                   <item.icon className="w-5 h-5 mr-3" />
