@@ -1,4 +1,4 @@
-import { FaHome, FaChartBar, FaUsers, FaCog, FaShoppingCart, FaCalendarAlt, FaBookOpen, FaLock, FaTelegramPlane, FaDiscord } from "react-icons/fa";
+import { FaHome, FaChartBar, FaUsers, FaCog, FaShoppingCart, FaCalendarAlt, FaBookOpen, FaLock, FaTelegramPlane, FaDiscord, FaLink } from "react-icons/fa";
 import logo from '../../assets/oneapp.png';
 
 export const dashboardConfig = {
@@ -12,6 +12,7 @@ export const dashboardConfig = {
     { label: "My Store", icon: FaShoppingCart, path: "/mystore" },
     { label: "Audience", icon: FaUsers, path: "/audience" },
     { label: "Payments", icon: FaChartBar, path: "/payments" },
+    { label: "SuperLinks", icon: FaLink, path: "/superlinks" },
   ],
   appItems: [
     { label: "Payment Pages", icon: FaChartBar, path: "/payment" },

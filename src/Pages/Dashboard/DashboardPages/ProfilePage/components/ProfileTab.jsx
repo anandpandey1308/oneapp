@@ -1,6 +1,6 @@
 import { useState } from "react";
 import EditIcon from "@mui/icons-material/Edit";
-import EditModal from "../../../../../components/Modal/SigninModal";
+import SigninModal from "../../../../../components/Modal/SigninModal";
 import SupportModal from "../../../../../components/Modal/SupportModal";
 
 const ProfileTab = () => {
@@ -109,11 +109,11 @@ const ProfileTab = () => {
             <div className="absolute right-2 top-5 bottom-0 flex items-center gap-2">
               <EditIcon
                 className="cursor-pointer text-gray-500"
-                onClick={() => handleEditClick("phone")}
+                onClick={() => handleEditClick("email")}
               />
               <span
                 className="text-sm mr-1 text-gray-500 cursor-pointer"
-                onClick={() => handleEditClick("phone")}
+                onClick={() => handleEditClick("email")}
               >
                 Edit
               </span>
@@ -187,7 +187,7 @@ const ProfileTab = () => {
         </div>
       </div>
 
-      <EditModal
+      <SigninModal
         open={isModalOpen}
         handleClose={() => setIsModalOpen(false)}
         label={modalLabel}

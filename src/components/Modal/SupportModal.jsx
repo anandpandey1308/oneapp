@@ -1,61 +1,110 @@
 /* eslint-disable react/prop-types */
-import { Modal, Box, TextField, Button } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
+import { Modal } from "@mui/material";
+import { toast } from 'react-toastify';
 
-const SupportModal = ({ open, handleClose, label, value, onSave }) => {
-  const [tempValue, setTempValue] = useState("");
+const SupportModal = ({ open, handleClose,value,label, onSave }) => {
+  console.log(label, value);
+  
+  const [tempValue, setTempValue] = useState(value);
+  const [isOtpSent, setIsOtpSent] = useState(false);
+  const [otpValue, setOtpValue] = useState("");
+  const correctOtp = "000000";
 
   useEffect(() => {
-    setTempValue(value);
-  }, [value, open]);
+    if (open) {
+      setTempValue("");
+      setIsOtpSent(false); 
+      setOtpValue(""); 
+    }
+  }, [open]);
 
-  const handleSave = () => {
-    onSave(tempValue, label === "Support Email" ? null : tempValue);
+  const handleCloseModal = () => {
+    setIsOtpSent(false);
+    setOtpValue("");
     handleClose();
   };
 
+  const handleSendOtp = () => {
+    // Simulate sending OTP (replace with your actual API call)
+    fakeApiCallToSendOtp().then(() => {
+      setIsOtpSent(true);
+      toast.success("OTP has been sent !");
+    });
+  };
+
+  const handleOtpSubmit = () => {
+    if (otpValue === correctOtp) {
+      onSave(tempValue);
+      handleCloseModal(); // Close modal after successful submission
+      toast.success("Updated successfully!");
+    } else {
+      toast.error("Invalid OTP. Please try again.");
+    }
+  };
+
+  const fakeApiCallToSendOtp = () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 1000);
+    });
+  };
+
   return (
-    <Modal open={open} onClose={handleClose}>
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: 400,
-          bgcolor: "background.paper",
-          borderRadius: "8px",
-          boxShadow: 24,
-          p: 4,
-        }}
-      >
-        <h2 className="text-xl font-semibold mb-4">{label}</h2>
+    <Modal open={open} onClose={handleCloseModal}>
+      <div className="flex items-center justify-center min-h-screen p-4 md:p-0">
+        <div className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-lg mx-auto">
+          <div className="flex justify-between items-center mb-4">
+            <h1 className="text-2xl font-bold text-gray-800">Enter your support {label}</h1>
+            <div
+              className="text-gray-500 cursor-pointer text-xl hover:text-gray-800 transition-colors"
+              onClick={handleCloseModal}
+            >
+              &times;
+            </div>
+          </div>
+          <hr className="border-gray-300 mb-4" />
 
-        <TextField
-          fullWidth
-          label={label}
-          variant="outlined"
-          value={tempValue}
-          onChange={(e) => setTempValue(e.target.value)}
-          sx={{ mb: 2 }}
-        />
+          {/* Email Input Field */}
+          <div className="mb-6">
+            <input
+              type="email"
+              value={tempValue}
+              onChange={(e) => setTempValue(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+              placeholder="Support Email"
+            />
+          </div>
 
-        <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-          <Button
-            variant="contained"
-            onClick={handleSave}
-            sx={{
-              backgroundColor: "#F97316", // Tailwind's bg-orange-600
-              color: "white", // Text color
-              "&:hover": {
-                backgroundColor: "#EA580C", // Darker shade for hover
-              },
-            }}
-          >
-            Save
-          </Button>
-        </Box>
-      </Box>
+          {/* Send OTP Button */}
+          {!isOtpSent ? (
+            <button
+              onClick={handleSendOtp}
+              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 w-full rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105"
+            >
+              Send OTP
+            </button>
+          ) : (
+            <div className="mb-6">
+              <span className="block text-gray-700 mb-2">Enter OTP</span>
+              <input
+                type="text"
+                value={otpValue}
+                onChange={(e) => setOtpValue(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                placeholder="Enter OTP"
+              />
+              <button
+                onClick={handleOtpSubmit}
+                className="mt-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-4 w-full rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105"
+              >
+                Submit OTP
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
     </Modal>
   );
 };

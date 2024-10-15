@@ -16,6 +16,7 @@ import TelegramPage from "./Pages/Dashboard/DashboardPages/TelegramPage/Telegram
 import LockedContentPage from "./Pages/Dashboard/DashboardPages/LockedContentPage/LockedContentPage.jsx";
 import DiscordPage from "./Pages/Dashboard/DashboardPages/DiscordPage/DiscordPage.jsx";
 import ProfilePage from "./Pages/Dashboard/DashboardPages/ProfilePage/ProfilePage.jsx";
+import SuperLinkPage from "./Pages/Dashboard/DashboardPages/SuperLinkPage/SuperLinkPage.jsx";
 
 const App = () => {
   return (
@@ -50,6 +51,7 @@ const App = () => {
           <Route path="locked-content" element={<LockedContentPage />} />
           <Route path="discord" element={<DiscordPage />} />
           <Route path="profile" element={<ProfilePage />} />
+          <Route path="superlinks" element={<SuperLinkPage />} />
         </Route>
       </Routes>
     </>
