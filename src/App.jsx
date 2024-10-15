@@ -15,7 +15,7 @@ import CoursesPage from "./Pages/Dashboard/DashboardPages/CoursesPage";
 import TelegramPage from "./Pages/Dashboard/DashboardPages/TelegramPage";
 import LockedContentPage from "./Pages/Dashboard/DashboardPages/LockedContentPage";
 import DiscordPage from "./Pages/Dashboard/DashboardPages/DiscordPage";
-import ProfilePage from "./Pages/Dashboard/DashboardPages/profilePage";
+import ProfilePage from "./Pages/Dashboard/DashboardPages/ProfilePage";
 
 const App = () => {
   return (
