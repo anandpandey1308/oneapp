@@ -324,6 +324,7 @@ const BrandingTab = () => {
               Save Changes
             </button>
           </div>
+          
         )}
 
         {/* Social Media Links and Edit Button */}
