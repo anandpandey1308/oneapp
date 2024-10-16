@@ -110,8 +110,8 @@ const DashboardPage = () => {
           )}
         </div>
       </aside>
-
-      <main className="flex-1 p-10 overflow-y-auto h-screen scrollbar-hide">
+      {/* add padding if needed p-10 */}
+      <main className="flex-1 overflow-y-auto h-screen scrollbar-hide">
         <div className="flex items-center justify-between bg-[#0c1014] text-white p-4 fixed top-0 left-0 right-0 z-40 md:hidden shadow-lg">
           <img
             src={dashboardConfig.logo.src}
