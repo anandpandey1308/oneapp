@@ -63,7 +63,7 @@ const ProfileTab = () => {
               type="text"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              className="w-full p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+              className="w-full p-2 rounded-full focus:outline-none focus:ring border border-gray-300 focus:ring-orange-500"
             />
           </div>
           <div className="w-1/2">
@@ -74,7 +74,7 @@ const ProfileTab = () => {
               type="text"
               value={lastName}
               onChange={handleLastNameChange}
-              className="w-full p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+              className="w-full p-2 rounded-full focus:outline-none focus:ring border border-gray-300 focus:ring-orange-500"
               placeholder="Enter your last name"
             />
           </div>
@@ -92,7 +92,7 @@ const ProfileTab = () => {
         )}
       </div>
 
-      <div className="bg-gray-100 shadow-md rounded-lg p-6 w-full">
+      <div className="shadow-md rounded-lg p-6 w-full">
         <h2 className="text-sm font-semibold mb-4">Signin Information</h2>
         <hr className="border-gray-300 mb-4" />
         <div className="flex flex-col gap-6">
@@ -104,7 +104,7 @@ const ProfileTab = () => {
               type="text"
               value={email}
               readOnly
-              className="w-full p-2 rounded-md  cursor-not-allowed focus:outline-none"
+              className="w-full p-2 rounded-full  cursor-not-allowed focus:outline-none border border-gray-300 focus:ring-orange-500"
             />
             <div className="absolute right-2 top-5 bottom-0 flex items-center gap-2">
               <EditIcon
@@ -127,7 +127,7 @@ const ProfileTab = () => {
               type="text"
               value={phone}
               readOnly
-              className="w-full p-2 rounded-md cursor-not-allowed focus:outline-none"
+              className="w-full p-2 rounded-full cursor-not-allowed focus:outline-none border border-gray-300 focus:ring-orange-500"
             />
             <div className="absolute right-2 top-5 bottom-0 flex items-center gap-2">
               <EditIcon
@@ -146,7 +146,7 @@ const ProfileTab = () => {
       </div>
 
       {/* Support Channel Section */}
-      <div className="bg-gray-100 shadow-md rounded-lg p-6 w-full">
+      <div className="shadow-md rounded-lg p-6 w-full">
         <h2 className="text-sm font-semibold mb-4">Support Channel</h2>
         <hr className="border-gray-300 mb-4" />
         <div className="flex flex-col gap-6">
@@ -157,8 +157,7 @@ const ProfileTab = () => {
             <input
               type="text"
               value={email}
-              readOnly
-              className="w-full p-2 rounded-md cursor-not-allowed focus:outline-none"
+              className="w-full p-2 rounded-full border border-gray-300 focus:ring-orange-500 focus:outline-none focus:ring"
             />
             <button
               className="absolute bg-gray-100 right-2 top-7 text-black-100 text-xs rounded-xl p-2 transition duration-200"
@@ -174,8 +173,7 @@ const ProfileTab = () => {
             <input
               type="text"
               value={phone}
-              readOnly
-              className="w-full p-2 rounded-md cursor-not-allowed focus:outline-none"
+              className="w-full p-2 rounded-full border border-gray-300 focus:ring-orange-500 focus:outline-none focus:ring"
             />
             <button
               className="absolute bg-gray-100 right-2 top-7 text-black-100 text-xs rounded-xl p-2 transition duration-200"

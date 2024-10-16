@@ -11,7 +11,7 @@ const BillingTab = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-4 md:p-6">
+    <div className="flex flex-col gap-4">
       <div className="shadow-md rounded-lg p-4 md:p-6 w-full flex flex-col gap-3">
         <h2 className="text-sm md:text-base font-semibold mb-2">
           Your SuperProfile subscription
