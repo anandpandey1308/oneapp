@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect } from "react";
 import UpdateUsernameModal from "../../../../../components/Modal/UpdateUsernameModal";
-import AboutMeModal from "../../../../../components/Modal/AboutMeModal";
+import AboutMeModal from "../../../../../components/Modal/AboutMeModal"
 import { CiImageOn } from "react-icons/ci";
 import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
@@ -324,7 +324,7 @@ const BrandingTab = () => {
               Save Changes
             </button>
           </div>
-          
+
         )}
 
         {/* Social Media Links and Edit Button */}
