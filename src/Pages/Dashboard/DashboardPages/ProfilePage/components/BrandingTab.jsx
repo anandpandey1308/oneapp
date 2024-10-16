@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect } from "react";
 import UpdateUsernameModal from "../../../../../components/Modal/UpdateUsernameModal";
-import AboutMeModal from "../../../../../components/Modal/AboutMeModal"
 import { CiImageOn } from "react-icons/ci";
 import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
+import UpdateAboutMeModal from '../../../../../components/Modal/UpdateAboutMeModal'
 
 const BrandingTab = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -364,11 +364,10 @@ const BrandingTab = () => {
       />
 
       {/* About Me Modal */}
-      <AboutMeModal
+      <UpdateAboutMeModal
         open={isAboutMeModalOpen}
         handleClose={handleAboutMeModalClose}
         label="Edit About Me"
-        // Add any other props for the About Me modal
       />
     </div>
   );
