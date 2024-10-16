@@ -51,7 +51,7 @@ const ProfileTab = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="bg-gray-100 shadow-md rounded-lg p-6 w-full">
+      <div className="shadow-md rounded-lg p-6 w-full">
         <h2 className="text-sm font-semibold mb-4">Basic Information</h2>
         <hr className="border-gray-300 mb-4" />
         <div className="flex gap-6">

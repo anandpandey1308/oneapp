@@ -25,7 +25,7 @@ const BillingTab = () => {
               Free-trial ends on 18 October 2024
             </p>
           </div>
-          <div className="border rounded-xl border-orange-600 bg-amber-100 p-1 mt-3 md:mt-0">
+          <div className="border rounded-full border-orange-600 bg-amber-100 p-1 mt-3 md:mt-0">
             Trial ends in 1d:21h:9m:9s
           </div>
         </div>
