@@ -1,7 +1,10 @@
 import { GoPlus } from "react-icons/go";
 import Card from "../../../../components/Cards/Card";
-import { cardData, tabContents } from "../../../../utils/constants/constants";
+import NoContentComponent from "../../../../components/NoContent/NoContentComponent"
+import { cardData, tabContent,noContentData } from "../../../../utils/constants/constants";
 import { useState } from "react";
+
+
 
 const DiscordPage = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -34,7 +37,7 @@ const DiscordPage = () => {
 
       {/* Tabs */}
       <div className="flex justify-start items-center gap-4 p-6">
-        {tabContents.map((tab, index) => (
+        {tabContent.map((tab, index) => (
           <div
             key={index}
             onClick={() => setActiveTab(index)}
@@ -46,50 +49,35 @@ const DiscordPage = () => {
         ))}
       </div>
 
-      {/* Tab Content */}
       <div className="p-6 h-full w-full flex items-center justify-center">
-        {tabContents[activeTab].content ? (
+        {tabContent[activeTab].content ? (
           <>
             {activeTab === 0 && (
               <div className="bg-blue-100 text-blue-600 p-4 rounded-lg">
                 <h2 className="font-bold text-lg mb-2">Published Items</h2>
-                <p>{tabContents[activeTab].content}</p>
+                <p>{tabContent[activeTab].content}</p>
               </div>
             )}
             {activeTab === 1 && (
               <div className="bg-purple-100 text-purple-600 p-4 rounded-lg">
                 <h2 className="font-bold text-lg mb-2">Unpublished Items</h2>
-                <p>{tabContents[activeTab].content}</p>
+                <p>{tabContent[activeTab].content}</p>
               </div>
             )}
             {activeTab === 2 && (
               <div className="bg-orange-100 text-orange-600 p-4 rounded-lg">
                 <h2 className="font-bold text-lg mb-2">Draft Items</h2>
-                <p>{tabContents[activeTab].content}</p>
+                <p>{tabContent[activeTab].content}</p>
               </div>
             )}
           </>
         ) : (
-          <div className="text-center">
-            {activeTab === 0 && (
-              <div className="bg-red-100 text-red-600 p-4 rounded-lg">
-                <h2 className="font-bold text-lg mb-2">No Published Content</h2>
-                <p>There are currently no published items. Please publish some items.</p>
-              </div>
-            )}
-            {activeTab === 1 && (
-              <div className="bg-yellow-100 text-yellow-600 p-4 rounded-lg">
-                <h2 className="font-bold text-lg mb-2">No Unpublished Content</h2>
-                <p>There are currently no unpublished items available.</p>
-              </div>
-            )}
-            {activeTab === 2 && (
-              <div className="bg-green-100 text-green-600 p-4 rounded-lg">
-                <h2 className="font-bold text-lg mb-2">No Draft Content</h2>
-                <p>There are currently no draft items. Please create some drafts.</p>
-              </div>
-            )}
-          </div>
+          <NoContentComponent
+            title={noContentData.discord[activeTab].title}
+            description={noContentData.discord[activeTab].description}
+            isbutton={noContentData.discord[activeTab].isbutton}
+            button_title={noContentData.discord[activeTab].button_title}
+          />
         )}
       </div>
     </div>
