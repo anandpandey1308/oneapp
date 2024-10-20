@@ -223,3 +223,40 @@ export const audienceTabContentData = {
     buttonTitle: "Enable followers"
   }
 }
+
+
+export const PaymentKYCSteps = [
+  "Basic details about yourself",
+  "Aadhaar verification with Digilocker",
+  "PAN card details",
+  "Are you an individual or a business?",
+  "Take a selfie with PAN card",
+  "Bank details and submit bank proof"
+];
+
+// export const PaymentStepper = [
+//   {
+//     label: "Step 1 - Basic details about yourself",
+//     description: 
+//   },
+//   {
+//     label: "Step 2 - Aadhaar verification with Digilocker",
+//     description: 
+//   },
+//   {
+//     label: "Step 3 - PAN card details",
+//     description: 
+//   },
+//   {
+//     label: "Step 4 - Are you an individual or a business?",
+//     description: 
+//   },
+//   {
+//     label: "Step 5 - Take a selfie with PAN card",
+//     description: 
+//   },
+//   {
+//     label: "Step 6 - Bank details and submit bank proof",
+//     description: 
+//   },
+// ]
