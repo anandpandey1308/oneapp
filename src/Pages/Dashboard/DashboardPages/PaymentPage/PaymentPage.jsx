@@ -1,42 +1,40 @@
-import { GoPlus } from "react-icons/go";
 import Card from "../../../../components/Cards/Card";
-import { cardData, tabContent, noContentData } from "../../../../utils/constants/constants";
+import NoContentComponent from "../../../../components/NoContent/NoContentComponent";
 import { useState } from "react";
-import NoContentComponent from "../../../../components/NoContent/NoContentComponent"
+import pagesConfig from "../pagesConfig";
+import Table from "../../../../components/Table/TableComponent";
+import { useNavigate } from "react-router-dom";
 
 const PaymentPage = () => {
   const [activeTab, setActiveTab] = useState(0);
 
-
+  const { title, button, bgGradient, noContent, tabs, cardData, path } = pagesConfig.paymentPage;
+  const navigate = useNavigate()
   return (
     <div className="min-h-screen">
       {/* Background Section */}
-      <div className="w-full h-64 bg-gradient-to-b from-[#f08a5d] to-[#ffdda1] flex justify-center items-center relative">
-        <h1 className="font-bold text-white text-3xl md:text-4xl">Payment Page</h1>
+      <div className={`w-full h-64 ${bgGradient} flex justify-center items-center relative`}>
+        <h1 className="font-bold text-white text-3xl md:text-4xl">{title}</h1>
         <button
           type="button"
           className="bg-orange-600 text-white rounded-full text-xs md:text-sm px-4 md:px-6 py-2 transition duration-200 md:w-auto hover:bg-orange-700 absolute top-4 right-4 md:top-5 md:right-10 flex justify-center items-center gap-1"
-          aria-label="Create Payment Page"
+          aria-label={button.ariaLabel}
+          onClick={() => navigate(path)}
         >
-          <GoPlus className="font-bold" />
-          Create Payment Page
+          <button.icon className="font-bold" /> {/* Use the icon from the button object */}
+          {button.label}
         </button>
       </div>
 
       <div className="flex md:justify-center items-center gap-6 p-6 overflow-x-auto md:overflow-visible flex-nowrap w-full relative -mt-24 z-10 scrollbar-hide">
         {cardData.map((card, index) => (
-          <Card
-            key={index}
-            title={card.title}
-            value={card.value}
-            description={card.description}
-          />
+          <Card key={index} title={card.title} value={card.value} description={card.description} />
         ))}
       </div>
 
       {/* Tabs */}
       <div className="flex justify-start items-center gap-4 p-6">
-        {tabContent.map((tab, index) => (
+        {tabs.map((tab, index) => (
           <div
             key={index}
             onClick={() => setActiveTab(index)}
@@ -50,33 +48,14 @@ const PaymentPage = () => {
 
       {/* Tab Content */}
       <div className="p-6 h-full w-full flex items-center justify-center">
-        {tabContent[activeTab].content ? (
-          <>
-            {activeTab === 0 && (
-              <div className="bg-blue-100 text-blue-600 p-4 rounded-lg">
-                <h2 className="font-bold text-lg mb-2">Published Items</h2>
-                <p>{tabContent[activeTab].content}</p>
-              </div>
-            )}
-            {activeTab === 1 && (
-              <div className="bg-purple-100 text-purple-600 p-4 rounded-lg">
-                <h2 className="font-bold text-lg mb-2">Unpublished Items</h2>
-                <p>{tabContent[activeTab].content}</p>
-              </div>
-            )}
-            {activeTab === 2 && (
-              <div className="bg-orange-100 text-orange-600 p-4 rounded-lg">
-                <h2 className="font-bold text-lg mb-2">Draft Items</h2>
-                <p>{tabContent[activeTab].content}</p>
-              </div>
-            )}
-          </>
+        {tabs[activeTab].content && tabs[activeTab].content.length > 0 ? (
+          <Table data={tabs[activeTab].content} />
         ) : (
           <NoContentComponent
-            title={noContentData.payment[activeTab].title}
-            description={noContentData.payment[activeTab].description}
-            isbutton={noContentData.payment[activeTab].isbutton}
-            button_title={noContentData.payment[activeTab].button_title}
+            title={noContent[activeTab].title}
+            description={noContent[activeTab].description}
+            isbutton={noContent[activeTab].isButton}
+            button_title={noContent[activeTab].buttonTitle}
           />
         )}
       </div>

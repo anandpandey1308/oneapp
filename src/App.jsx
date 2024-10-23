@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SignInPage from "./Pages/Authentication/SigninPage/SignInPage";
@@ -17,6 +17,10 @@ import LockedContentPage from "./Pages/Dashboard/DashboardPages/LockedContentPag
 import DiscordPage from "./Pages/Dashboard/DashboardPages/DiscordPage/DiscordPage.jsx";
 import ProfilePage from "./Pages/Dashboard/DashboardPages/ProfilePage/ProfilePage.jsx";
 import SuperLinkPage from "./Pages/Dashboard/DashboardPages/SuperLinkPage/SuperLinkPage.jsx";
+import CreateEventPage from "./Pages/Dashboard/DashboardPages/EventsPage/CreateEventPage.jsx";
+import CreateCoursePage from "./Pages/Dashboard/DashboardPages/CoursesPage/CreateCoursePage.jsx";
+import CreateLockedContentPage from "./Pages/Dashboard/DashboardPages/LockedContentPage/CreateLockedContentPage.jsx";
+import CreatePaymentPage from "./Pages/Dashboard/DashboardPages/PaymentPage/CreatePaymentPage.jsx";
 
 const App = () => {
   return (
@@ -52,6 +56,12 @@ const App = () => {
           <Route path="discord" element={<DiscordPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="superlinks" element={<SuperLinkPage />} />
+        </Route>
+        <Route path="app" element={<Outlet />}>
+          <Route path="create-event" element={<CreateEventPage />} />
+          <Route path="create-course" element={<CreateCoursePage />} />
+          <Route path="create-locked-content" element={<CreateLockedContentPage />} />
+          <Route path="create-payment" element={<CreatePaymentPage />} />
         </Route>
       </Routes>
     </>
