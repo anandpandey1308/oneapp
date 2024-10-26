@@ -21,7 +21,7 @@ const PaymentPage = () => {
           aria-label={button.ariaLabel}
           onClick={() => navigate(path)}
         >
-          <button.icon className="font-bold" /> {/* Use the icon from the button object */}
+          <button.icon className="font-bold" />
           {button.label}
         </button>
       </div>

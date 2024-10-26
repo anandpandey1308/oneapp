@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NoAudienceComponent from "../../../../components/NoContent/NoAudienceComponent";
 import audienceConfig from "./audienceConfig";
+import AudienceTableComponent from "../../../../components/Table/AudienceTableComponent";
 
 const AudiencePage = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -27,15 +28,16 @@ const AudiencePage = () => {
 
       {/* Tab Content */}
       <div className="p-6 h-full w-full flex items-center justify-center">
-        {currentTab.content ? (
-          <div className="bg-blue-100 text-blue-600 p-4 rounded-lg">
-            <h2 className="font-bold text-lg mb-2">{currentTab.title}</h2>
-            <p>{currentTab.content}</p>
-          </div>
+        {currentTab.content.length > 0 ? (
+          <AudienceTableComponent data={currentTab.content} />
         ) : (
           <NoAudienceComponent
             title={audienceConfig.noContentData[currentTab.title.toLowerCase()].title}
-            description={audienceConfig.noContentData[currentTab.title.toLowerCase()].description}
+            description={
+              Array.isArray(audienceConfig.noContentData[currentTab.title.toLowerCase()].description)
+                ? audienceConfig.noContentData[currentTab.title.toLowerCase()].description
+                : [audienceConfig.noContentData[currentTab.title.toLowerCase()].description]
+            }
             buttonTitle={audienceConfig.noContentData[currentTab.title.toLowerCase()].buttonTitle}
           />
         )}

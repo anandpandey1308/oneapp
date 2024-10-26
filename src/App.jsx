@@ -21,6 +21,7 @@ import CreateEventPage from "./Pages/Dashboard/DashboardPages/EventsPage/CreateE
 import CreateCoursePage from "./Pages/Dashboard/DashboardPages/CoursesPage/CreateCoursePage.jsx";
 import CreateLockedContentPage from "./Pages/Dashboard/DashboardPages/LockedContentPage/CreateLockedContentPage.jsx";
 import CreatePaymentPage from "./Pages/Dashboard/DashboardPages/PaymentPage/CreatePaymentPage.jsx";
+import ChatPage from "./Pages/Dashboard/DashboardPages/ChatPage/ChatPage.jsx";
 
 const App = () => {
   return (
@@ -56,6 +57,7 @@ const App = () => {
           <Route path="discord" element={<DiscordPage />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="superlinks" element={<SuperLinkPage />} />
+          <Route path="chat" element={<ChatPage />} />
         </Route>
         <Route path="app" element={<Outlet />}>
           <Route path="create-event" element={<CreateEventPage />} />

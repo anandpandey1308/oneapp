@@ -1,4 +1,4 @@
-import { FaHome, FaChartBar, FaUsers, FaCog, FaShoppingCart, FaCalendarAlt, FaBookOpen, FaLock, FaTelegramPlane, FaDiscord, FaLink } from "react-icons/fa";
+import { FaHome, FaChartBar, FaUsers, FaCog, FaShoppingCart,FaRocketchat, FaCalendarAlt, FaBookOpen, FaLock, FaTelegramPlane, FaDiscord, FaLink } from "react-icons/fa";
 import logo from '../../assets/oneapp.png';
 
 export const dashboardConfig = {
@@ -21,7 +21,8 @@ export const dashboardConfig = {
     { label: "Courses", icon: FaBookOpen, path: "/courses" },
     { label: "Telegram", icon: FaTelegramPlane, path: "/telegram" },
     { label: "Locked Content", icon: FaLock, path: "/locked-content" },
-    { label: "Discord", icon: FaDiscord, path: "/discord" }
+    { label: "Discord", icon: FaDiscord, path: "/discord" },
+    { label: "Chat", icon: FaRocketchat, path: "/chat" },
   ],
   settingItems: [
     { label: "Account Setting", icon: FaCog, path: "/profile" },

@@ -3,13 +3,32 @@ const audienceConfig = {
   tabs: [
     {
       title: "Customers",
-      value: 0,
-      content: "",
+      value: 2,
+      content: [
+        {
+          name: "John Doe",
+          email: "johndoe@example.com",
+          phone: "123-456-7890",
+          purchasedProducts: ["Product A", "Product B"],
+          amountSpent: "$500",
+          activeSubscriptions: "2",
+          path: ""
+        },
+        {
+          name: "Jane Smith",
+          email: "janesmith@example.com",
+          phone: "987-654-3210",
+          purchasedProducts: ["Product C"],
+          amountSpent: "$300",
+          activeSubscriptions: "1",
+          path: ""
+        },
+      ],
     },
     {
       title: "Followers",
       value: 0,
-      content: "",
+      content: [],
     },
   ],
   noContentData: {
@@ -25,7 +44,7 @@ const audienceConfig = {
     followers: {
       title: "Build your own audience with followers on OneApp",
       description: [
-        "Visitors to your SuperProfile can now follow you for email or sms updates",
+        "Visitors to your SuperProfile can now follow you for email or SMS updates",
         "Export your follower list with ease to send out emails or WhatsApp messages",
         "Easily convert your followers into paid customers and track conversion",
       ],
