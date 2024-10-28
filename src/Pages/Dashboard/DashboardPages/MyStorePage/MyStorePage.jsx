@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "./Header/Header";
 import MobilePreview from "./MobilePreview/MobilePreview";
 import ProfileContent from "./ProfileContent/ProfileContent";
-import AppearanceContent from "./AppreanceContent";
+import AppearanceContent from "./Appreance/AppreanceContent";
 import { siteConfig } from "./StoreConfig";
 import "./store.css";
 
