@@ -9,12 +9,14 @@ import {
   MoreVertical,
 } from "lucide-react";
 import EditProfileModal from "./EditProfile";
+import AddProductModal from "../AddProduct/AddProduct";
 import "./profile.css";
 const ASTRONAUT_IMAGE =
   "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Astronaut.png";
 
 const ProfileContent = ({ onProfileUpdate }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false);
   const [profileData, setProfileData] = useState({
     username: "Manish",
     tagline: "manish is here",
@@ -76,7 +78,6 @@ const ProfileContent = ({ onProfileUpdate }) => {
           </div>
           <MoreVertical size={16} className="more-icon" />
         </button>
-
         <button className="add-button">+ Add a button</button>
       </div>
 
@@ -91,9 +92,16 @@ const ProfileContent = ({ onProfileUpdate }) => {
           <ChevronDown size={16} />
         </button>
       </div>
-
-      {/* Product and Header Buttons */}
-      <button className="add-product-button">+ Add Product</button>
+      <button
+        className="add-product-button"
+        onClick={() => setIsAddProductModalOpen(true)}
+      >
+        + Add Product
+      </button>
+      <AddProductModal
+        isOpen={isAddProductModalOpen}
+        onClose={() => setIsAddProductModalOpen(false)}
+      />
 
       <button className="add-header-button">+ Add Header</button>
       <EditProfileModal
