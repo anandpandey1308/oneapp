@@ -23,6 +23,7 @@ import CreateLockedContentPage from "./Pages/Dashboard/DashboardPages/LockedCont
 import CreatePaymentPage from "./Pages/Dashboard/DashboardPages/PaymentPage/CreatePaymentPage.jsx";
 import ChatPage from "./Pages/Dashboard/DashboardPages/ChatPage/ChatPage.jsx";
 import Welcome from "./Pages/Welcome/Welcome.jsx";
+import PluginPage from "./Pages/Dashboard/DashboardPages/PluginPage/PluginPage.jsx";
 
 const App = () => {
   return (
@@ -60,6 +61,7 @@ const App = () => {
           <Route path="profile" element={<ProfilePage />} />
           <Route path="superlinks" element={<SuperLinkPage />} />
           <Route path="chat" element={<ChatPage />} />
+          <Route path="plugin" element={<PluginPage />} />
         </Route>
         <Route path="app" element={<Outlet />}>
           <Route path="create-event" element={<CreateEventPage />} />

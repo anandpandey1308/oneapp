@@ -31,7 +31,7 @@ const Welcome = () => {
           {/* Buttons grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full mt-4">
             <Link 
-              to="/sign" 
+              to="/signin" 
               className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium
                          hover:bg-blue-700 transform hover:-translate-y-0.5 transition-all duration-200
                          shadow-lg hover:shadow-xl"

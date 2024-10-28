@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { FaHome, FaChartBar, FaUsers, FaCog, FaShoppingCart,FaRocketchat, FaCalendarAlt, FaBookOpen, FaLock, FaTelegramPlane, FaDiscord, FaLink } from "react-icons/fa";
+import { BsPlugin } from "react-icons/bs";
 import logo from '../../assets/oneapp.png';
 
 export const dashboardConfig = {
@@ -27,6 +28,7 @@ export const dashboardConfig = {
     { label: "Discord", icon: FaDiscord, path: "/discord" },
     // commented out for now, as we don't have a chat dashboard yet
     // { label: "Chat", icon: FaRocketchat, path: "/chat" },
+    { label: "Plugin", icon: BsPlugin, path: "/plugin" },
   ],
   settingItems: [
     { label: "Account Setting", icon: FaCog, path: "/profile" },
