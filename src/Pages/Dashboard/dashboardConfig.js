@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { FaHome, FaChartBar, FaUsers, FaCog, FaShoppingCart,FaRocketchat, FaCalendarAlt, FaBookOpen, FaLock, FaTelegramPlane, FaDiscord, FaLink } from "react-icons/fa";
 import logo from '../../assets/oneapp.png';
 
@@ -8,21 +9,24 @@ export const dashboardConfig = {
     title: "MyApp",
   },
   generalItems: [
-    { label: "Getting Started", icon: FaHome, path: "/" },
-    { label: "My Store", icon: FaShoppingCart, path: "/mystore" },
+    { label: "Home", icon: FaHome, path: "/" },
+    { label: "One Link", icon: FaShoppingCart, path: "/mystore" },
     { label: "Audience", icon: FaUsers, path: "/audience" },
     { label: "Payments", icon: FaChartBar, path: "/payments" },
-    { label: "SuperLinks", icon: FaLink, path: "/superlinks" }
+    // commented out for now, as we don't have a superlinks dashboard yet
+    // { label: "SuperLinks", icon: FaLink, path: "/superlinks" }
   ],
   appItems: [
-    { label: "Payment Pages", icon: FaChartBar, path: "/payment" },
-    { label: "Bookings", icon: FaCalendarAlt, path: "/booking" },
+    { label: "Paying Up", icon: FaChartBar, path: "/payment" },
+    { label: "Appointment", icon: FaCalendarAlt, path: "/booking" },
     { label: "Events", icon: FaUsers, path: "/events" },
     { label: "Courses", icon: FaBookOpen, path: "/courses" },
     { label: "Telegram", icon: FaTelegramPlane, path: "/telegram" },
-    { label: "Locked Content", icon: FaLock, path: "/locked-content" },
+    // commented out for now, as we don't have a superlinks dashboard yet
+    // { label: "Locked Content", icon: FaLock, path: "/locked-content" },
     { label: "Discord", icon: FaDiscord, path: "/discord" },
-    { label: "Chat", icon: FaRocketchat, path: "/chat" },
+    // commented out for now, as we don't have a chat dashboard yet
+    // { label: "Chat", icon: FaRocketchat, path: "/chat" },
   ],
   settingItems: [
     { label: "Account Setting", icon: FaCog, path: "/profile" },
