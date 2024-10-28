@@ -4,9 +4,12 @@ import { pluginConfig } from './pluginConfig';
 
 const PluginPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-8 px-4">
       <div className="max-w-7xl mx-auto">
-
+      <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Choose Your Plan</h1>
+          <p className="text-xl text-gray-600">Select the perfect plan for your needs</p>
+        </div>
         <div className="flex flex-wrap justify-center gap-8">
           {pluginConfig.map((plan, index) => (
             <div 

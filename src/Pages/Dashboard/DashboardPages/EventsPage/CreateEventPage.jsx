@@ -4,7 +4,7 @@ import dayjs from "dayjs"; // import dayjs for date management
 
 const CreateEventPage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("Option 1");
+  const [selectedOption, setSelectedOption] = useState("Finance");
   const [imagePreview, setImagePreview] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
   const [eventTab, setEventTab] = useState(0);
@@ -17,8 +17,8 @@ const CreateEventPage = () => {
 
   const tabs = [
     { title: "Zoom" },
-    { title: "Virtual" },
-    { title: "In Person" },
+    { title: "Add link" },
+    { title: "Offline" },
   ];
 
   const eventTabs = [{ title: "Single Event" }, { title: "Recurring Event" }];
@@ -26,6 +26,13 @@ const CreateEventPage = () => {
   const costTab = [
     { title: "Free" },
     { title: "Paid" },
+  ]
+
+  const eventCategory = [
+    "Finance",
+    "Education",
+    "Astrology",
+    "Others"
   ]
 
   const handleDropdownToggle = () => setDropdownOpen(!dropdownOpen);
@@ -136,7 +143,7 @@ const CreateEventPage = () => {
             </button>
             {dropdownOpen && (
               <ul className="absolute w-full bg-white border border-gray-300 rounded-md mt-1 shadow-lg z-10">
-                {["Option 1", "Option 2", "Option 3"].map((option) => (
+                {eventCategory.map((option) => (
                   <li
                     key={option}
                     onClick={() => handleOptionSelect(option)}
