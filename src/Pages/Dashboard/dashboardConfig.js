@@ -12,7 +12,7 @@ export const dashboardConfig = {
     { label: "Home", icon: FaHome, path: "/" },
     { label: "One Link", icon: FaShoppingCart, path: "/mystore" },
     { label: "Audience", icon: FaUsers, path: "/audience" },
-    { label: "Payments", icon: FaChartBar, path: "/payments" },
+    { label: "Wallets", icon: FaChartBar, path: "/payments" },
     // commented out for now, as we don't have a superlinks dashboard yet
     // { label: "SuperLinks", icon: FaLink, path: "/superlinks" }
   ],
