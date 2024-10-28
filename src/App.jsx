@@ -22,6 +22,7 @@ import CreateCoursePage from "./Pages/Dashboard/DashboardPages/CoursesPage/Creat
 import CreateLockedContentPage from "./Pages/Dashboard/DashboardPages/LockedContentPage/CreateLockedContentPage.jsx";
 import CreatePaymentPage from "./Pages/Dashboard/DashboardPages/PaymentPage/CreatePaymentPage.jsx";
 import ChatPage from "./Pages/Dashboard/DashboardPages/ChatPage/ChatPage.jsx";
+import Welcome from "./Pages/Welcome/Welcome.jsx";
 
 const App = () => {
   return (
@@ -41,6 +42,7 @@ const App = () => {
       />
 
       <Routes>
+        <Route path="/" element={<Welcome />} />
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/dashboard" element={<DashboardPage />}>

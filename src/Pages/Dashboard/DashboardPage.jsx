@@ -65,7 +65,7 @@ const DashboardPage = () => {
             </div>
 
             <hr className="border-gray-600 mb-4" />
-            <span className="text-sm font-bold mb-2 block">Your App</span>
+            <span className="text-sm font-bold mb-2 block">Our Services</span>
 
             <div>
               {dashboardConfig.appItems.map((item, index) => (
