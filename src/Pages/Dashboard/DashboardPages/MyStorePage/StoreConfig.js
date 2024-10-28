@@ -7,9 +7,9 @@ export const siteConfig = {
     { id: "settings", label: "Settings" },
   ],
   profile: {
-    username: "Anand1",
-    tagline: "Anand is here",
-    profileUrl: "superprofile.bio/anandpandey1308",
+    username: "Manish",
+    tagline: "Manish is here",
+    profileUrl: "oneapp.bio/manish",
     avatarImage: "/api/placeholder/80/80",
     socials: [
       {

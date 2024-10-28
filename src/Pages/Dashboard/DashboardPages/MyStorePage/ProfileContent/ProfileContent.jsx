@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 // src/components/ProfileContent/ProfileContent.jsx
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Instagram,
   Phone,
@@ -15,8 +16,8 @@ const ASTRONAUT_IMAGE =
 const ProfileContent = ({ onProfileUpdate }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [profileData, setProfileData] = useState({
-    username: "Anand1",
-    tagline: "Anand is here",
+    username: "Manish",
+    tagline: "manish is here",
     socials: {
       instagram: { enabled: true },
     },

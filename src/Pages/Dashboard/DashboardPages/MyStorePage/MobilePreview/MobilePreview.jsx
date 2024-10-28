@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 // src/components/MobilePreview/MobilePreview.jsx
-import React from "react";
+
 import { Instagram, Share2, Copy } from "lucide-react";
 import "./MobilePreview.css";
 const ASTRONAUT_IMAGE =
@@ -15,7 +16,7 @@ const MobilePreview = ({ profile, theme }) => {
       {/* URL and Share Button */}
       <div className="preview-header">
         <div className="profile-url">
-          superprofile.bio/anandpandey1308
+          oneapp.bio/manish
           <button className="copy-button" onClick={handleCopyUrl}>
             <Copy size={16} />
           </button>
