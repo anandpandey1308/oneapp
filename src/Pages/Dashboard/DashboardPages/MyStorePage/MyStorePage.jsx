@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Header from "./Header";
-import MobilePreview from "./MobilePreview";
-import ProfileContent from "./ProfileContent";
+import Header from "./Header/Header";
+import MobilePreview from "./MobilePreview/MobilePreview";
+import ProfileContent from "./ProfileContent/ProfileContent";
 import AppearanceContent from "./AppreanceContent";
 import { siteConfig } from "./StoreConfig";
 import "./store.css";
 
 const MyStore = () => {
   const [activeTab, setActiveTab] = useState("profile");
-  const [currentTheme, setCurrentTheme] = useState(siteConfig.themes[3]); // Pastel-green default
+  const [currentTheme, setCurrentTheme] = useState(siteConfig.themes[3]);
 
   return (
     <div className="app-container">

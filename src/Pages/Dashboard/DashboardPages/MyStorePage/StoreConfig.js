@@ -1,5 +1,4 @@
 // src/config/siteConfig.js
-
 export const siteConfig = {
   tabs: [
     { id: "profile", label: "Profile" },

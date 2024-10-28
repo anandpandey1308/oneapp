@@ -1,6 +1,7 @@
+// EditProfileModal.jsx
 import React, { useState, useEffect } from "react";
-import { Instagram, Pencil, X } from "lucide-react";
-import "./store.css";
+import { Instagram, X } from "lucide-react";
+import "./edit.css";
 
 const EditProfileModal = ({ isOpen, onClose, initialData, onSave }) => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,6 @@ const EditProfileModal = ({ isOpen, onClose, initialData, onSave }) => {
     },
   });
 
-  // Update form data when initial data changes
   useEffect(() => {
     if (initialData) {
       setFormData({
@@ -33,7 +33,7 @@ const EditProfileModal = ({ isOpen, onClose, initialData, onSave }) => {
     }));
   };
 
-  const handleInstagramToggle = () => {
+  const handleSocialToggle = () => {
     setFormData((prev) => ({
       ...prev,
       socials: {
@@ -44,11 +44,6 @@ const EditProfileModal = ({ isOpen, onClose, initialData, onSave }) => {
         },
       },
     }));
-  };
-
-  const handleSubmit = () => {
-    onSave(formData);
-    onClose();
   };
 
   if (!isOpen) return null;
@@ -64,6 +59,7 @@ const EditProfileModal = ({ isOpen, onClose, initialData, onSave }) => {
         </div>
 
         <div className="modal-body">
+          {/* Username field */}
           <div className="form-field">
             <input
               type="text"
@@ -77,6 +73,7 @@ const EditProfileModal = ({ isOpen, onClose, initialData, onSave }) => {
             </span>
           </div>
 
+          {/* Tagline field */}
           <div className="form-field">
             <input
               type="text"
@@ -90,6 +87,7 @@ const EditProfileModal = ({ isOpen, onClose, initialData, onSave }) => {
             </span>
           </div>
 
+          {/* Social Links */}
           <div className="social-section">
             <label>Social Link</label>
             <select className="form-select">
@@ -98,13 +96,15 @@ const EditProfileModal = ({ isOpen, onClose, initialData, onSave }) => {
 
             <div className="social-links-list">
               <div className="social-link-item">
-                <Instagram size={20} />
-                <span>Instagram</span>
+                <div className="social-info">
+                  <Instagram size={20} />
+                  <span>Instagram</span>
+                </div>
                 <div className="toggle-switch">
                   <input
                     type="checkbox"
-                    checked={formData.socials?.instagram?.enabled}
-                    onChange={handleInstagramToggle}
+                    checked={formData.socials.instagram.enabled}
+                    onChange={handleSocialToggle}
                   />
                   <span className="toggle-slider"></span>
                 </div>
@@ -117,7 +117,13 @@ const EditProfileModal = ({ isOpen, onClose, initialData, onSave }) => {
           <button className="cancel-button" onClick={onClose}>
             Cancel
           </button>
-          <button className="save-button" onClick={handleSubmit}>
+          <button
+            className="save-button"
+            onClick={() => {
+              onSave(formData); // First save the data
+              onClose(); // Then close the modal
+            }}
+          >
             Save changes
           </button>
         </div>
