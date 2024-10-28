@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "./Header/Header";
 import MobilePreview from "./MobilePreview/MobilePreview";
 import ProfileContent from "./ProfileContent/ProfileContent";
@@ -33,7 +33,7 @@ const MyStore = () => {
         <MobilePreview theme={currentTheme} profile={siteConfig.profile} />
       </main>
 
-      <button className="checklist-button">Your checklist</button>
+      {/* <button className="checklist-button">Your checklist</button> */}
     </div>
   );
 };
