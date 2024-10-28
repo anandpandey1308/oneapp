@@ -1,21 +1,30 @@
-// EditProfileModal.jsx
-import React, { useState } from "react";
-import { Instagram, Pencil, X, Facebook, Music2 } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Instagram, Pencil, X } from "lucide-react";
 import "./store.css";
 
-const EditProfileModal = ({ isOpen, onClose, profile, onSave }) => {
+const EditProfileModal = ({ isOpen, onClose, initialData, onSave }) => {
   const [formData, setFormData] = useState({
-    username: profile.username || "",
-    tagline: profile.tagline || "",
-    socialPosition: "top",
+    username: "",
+    tagline: "",
     socials: {
-      instagram: { enabled: true, username: "" },
-      threads: { enabled: false, username: "" },
-      tiktok: { enabled: false, username: "" },
-      facebook: { enabled: false, username: "" },
-      spotify: { enabled: false, username: "" },
+      instagram: { enabled: false },
     },
   });
+
+  // Update form data when initial data changes
+  useEffect(() => {
+    if (initialData) {
+      setFormData({
+        username: initialData.username || "",
+        tagline: initialData.tagline || "",
+        socials: {
+          instagram: {
+            enabled: initialData.socials?.instagram?.enabled || false,
+          },
+        },
+      });
+    }
+  }, [initialData]);
 
   const handleChange = (field, value) => {
     setFormData((prev) => ({
@@ -24,17 +33,22 @@ const EditProfileModal = ({ isOpen, onClose, profile, onSave }) => {
     }));
   };
 
-  const handleSocialToggle = (platform) => {
+  const handleInstagramToggle = () => {
     setFormData((prev) => ({
       ...prev,
       socials: {
         ...prev.socials,
-        [platform]: {
-          ...prev.socials[platform],
-          enabled: !prev.socials[platform].enabled,
+        instagram: {
+          ...prev.socials.instagram,
+          enabled: !prev.socials.instagram.enabled,
         },
       },
     }));
+  };
+
+  const handleSubmit = () => {
+    onSave(formData);
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -50,7 +64,6 @@ const EditProfileModal = ({ isOpen, onClose, profile, onSave }) => {
         </div>
 
         <div className="modal-body">
-          {/* Username field */}
           <div className="form-field">
             <input
               type="text"
@@ -64,7 +77,6 @@ const EditProfileModal = ({ isOpen, onClose, profile, onSave }) => {
             </span>
           </div>
 
-          {/* Tagline field */}
           <div className="form-field">
             <input
               type="text"
@@ -78,58 +90,25 @@ const EditProfileModal = ({ isOpen, onClose, profile, onSave }) => {
             </span>
           </div>
 
-          {/* Social Links Section */}
           <div className="social-section">
-            <label>Social Links</label>
-            <select
-              value={formData.socialPosition}
-              onChange={(e) => handleChange("socialPosition", e.target.value)}
-              className="form-select"
-            >
-              <option value="top">Position on profile - Top</option>
-              <option value="bottom">Position on profile - Bottom</option>
+            <label>Social Link</label>
+            <select className="form-select">
+              <option>Position on profile - Top</option>
             </select>
 
-            {/* Social Platform List */}
             <div className="social-links-list">
               <div className="social-link-item">
                 <Instagram size={20} />
                 <span>Instagram</span>
-                <button
-                  className={`edit-button ${
-                    formData.socials.instagram.enabled ? "active" : ""
-                  }`}
-                  onClick={() => handleSocialToggle("instagram")}
-                >
-                  <Pencil size={16} />
-                </button>
                 <div className="toggle-switch">
                   <input
                     type="checkbox"
-                    checked={formData.socials.instagram.enabled}
-                    onChange={() => handleSocialToggle("instagram")}
+                    checked={formData.socials?.instagram?.enabled}
+                    onChange={handleInstagramToggle}
                   />
                   <span className="toggle-slider"></span>
                 </div>
               </div>
-
-              <div className="social-link-item">
-                <img src="/threads-icon.png" alt="Threads" width="20" />
-                <span>Threads</span>
-                <button className="edit-button">
-                  <Pencil size={16} />
-                </button>
-                <div className="toggle-switch">
-                  <input
-                    type="checkbox"
-                    checked={formData.socials.threads.enabled}
-                    onChange={() => handleSocialToggle("threads")}
-                  />
-                  <span className="toggle-slider"></span>
-                </div>
-              </div>
-
-              {/* Add similar items for TikTok, Facebook, and Spotify */}
             </div>
           </div>
         </div>
@@ -138,13 +117,7 @@ const EditProfileModal = ({ isOpen, onClose, profile, onSave }) => {
           <button className="cancel-button" onClick={onClose}>
             Cancel
           </button>
-          <button
-            className="save-button"
-            onClick={() => {
-              onSave(formData);
-              onClose();
-            }}
-          >
+          <button className="save-button" onClick={handleSubmit}>
             Save changes
           </button>
         </div>
