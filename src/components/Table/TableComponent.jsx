@@ -16,8 +16,6 @@ const Table = ({ data }) => {
   }, [searchTerm]);
 
   const handleRowClick = (path) => {
-    console.log(path);
-    
     if (path) {
       navigate(path);
     }
@@ -107,6 +105,7 @@ const Table = ({ data }) => {
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sale</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Revenue</th>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Share</th>
             </tr>
           </thead>
           <tbody className="bg-transparent divide-y-0 divide-gray-200">
@@ -128,7 +127,7 @@ const Table = ({ data }) => {
                 <td className="bg-white border-t border-b px-4 py-4 text-sm text-gray-500">
                   {event.revenue}
                 </td>
-                <td className="bg-white border rounded-r-lg px-4 py-4 text-sm">
+                <td className="bg-white border-t border-b px-4 py-4 text-sm">
                   {event.paymentEnabled ? (
                     <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                       Enabled
@@ -138,6 +137,18 @@ const Table = ({ data }) => {
                       Disabled
                     </span>
                   )}
+                </td>
+                <td className="bg-white border rounded-r-lg px-4 py-4 text-sm">
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigator.clipboard.writeText(event.shareLink);
+                      toast.success('Link copied to clipboard');
+                    }}
+                    className="text-blue-500 hover:underline text-xs font-medium"
+                  >
+                    Share
+                  </button>
                 </td>
               </tr>
             ))}
@@ -184,6 +195,16 @@ const Table = ({ data }) => {
                   )}
                 </span>
               </div>
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigator.clipboard.writeText(event.shareLink);
+                  toast.success('Link copied to clipboard');
+                }}
+                className="ml-2 text-blue-500 hover:underline text-xs font-medium"
+              >
+                Share
+              </button>
             </div>
           </div>
         ))}

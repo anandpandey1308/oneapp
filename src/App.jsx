@@ -18,12 +18,13 @@ import DiscordPage from "./Pages/Dashboard/DashboardPages/DiscordPage/DiscordPag
 import ProfilePage from "./Pages/Dashboard/DashboardPages/ProfilePage/ProfilePage.jsx";
 import SuperLinkPage from "./Pages/Dashboard/DashboardPages/SuperLinkPage/SuperLinkPage.jsx";
 import CreateEventPage from "./Pages/Dashboard/DashboardPages/EventsPage/CreateEventPage.jsx";
-import CreateCoursePage from "./Pages/Dashboard/DashboardPages/CoursesPage/CreateCoursePage.jsx";
+// import CreateCoursePage from "./Pages/Dashboard/DashboardPages/CoursesPage/CreateCoursePage.jsx";
 import CreateLockedContentPage from "./Pages/Dashboard/DashboardPages/LockedContentPage/CreateLockedContentPage.jsx";
 import CreatePaymentPage from "./Pages/Dashboard/DashboardPages/PaymentPage/CreatePaymentPage.jsx";
 import ChatPage from "./Pages/Dashboard/DashboardPages/ChatPage/ChatPage.jsx";
 import Welcome from "./Pages/Welcome/Welcome.jsx";
 import PluginPage from "./Pages/Dashboard/DashboardPages/PluginPage/PluginPage.jsx";
+import CreateNewCourse from "./Pages/Dashboard/DashboardPages/CoursesPage/NewCourses/CreateNewCourse.jsx";
 
 const App = () => {
   return (
@@ -65,7 +66,8 @@ const App = () => {
         </Route>
         <Route path="app" element={<Outlet />}>
           <Route path="create-event" element={<CreateEventPage />} />
-          <Route path="create-course" element={<CreateCoursePage />} />
+          <Route path="create-course" element={<CreateNewCourse />} />
+          {/* <Route path="create-course" element={<CreateCoursePage />} /> */}
           <Route path="create-locked-content" element={<CreateLockedContentPage />} />
           <Route path="create-payment" element={<CreatePaymentPage />} />
         </Route>

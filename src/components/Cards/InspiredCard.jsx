@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-
+import Profile from "../../assets/profile.svg";
 const CardSkeleton = () => (
     <div className="animate-pulse">
       <div className="h-12 w-12 bg-gray-200 rounded-full mb-6 mx-auto" />
@@ -17,7 +17,7 @@ const InspiredCard = ({ image, text, isLoading }) => {
       <div className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all">
         <div className="aspect-w-16 aspect-h-9">
           <img 
-            src={image || "/api/placeholder/400/320"} 
+            src={image || Profile} 
             alt={text}
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
