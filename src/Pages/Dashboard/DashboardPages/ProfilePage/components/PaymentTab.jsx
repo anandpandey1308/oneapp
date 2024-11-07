@@ -23,7 +23,7 @@ const PaymentTab = () => {
       icon: <IoBookmarkOutline className="text-3xl" />,
       title: "Track purchase activity",
       description:
-        "View all transactions right within your SuperProfile dashboard.",
+        "View all transactions right within your oneapp dashboard.",
     },
     {
       icon: <BiBookmarkAltPlus className="text-3xl" />,
@@ -64,7 +64,7 @@ const PaymentTab = () => {
     <div className="flex flex-col gap-6">
       <div className="shadow-md rounded-lg p-4 md:p-6 flex flex-col gap-4 bg-white">
         <div className="flex justify-between items-center">
-          <h2 className="text-sm md:text-lg font-semibold">SuperProfile payments</h2>
+          <h2 className="text-sm md:text-lg font-semibold">oneapp payments</h2>
           <div
             className={`border rounded-xl ${userKYCStatus.color} text-[10px] md:text-sm px-2 py-1 mt-3 md:mt-0`}
           >
@@ -115,7 +115,7 @@ const PaymentTab = () => {
 
           {/* Setup Info */}
           <p className="text-xs text-center">
-            Set up SuperProfile Payments in less than 10 mins
+            Set up oneapp Payments in less than 10 mins
           </p>
         </div>
 

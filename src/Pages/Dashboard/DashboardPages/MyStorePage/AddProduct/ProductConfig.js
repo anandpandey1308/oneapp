@@ -9,7 +9,7 @@ export const productConfig = {
           id: "add-link",
           title: "Add a link",
           description:
-            "Showcase links on your SuperProfile. Link off to a video, your socials, etc.",
+            "Showcase links on your oneapp. Link off to a video, your socials, etc.",
           icon: "link",
           iconBg: "#E8F5FF", // Light blue
           iconColor: "#0096FF", // Blue
@@ -42,9 +42,9 @@ export const productConfig = {
         },
         {
           id: "referral-link",
-          title: "SuperProfile Referral Link",
+          title: "oneapp Referral Link",
           description:
-            "Refer a friend and receive 20% of their SuperProfile subscription fee!",
+            "Refer a friend and receive 20% of their oneapp subscription fee!",
           icon: "zap",
           iconBg: "#F0E7FF", // Light purple
           iconColor: "#8B5CF6", // Purple

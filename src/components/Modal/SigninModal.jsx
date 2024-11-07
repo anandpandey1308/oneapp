@@ -78,7 +78,7 @@ const SigninModal = ({ open, handleClose, label, value, onSave }) => {
           </div>
           <hr className="border-gray-300 mb-4" />
           <p className="text-gray-600 mb-6">
-            This is the email you use to sign in to your SuperProfile account. Why do you wish to change it?
+            This is the email you use to sign in to your oneapp account. Why do you wish to change it?
           </p>
 
           {/* Primary Email Checkbox */}
@@ -90,7 +90,7 @@ const SigninModal = ({ open, handleClose, label, value, onSave }) => {
               className="form-checkbox text-orange-500 focus:ring-orange-500 mt-1"
             />
             <span className="ml-3 text-gray-700">
-              This was not my primary email account and I want to update my SuperProfile account with a new email.
+              This was not my primary email account and I want to update my oneapp account with a new email.
             </span>
           </div>
 

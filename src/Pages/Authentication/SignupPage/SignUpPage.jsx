@@ -418,7 +418,7 @@ const SignUpPage = () => {
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
                   backgroundImage:
-                    "url('https://superprofile.bio/_next/static/media/super-profile-bg.e492fb38.png')",
+                    "url('https://oneapp.bio/_next/static/media/super-profile-bg.e492fb38.png')",
                 }}
               ></div>
               <div className="relative w-full h-full flex justify-center items-center">

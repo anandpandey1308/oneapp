@@ -61,7 +61,7 @@ const UpdateUsernameModal = ({ open, handleClose, label, value, onSave }) => {
           <hr className="border-gray-300 mb-4" />
 
           <div className="mb-6">
-            <span className="block text-sm text-gray-700 mb-4">Changing your username will change your site’s URL - including SuperProfile and the dashboard your customers access after a purchase. We recommend not doing this unless it’s extremely important for you.</span>
+            <span className="block text-sm text-gray-700 mb-4">Changing your username will change your site’s URL - including oneapp and the dashboard your customers access after a purchase. We recommend not doing this unless it’s extremely important for you.</span>
             <input
               type="text"
               value={tempValue}

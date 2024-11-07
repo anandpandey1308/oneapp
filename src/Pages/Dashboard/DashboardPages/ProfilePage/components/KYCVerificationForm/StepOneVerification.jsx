@@ -5,7 +5,7 @@ const StepOneVerification = ({ firstName, setFirstName, lastName, setLastName })
       <div className="flex flex-col gap-2">
         <h1 className="text-lg font-semibold text-center">Step 1: Basic Details</h1>
         <p className="text-sm text-gray-600 mb-4 text-center">
-          We use this information to verify it with your Aadhaar and PAN details. Your SuperProfile account will use the same info.
+          We use this information to verify it with your Aadhaar and PAN details. Your oneapp account will use the same info.
         </p>
         <hr className="border-gray-200 mb-4" />
         

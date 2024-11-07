@@ -2,29 +2,29 @@ import { GoPlus } from "react-icons/go";
 import { FaCalendarAlt, FaDiscord, FaLock, FaTelegramPlane, FaChartBar } from "react-icons/fa";
 
 export const pagesConfig = {
-  eventsPage: {
-    title: "Event Page",
+  webinarPage: {
+    title: "Webinar Page",
     button: {
-      label: "Create Event",
+      label: "Create Webinar",
       icon: GoPlus,
-      ariaLabel: "Create Event",
+      ariaLabel: "Create Webinar",
     },
     bgGradient: "bg-gradient-to-b from-[#ADD8E6] to-[#FFD700]",
     noContent: [
       {
-        title: "No Published events yet",
+        title: "No Published webinar yet",
         description: "No event yet? No problem! Create a new event now and start generating income.",
-        buttonTitle: "Create Event",
+        buttonTitle: "Create Webinar",
         isButton: true,
       },
       {
-        title: "No unpublished events yet!",
+        title: "No unpublished webinar yet!",
         description: "",
         buttonTitle: "",
         isButton: false,
       },
       {
-        title: "No draft events yet!",
+        title: "No draft webinar yet!",
         description: "",
         buttonTitle: "",
         isButton: false,
@@ -32,17 +32,17 @@ export const pagesConfig = {
     ],
     tabs: [
       {
-        title: "Published Events",
+        title: "Published webinar",
         value: "0",
         content: []
       },
       {
-        title: "Unpublished Events",
+        title: "Unpublished webinar",
         value: "0",
         content: [],
       },
       {
-        title: "Draft Events",
+        title: "Draft webinar",
         value: "0",
         content: [],
       },
@@ -65,7 +65,7 @@ export const pagesConfig = {
         description: "The total number of successful transactions this month.",
       },
     ],
-    path: '/app/create-event'
+    path: '/app/create-webinar'
   } ,
   
   discordPage: {
@@ -240,29 +240,29 @@ export const pagesConfig = {
     ],
   },
 
-  paymentPage: {
-    title: "Payment Page",
+  payingUp: {
+    title: "Paying Up",
     button: {
-      label: "Create Payment Page",
+      label: "Create paying up",
       icon: GoPlus,
-      ariaLabel: "Create Payment Page",
+      ariaLabel: "Create paying up",
     },
     bgGradient: "bg-gradient-to-b from-[#87CEEB] to-[#4682B4]",
     noContent: [
       {
-        title: "No Published payment page yet",
-        description: "No payment page yet? No problem! Create a new payment page now and start generating income.",
-        buttonTitle: "Create Payment Page",
+        title: "No Published paying up yet",
+        description: "No paying up yet? No problem! Create a new paying up now and start generating income.",
+        buttonTitle: "Create paying up",
         isButton: true,
       },
       {
-        title: "No unpublished payment page yet!",
+        title: "No unpublished paying up yet!",
         description: "",
         buttonTitle: "",
         isButton: false,
       },
       {
-        title: "No draft payment page yet!",
+        title: "No draft paying up yet!",
         description: "",
         buttonTitle: "",
         isButton: false,
@@ -270,15 +270,15 @@ export const pagesConfig = {
     ],
     tabs: [
       {
-        title: "Published Payment Pages",
-        value: "0",
+        title: "Live",
+        value: "1",
         content: [],
       },
-      { title: "Unpublished Payment Pages", value: "1", content: [] },
-      { title: "Draft Payment Pages", value: "2", content: [] },
+      // { title: "Unpublished paying ups", value: "1", content: [] },
+      { title: "Draft Paying up", value: "2", content: [] },
     ],
     icon: FaChartBar,
-    path: '/app/payment',
+    path: '/app/create-paying-up',
     cardData: [
       {
         title: "TOTAL SALE",

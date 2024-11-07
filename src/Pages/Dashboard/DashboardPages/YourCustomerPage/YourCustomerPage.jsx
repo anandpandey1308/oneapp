@@ -1,20 +1,20 @@
 import { useState } from "react";
 import NoAudienceComponent from "../../../../components/NoContent/NoAudienceComponent";
-import audienceConfig from "./audienceConfig";
+import yourCustomerConfig from "./yourCustomerConfig";
 import AudienceTableComponent from "../../../../components/Table/AudienceTableComponent";
 
 const AudiencePage = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const currentTab = audienceConfig.tabs[activeTab];
+  const currentTab = yourCustomerConfig.tabs[activeTab];
 
   return (
     <div className="min-h-screen">
-      <h1 className="text-black text-xl md:text-xl p-4">{audienceConfig.title}</h1>
+      <h1 className="text-black text-xl md:text-xl p-4">{yourCustomerConfig.title}</h1>
       <hr className="border-gray-300 mb-3" />
 
       {/* Tabs */}
       <div className="flex justify-start items-center gap-4 p-4">
-        {audienceConfig.tabs.map((tab, index) => (
+        {yourCustomerConfig.tabs.map((tab, index) => (
           <div
             key={index}
             onClick={() => setActiveTab(index)}
@@ -32,13 +32,13 @@ const AudiencePage = () => {
           <AudienceTableComponent data={currentTab.content} />
         ) : (
           <NoAudienceComponent
-            title={audienceConfig.noContentData[currentTab.title.toLowerCase()].title}
+            title={yourCustomerConfig.noContentData[currentTab.title.toLowerCase()].title}
             description={
-              Array.isArray(audienceConfig.noContentData[currentTab.title.toLowerCase()].description)
-                ? audienceConfig.noContentData[currentTab.title.toLowerCase()].description
-                : [audienceConfig.noContentData[currentTab.title.toLowerCase()].description]
+              Array.isArray(yourCustomerConfig.noContentData[currentTab.title.toLowerCase()].description)
+                ? yourCustomerConfig.noContentData[currentTab.title.toLowerCase()].description
+                : [yourCustomerConfig.noContentData[currentTab.title.toLowerCase()].description]
             }
-            buttonTitle={audienceConfig.noContentData[currentTab.title.toLowerCase()].buttonTitle}
+            buttonTitle={yourCustomerConfig.noContentData[currentTab.title.toLowerCase()].buttonTitle}
           />
         )}
       </div>

@@ -12,6 +12,7 @@ export const courseConfig = {
             "Illustrate how their life will be enhanced by taking the course"
         ]
     },
+    
     testimonials:{
         title: "Testimonials",
         isActive: true,
@@ -78,23 +79,23 @@ export const courseConfig = {
     },
     gallery:{
         title: "Gallery",
-        isActive: true,
+        isActive: false,
         imageMetaData: [
             {
                 name: "test1",
-                imageLink:""
+                image:""
             },
             {
                 name: "test2",
-                imageLink:""
+                image:""
             },
             {
                 name: "test2",
-                imageLink:""
+                image:""
             },
             {
                 name: "test2",
-                imageLink:""
+                image:""
             }
             
         ]

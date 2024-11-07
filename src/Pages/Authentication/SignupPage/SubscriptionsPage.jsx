@@ -156,7 +156,7 @@ const SubscriptionPage = () => {
                 <Lightbulb size={16} color="#ffea00" />
                 <p>
                   5000 creators earned 50L+ in the last 24 hours through
-                  SuperProfile
+                  oneapp
                 </p>
               </div>
             </div>
@@ -195,7 +195,7 @@ const SubscriptionPage = () => {
                   What all of this usually costs ₹50,000/year
                 </p>
                 <p className="font-semibold text-2xl">
-                  With Super Profile, it costs just{" "}
+                  With OneApp, it costs just{" "}
                   <span className="text-3xl text-green-600">₹9,999/year</span>
                 </p>
               </div>

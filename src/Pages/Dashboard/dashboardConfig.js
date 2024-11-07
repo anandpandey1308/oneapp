@@ -12,15 +12,15 @@ export const dashboardConfig = {
   generalItems: [
     { label: "Home", icon: FaHome, path: "/" },
     { label: "One Link", icon: FaShoppingCart, path: "/mystore" },
-    { label: "Audience", icon: FaUsers, path: "/audience" },
-    { label: "Wallets", icon: FaChartBar, path: "/payments" },
+    { label: "Your Customers", icon: FaUsers, path: "/your-customers" },
+    { label: "Wallets", icon: FaChartBar, path: "/wallets" },
     // commented out for now, as we don't have a superlinks dashboard yet
     // { label: "SuperLinks", icon: FaLink, path: "/superlinks" }
   ],
   appItems: [
-    { label: "Paying Up", icon: FaChartBar, path: "/payment" },
-    { label: "Appointment", icon: FaCalendarAlt, path: "/booking" },
-    { label: "Events", icon: FaUsers, path: "/events" },
+    { label: "Paying Up", icon: FaChartBar, path: "/payingup" },
+    { label: "Appointment", icon: FaCalendarAlt, path: "/appointement" },
+    { label: "Webinar", icon: FaUsers, path: "/webinar" },
     { label: "Courses", icon: FaBookOpen, path: "/courses" },
     { label: "Telegram", icon: FaTelegramPlane, path: "/telegram" },
     // commented out for now, as we don't have a superlinks dashboard yet
@@ -32,7 +32,8 @@ export const dashboardConfig = {
   ],
   settingItems: [
     { label: "Account Setting", icon: FaCog, path: "/profile" },
-    { label: "Feature Requests", icon: FaChartBar, path: "https://www.google.com" },
+    // commented out for now, as we don't have a superlinks dashboard yet
+    // { label: "Feature Requests", icon: FaChartBar, path: "https://www.google.com" },
     { label: "Help Center", icon: FaUsers, path: "https://www.google.com" },
     { label: "Sign Out", icon: FaCog, path: "/signin"  },
   ]

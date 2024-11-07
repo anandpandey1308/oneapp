@@ -1,15 +1,15 @@
-import { useState } from "react";
-import pagesConfig from "../pagesConfig";
 import Card from "../../../../components/Cards/Card";
 import NoContentComponent from "../../../../components/NoContent/NoContentComponent";
+import { useState } from "react";
+import pagesConfig from "../pagesConfig";
 import Table from "../../../../components/Table/TableComponent";
 import { useNavigate } from "react-router-dom";
 
-const EventsPage = () => {
-  const { title, button, bgGradient, noContent, tabs, cardData,path } = pagesConfig.eventsPage;  
+const PayingUpPage = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const navigate = useNavigate();
 
+  const { title, button, bgGradient, noContent, tabs, cardData, path } = pagesConfig.payingUp;
+  const navigate = useNavigate()
   return (
     <div className="min-h-screen">
       {/* Background Section */}
@@ -26,15 +26,9 @@ const EventsPage = () => {
         </button>
       </div>
 
-      {/* Cards Section */}
       <div className="flex md:justify-center items-center gap-6 p-6 overflow-x-auto md:overflow-visible flex-nowrap w-full relative -mt-24 z-10 scrollbar-hide">
         {cardData.map((card, index) => (
-          <Card
-            key={index}
-            title={card.title}
-            value={card.value}
-            description={card.description}
-          />
+          <Card key={index} title={card.title} value={card.value} description={card.description} />
         ))}
       </div>
 
@@ -47,7 +41,7 @@ const EventsPage = () => {
             className={`cursor-pointer rounded-full text-xs md:text-sm px-4 py-2 transition duration-200 
               ${activeTab === index ? 'bg-orange-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-orange-200'}`}
           >
-            {tab.title} ({tab.value})
+            {tab.title}({tab.value})
           </div>
         ))}
       </div>
@@ -69,4 +63,4 @@ const EventsPage = () => {
   );
 };
 
-export default EventsPage;
+export default PayingUpPage;

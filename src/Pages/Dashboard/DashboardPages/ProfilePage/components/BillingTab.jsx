@@ -14,7 +14,7 @@ const BillingTab = () => {
     <div className="flex flex-col gap-4">
       <div className="shadow-md rounded-lg p-4 md:p-6 w-full flex flex-col gap-3">
         <h2 className="text-sm md:text-base font-semibold mb-2">
-          Your SuperProfile subscription
+          Your oneapp subscription
         </h2>
         <hr className="border-gray-100 mb-4" />
         <div className="flex flex-col md:flex-row justify-between items-center bg-neutral-100 shadow-md rounded-lg p-4 md:p-6 w-full">
@@ -32,7 +32,7 @@ const BillingTab = () => {
         <div className="flex flex-col gap-3 bg-sky-100 shadow-md rounded-lg p-4 md:p-6 w-full">
           <p className="text-sm">
             To ensure that the sales on your products are not interrupted after
-            your free-trial ends, subscribe to SuperProfile today.
+            your free-trial ends, subscribe to oneapp today.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <button className="bg-sky-100 text-black rounded-full border border-black text-sm p-2 transition duration-200 hover:bg-sky-200 w-full sm:w-auto">

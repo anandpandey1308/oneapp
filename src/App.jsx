@@ -6,25 +6,25 @@ import SignUpPage from "./Pages/Authentication/SignupPage/SignUpPage";
 import DashboardPage from "./Pages/Dashboard/DashboardPage";
 import HomePage from "./Pages/Dashboard/DashboardPages/HomePage/HomePage.jsx";
 import MyStorePage from "./Pages/Dashboard/DashboardPages/MyStorePage/MyStorePage.jsx";
-import AudiencePage from "./Pages/Dashboard/DashboardPages/AudiencePage/AudiencePage.jsx";
-import PaymentsPage from "./Pages/Dashboard/DashboardPages/PaymentsPage/PaymentsPage.jsx";
-import PaymentPage from "./Pages/Dashboard/DashboardPages/PaymentPage/PaymentPage.jsx";
-import BookingPages from "./Pages/Dashboard/DashboardPages/BookingPages/BookingPages.jsx";
-import EventsPage from "./Pages/Dashboard/DashboardPages/EventsPage/EventsPage.jsx";
+import AudiencePage from "./Pages/Dashboard/DashboardPages/YourCustomerPage/YourCustomerPage.jsx";
+import AppointementPage from "./Pages/Dashboard/DashboardPages/AppointementPage/AppointementPage.jsx";
+import WebinarPage from "./Pages/Dashboard/DashboardPages/WebinarPage/WebinarPage.jsx";
 import CoursesPage from "./Pages/Dashboard/DashboardPages/CoursesPage/CoursesPage.jsx";
 import TelegramPage from "./Pages/Dashboard/DashboardPages/TelegramPage/TelegramPage.jsx";
 import LockedContentPage from "./Pages/Dashboard/DashboardPages/LockedContentPage/LockedContentPage.jsx";
 import DiscordPage from "./Pages/Dashboard/DashboardPages/DiscordPage/DiscordPage.jsx";
 import ProfilePage from "./Pages/Dashboard/DashboardPages/ProfilePage/ProfilePage.jsx";
 import SuperLinkPage from "./Pages/Dashboard/DashboardPages/SuperLinkPage/SuperLinkPage.jsx";
-import CreateEventPage from "./Pages/Dashboard/DashboardPages/EventsPage/CreateEventPage.jsx";
-// import CreateCoursePage from "./Pages/Dashboard/DashboardPages/CoursesPage/CreateCoursePage.jsx";
+import CreateWebinarPage from "./Pages/Dashboard/DashboardPages/WebinarPage/CreateWebinarPage.jsx";
 import CreateLockedContentPage from "./Pages/Dashboard/DashboardPages/LockedContentPage/CreateLockedContentPage.jsx";
-import CreatePaymentPage from "./Pages/Dashboard/DashboardPages/PaymentPage/CreatePaymentPage.jsx";
 import ChatPage from "./Pages/Dashboard/DashboardPages/ChatPage/ChatPage.jsx";
 import Welcome from "./Pages/Welcome/Welcome.jsx";
 import PluginPage from "./Pages/Dashboard/DashboardPages/PluginPage/PluginPage.jsx";
-import CreateNewCourse from "./Pages/Dashboard/DashboardPages/CoursesPage/NewCourses/CreateNewCourse.jsx";
+import CreateNewCourse from "./Pages/Dashboard/DashboardPages/CoursesPage/CreateNewCourse.jsx";
+import CreateCoursePage from "./Pages/Dashboard/DashboardPages/CoursesPage/CreateCoursePage.jsx";
+import CreatePayingUpPage from "./Pages/Dashboard/DashboardPages/PayingUpPage/CreatePayingUpPage.jsx";
+import PayingUpPage from "./Pages/Dashboard/DashboardPages/PayingUpPage/PayingUpPage.jsx";
+import WalletPage from "./Pages/Dashboard/DashboardPages/WalletPage/WalletPage.jsx";
 
 const App = () => {
   return (
@@ -50,11 +50,11 @@ const App = () => {
         <Route path="/dashboard" element={<DashboardPage />}>
           <Route path="" element={<HomePage />} />
           <Route path="mystore" element={<MyStorePage />} />
-          <Route path="audience" element={<AudiencePage />} />
-          <Route path="payments" element={<PaymentsPage />} />
-          <Route path="payment" element={<PaymentPage />} />
-          <Route path="booking" element={<BookingPages />} />
-          <Route path="events" element={<EventsPage />} />
+          <Route path="your-customers" element={<AudiencePage />} />
+          <Route path="wallets" element={<WalletPage />} />
+          <Route path="payingup" element={<PayingUpPage />} />
+          <Route path="appointement" element={<AppointementPage />} />
+          <Route path="webinar" element={<WebinarPage />} />
           <Route path="courses" element={<CoursesPage />} />
           <Route path="telegram" element={<TelegramPage />} />
           <Route path="locked-content" element={<LockedContentPage />} />
@@ -65,11 +65,11 @@ const App = () => {
           <Route path="plugin" element={<PluginPage />} />
         </Route>
         <Route path="app" element={<Outlet />}>
-          <Route path="create-event" element={<CreateEventPage />} />
+          <Route path="create-webinar" element={<CreateWebinarPage />} />
           <Route path="create-course" element={<CreateNewCourse />} />
-          {/* <Route path="create-course" element={<CreateCoursePage />} /> */}
+          <Route path="create-new-course" element={<CreateCoursePage />} />
           <Route path="create-locked-content" element={<CreateLockedContentPage />} />
-          <Route path="create-payment" element={<CreatePaymentPage />} />
+          <Route path="create-paying-up" element={<CreatePayingUpPage />} />
         </Route>
       </Routes>
     </>

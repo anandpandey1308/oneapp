@@ -1,7 +1,8 @@
 import * as Icons from 'lucide-react';
 import NavBar from "./NavBar";
 import { courseConfig } from "./courseConfig";
-import oneApp from "../../../../../assets/oneapp.jpeg"
+
+import oneApp from "../../../../assets/oneapp.jpeg"
 
 const CreateNewCourse = () => {
   const CurrencyIcon = Icons[courseConfig.currencySymbol];

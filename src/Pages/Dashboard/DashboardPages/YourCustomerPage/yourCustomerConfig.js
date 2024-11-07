@@ -1,5 +1,5 @@
-const audienceConfig = {
-  title: "Audience Page",
+const yourCustomerConfig = {
+  title: "Your Customer Page",
   tabs: [
     {
       title: "Customers",
@@ -10,7 +10,7 @@ const audienceConfig = {
           email: "johndoe@example.com",
           phone: "123-456-7890",
           purchasedProducts: ["Product A", "Product B"],
-          amountSpent: "$500",
+          amountSpent: "Rs 500",
           activeSubscriptions: "2",
           path: ""
         },
@@ -19,7 +19,7 @@ const audienceConfig = {
           email: "janesmith@example.com",
           phone: "987-654-3210",
           purchasedProducts: ["Product C"],
-          amountSpent: "$300",
+          amountSpent: "Rs 300",
           activeSubscriptions: "1",
           path: ""
         },
@@ -44,7 +44,7 @@ const audienceConfig = {
     followers: {
       title: "Build your own audience with followers on OneApp",
       description: [
-        "Visitors to your SuperProfile can now follow you for email or SMS updates",
+        "Visitors to your oneapp can now follow you for email or SMS updates",
         "Export your follower list with ease to send out emails or WhatsApp messages",
         "Easily convert your followers into paid customers and track conversion",
       ],
@@ -53,4 +53,4 @@ const audienceConfig = {
   },
 };
 
-export default audienceConfig;
+export default yourCustomerConfig;

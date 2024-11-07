@@ -2,7 +2,7 @@ export const pluginConfig = [
     {
         cardHighlight: "",
         planType: "Basic Starter Plan",
-        price: "10",
+        price: "999",
         timeFrame: "monthly",
         description: "Get a fully customizable website, perfect for businesses that are just starting out.",
         buttonText: "Get Started",

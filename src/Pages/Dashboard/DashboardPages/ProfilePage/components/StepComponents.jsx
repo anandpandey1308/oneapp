@@ -1,7 +1,7 @@
 const Step1 = () => {
     return <div className="flex flex-col">
         <h1>Step 1: Basic details</h1>
-        <p>We use this information to verify it with your Aadhaar and PAN details. Your SuperProfile account will use the same info.</p>
+        <p>We use this information to verify it with your Aadhaar and PAN details. Your oneapp account will use the same info.</p>
         <hr className="border-gray-200 mb-4" />
         <div className="w-full relative">
             <label className="block text-sm font-medium text-gray-700 mb-1">

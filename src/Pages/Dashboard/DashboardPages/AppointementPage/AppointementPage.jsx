@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import { Clock, MapPin, User, Phone, ArrowLeft, ArrowRight, Plus, Trash2, Loader2, Save } from 'lucide-react';
 
@@ -23,10 +24,12 @@ const LOCATIONS = [
   { id: 3, name: 'Virtual Meeting', address: 'Zoom/Google Meet' },
 ];
 
-const BookingSystem = () => {
+const AppointementPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState({ type: '', message: '' });
+  const [virtualLink, setVirtualLink] = useState('');
+
 
   const [personalInfo, setPersonalInfo] = useState({
     name: '',
@@ -72,10 +75,55 @@ const BookingSystem = () => {
     }));
   };
 
+  const validate = () => {
+    // Step 1: Personal Information Validation
+    if (currentStep === 1) {
+      if (!personalInfo.name.trim()) {
+        setStatus({ type: 'error', message: 'Please enter your full name.' });
+        return false;
+      }
+      const phonePattern = /^[0-9]{10}$/;
+      if (!phonePattern.test(personalInfo.phone)) {
+        setStatus({ type: 'error', message: 'Please enter a valid 10-digit phone number.' });
+        return false;
+      }
+    }
+
+    // Step 2: Availability Validation
+    if (currentStep === 2) {
+      for (let day of DAYS_OF_WEEK) {
+        const slots = schedule[day];
+        for (let slot of slots) {
+          if (!slot.start || !slot.end) {
+            setStatus({ type: 'error', message: 'Please select both start and end time for each slot.' });
+            return false;
+          }
+          // Optionally, you can add additional validation for start/end time logic, e.g., end time > start time
+        }
+      }
+    }
+
+    // Step 3: Location Validation
+    if (currentStep === 3) {
+      if (!selectedLocation) {
+        setStatus({ type: 'error', message: 'Please select a location.' });
+        return false;
+      }
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setStatus({ type: '', message: '' });
+
+    // Validate form fields
+    if (!validate()) {
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
@@ -110,6 +158,7 @@ const BookingSystem = () => {
                   name="name"
                   value={personalInfo.name}
                   onChange={handlePersonalInfoChange}
+                  onInput={(e) => e.target.value = e.target.value.replace(/[^a-zA-Z\s]/g, '')}
                   placeholder="Full Name"
                   className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
                   required
@@ -122,6 +171,7 @@ const BookingSystem = () => {
                   name="phone"
                   value={personalInfo.phone}
                   onChange={handlePersonalInfoChange}
+                  onInput={(e) => e.target.value = e.target.value.replace(/[^0-9]/g, '')}
                   placeholder="Phone Number"
                   className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
                   required
@@ -199,40 +249,58 @@ const BookingSystem = () => {
           </div>
         );
 
-      case 3:
-        return (
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-2xl font-bold mb-6">Select Location</h2>
-            <div className="space-y-4">
-              {LOCATIONS.map((location) => (
-                <label
-                  key={location.id}
-                  className={`block p-4 border rounded-lg cursor-pointer transition-colors ${
-                    selectedLocation === location.id
-                      ? 'border-orange-500 bg-orange-50'
-                      : 'border-gray-300 hover:border-orange-300'
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="location"
-                    value={location.id}
-                    checked={selectedLocation === location.id}
-                    onChange={() => setSelectedLocation(location.id)}
-                    className="hidden"
-                  />
-                  <div className="flex items-start">
-                    <MapPin className="h-5 w-5 text-gray-400 mt-1" />
-                    <div className="ml-3">
-                      <div className="font-medium">{location.name}</div>
-                      <div className="text-sm text-gray-500">{location.address}</div>
+        case 3:
+          return (
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold mb-6">Select Location</h2>
+              <div className="space-y-4">
+                {LOCATIONS.map((location) => (
+                  <label
+                    key={location.id}
+                    className={`block p-4 border rounded-lg cursor-pointer transition-colors ${
+                      selectedLocation === location.id
+                        ? 'border-orange-500 bg-orange-50'
+                        : 'border-gray-300 hover:border-orange-300'
+                    }`}
+                  >
+                    <input
+                      type="radio"
+                      name="location"
+                      value={location.id}
+                      checked={selectedLocation === location.id}
+                      onChange={() => setSelectedLocation(location.id)}
+                      className="hidden"
+                    />
+                    <div className="flex items-start">
+                      <MapPin className="h-5 w-5 text-gray-400 mt-1" />
+                      <div className="ml-3">
+                        <div className="font-medium">{location.name}</div>
+                        <div className="text-sm text-gray-500">{location.address}</div>
+                      </div>
                     </div>
-                  </div>
-                </label>
-              ))}
+                  </label>
+                ))}
+              </div>
+        
+              {/* Show the link input if 'Virtual Meeting' is selected */}
+              {selectedLocation === 3 && (
+                <div className="mt-4">
+                  <label htmlFor="virtualLink" className="block text-sm font-medium text-gray-700">
+                    Enter Virtual Meeting Link
+                  </label>
+                  <input
+                    type="url"
+                    id="virtualLink"
+                    name="virtualLink"
+                    placeholder="Enter Zoom/Google Meet link"
+                    className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
+                    onChange={(e) => setVirtualLink(e.target.value)} // Assuming you have a state for the link
+                    required
+                  />
+                </div>
+              )}
             </div>
-          </div>
-        );
+          );
     }
   };
 
@@ -318,4 +386,4 @@ const BookingSystem = () => {
   );
 };
 
-export default BookingSystem;
+export default AppointementPage;

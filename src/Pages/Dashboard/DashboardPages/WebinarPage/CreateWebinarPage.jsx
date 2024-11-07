@@ -2,7 +2,7 @@ import { ChevronLeft, Video } from "lucide-react";
 import { useState } from "react";
 import dayjs from "dayjs"; // import dayjs for date management
 
-const CreateEventPage = () => {
+const CreateWebinarPage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Finance");
   const [imagePreview, setImagePreview] = useState(null);
@@ -387,4 +387,4 @@ const CreateEventPage = () => {
   );
 };
 
-export default CreateEventPage;
+export default CreateWebinarPage;

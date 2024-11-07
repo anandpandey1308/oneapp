@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import oneApp from "../../../../../assets/oneapp.jpeg"
+import oneApp from "../../../../assets/oneapp.jpeg"
 
 const NavBar = ({logo,profilePhoto}) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
