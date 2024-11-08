@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BillingTab = () => {
   const [isBill] = useState(true);
+  const navigate = useNavigate();
 
 
   const billingHistory = [
@@ -35,7 +37,9 @@ const BillingTab = () => {
             your free-trial ends, subscribe to oneapp today.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <button className="bg-sky-100 text-black rounded-full border border-black text-sm p-2 transition duration-200 hover:bg-sky-200 w-full sm:w-auto">
+            <button className="bg-sky-100 text-black rounded-full border border-black text-sm p-2 transition duration-200 hover:bg-sky-200 w-full sm:w-auto"
+            onClick={()=>navigate('/dashboard/plugin')}
+            >
               View all plans
             </button>
             <button className="bg-orange-600 text-white rounded-full text-sm p-2 transition duration-200 w-full sm:w-auto">
