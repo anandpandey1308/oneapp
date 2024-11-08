@@ -1,5 +1,5 @@
 import { GoPlus } from "react-icons/go";
-import { FaCalendarAlt, FaDiscord, FaLock, FaTelegramPlane, FaChartBar } from "react-icons/fa";
+import { FaCalendarAlt, FaDiscord, FaLock, FaChartBar, FaWhatsapp } from "react-icons/fa";
 
 export const pagesConfig = {
   webinarPage: {
@@ -220,7 +220,7 @@ export const pagesConfig = {
       { title: "Unpublished Telegram", value: "1", content: [] },
       { title: "Draft Telegram", value: "2", content: [] },
     ],
-    icon: FaTelegramPlane,
+    icon: FaWhatsapp,
     cardData: [
       {
         title: "TOTAL SALE",
@@ -339,6 +339,63 @@ export const pagesConfig = {
     ],
     icon: GoPlus,
     path: '/app/create-course',
+    cardData: [
+      {
+        title: "TOTAL SALE",
+        value: "0",
+        description: "The total amount of revenue generated this month."
+      },
+      {
+        title: "TOTAL REVENUE",
+        value: "$ 0",
+        description: "The number of payments currently pending."
+      },
+      {
+        title: "CONVERSION RATE",
+        value: "0",
+        description: "The total number of successful transactions this month."
+      }
+    ],
+  },
+
+  whatsAppPage: {
+    title: "WhatsApp Page",
+    button: {
+      label: "Create WhatsApp",
+      icon: GoPlus,
+      ariaLabel: "Create WhatsApp",
+    },
+    bgGradient: "bg-gradient-to-b from-[#075E54] to-[#128C7E]",
+    noContent: [
+      {
+        title: "No Published WhatsApp yet",
+        description: "No WhatsApp yet? No problem! Create a new WhatsApp now and start generating income.",
+        buttonTitle: "Create WhatsApp",
+        isButton: true,
+      },
+      {
+        title: "No unpublished WhatsApp yet!",
+        description: "",
+        buttonTitle: "",
+        isButton: false,
+      },
+      {
+        title: "No draft WhatsApp yet!",
+        description: "",
+        buttonTitle: "",
+        isButton: false,
+      },
+    ],
+    tabs: [
+      {
+        title: "Published WhatsApp",
+        value: "0",
+        content: [],
+      },
+      { title: "Unpublished WhatsApp", value: "1", content: [] },
+      { title: "Draft WhatsApp", value: "2", content: [] },
+    ],
+    icon: FaWhatsapp,
     cardData: [
       {
         title: "TOTAL SALE",

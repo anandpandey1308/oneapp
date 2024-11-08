@@ -25,6 +25,7 @@ import CreatePayingUpPage from "./Pages/Dashboard/DashboardPages/PayingUpPage/Cr
 import PayingUpPage from "./Pages/Dashboard/DashboardPages/PayingUpPage/PayingUpPage.jsx";
 import WalletPage from "./Pages/Dashboard/DashboardPages/WalletPage/WalletPage.jsx";
 import NewCourse from "./Pages/Dashboard/DashboardPages/CoursesPage/NewCourse.jsx";
+import WhatsAppPage from "./Pages/Dashboard/DashboardPages/WhatsAppPage/WhatsAppPage.jsx";
 
 const App = () => {
   return (
@@ -62,6 +63,7 @@ const App = () => {
           <Route path="profile" element={<ProfilePage />} />
           <Route path="superlinks" element={<SuperLinkPage />} />
           <Route path="chat" element={<ChatPage />} />
+          <Route path="whatsapp" element={<WhatsAppPage />} />
           <Route path="plugin" element={<PluginPage />} />
         </Route>
         <Route path="app" element={<Outlet />}>
