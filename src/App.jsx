@@ -24,7 +24,7 @@ import CreateCoursePage from "./Pages/Dashboard/DashboardPages/CoursesPage/Creat
 import CreatePayingUpPage from "./Pages/Dashboard/DashboardPages/PayingUpPage/CreatePayingUpPage.jsx";
 import PayingUpPage from "./Pages/Dashboard/DashboardPages/PayingUpPage/PayingUpPage.jsx";
 import WalletPage from "./Pages/Dashboard/DashboardPages/WalletPage/WalletPage.jsx";
-import NewCourse from "./Pages/Dashboard/DashboardPages/CoursesPage/newCourse.jsx";
+import NewCourse from "./Pages/Dashboard/DashboardPages/CoursesPage/NewCourse.jsx";
 
 const App = () => {
   return (
