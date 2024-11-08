@@ -4,7 +4,7 @@ import { courseConfig } from "./courseConfig";
 
 import oneApp from "../../../../assets/oneapp.jpeg"
 
-const CreateNewCourse = () => {
+const NewCourse = () => {
   const CurrencyIcon = Icons[courseConfig.currencySymbol];
   
   return (
@@ -178,4 +178,4 @@ const CreateNewCourse = () => {
   );
 };
 
-export default CreateNewCourse;
+export default NewCourse;
