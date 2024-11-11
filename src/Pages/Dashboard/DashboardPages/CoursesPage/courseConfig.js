@@ -116,5 +116,31 @@ export const courseConfig = {
             }
             
         ]
+    },
+    coverImage:{
+        title: "Cover Image",
+        isActive: true,
+        value: "https://dowellfileuploader.uxlivinglab.online/hr/logo-2-min-min.png"
+    },
+    lessons:{
+        title: "Lessons",
+        isActive: true,
+        lessonData: [
+            {
+                title: "Lesson 1",
+                description: "Click here to watch the video",
+                videoLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            },
+            {
+                title: "Lesson 2",
+                description: "Click here to watch the video",
+                videoLink: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            }
+        ]
+    },
+    language:{
+        title: "Language",
+        isActive: true,
+        value: ["English", "Hindi", "Spanish" ]
     }
 }

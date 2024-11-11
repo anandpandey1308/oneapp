@@ -32,20 +32,20 @@ export const pagesConfig = {
     ],
     tabs: [
       {
-        title: "Published webinar",
+        title: "Live",
         value: "0",
         content: []
-      },
-      {
-        title: "Unpublished webinar",
-        value: "0",
-        content: [],
       },
       {
         title: "Draft webinar",
         value: "0",
         content: [],
       },
+      // {
+      //   title: "Draft webinar",
+      //   value: "0",
+      //   content: [],
+      // },
     ],
     icon: FaCalendarAlt,
     cardData: [
@@ -98,12 +98,12 @@ export const pagesConfig = {
     ],
     tabs: [
       {
-        title: "Published Discord",
+        title: "Live",
         value: "0",
         content: [],
       },
-      { title: "Unpublished Discord", value: "1", content: [] },
-      { title: "Draft Discord", value: "2", content: [] },
+      // { title: "Unpublished Discord", value: "1", content: [] },
+      { title: "Draft Discord", value: "0", content: [] },
     ],
     icon: FaDiscord,
     cardData: [
@@ -213,12 +213,12 @@ export const pagesConfig = {
     ],
     tabs: [
       {
-        title: "Published Telegram",
+        title: "Live",
         value: "0",
         content: [],
       },
-      { title: "Unpublished Telegram", value: "1", content: [] },
-      { title: "Draft Telegram", value: "2", content: [] },
+      // { title: "Unpublished Telegram", value: "1", content: [] },
+      { title: "Draft Telegram", value: "0", content: [] },
     ],
     icon: FaWhatsapp,
     cardData: [
@@ -328,14 +328,14 @@ export const pagesConfig = {
     ],
     tabs: [
       {
-        title: "Published Courses",
+        title: "Live",
         value: "0",
         content: [
           { title: "Event 1", price: "$100", sale: 50, revenue: "$5000", paymentEnabled: true, shareLink:"" }
         ]
       },
-      { title: "Unpublished Courses", value: "1", content: [] },
-      { title: "Draft Courses", value: "2", content: [] },
+      // { title: "Unpublished Courses", value: "1", content: [] },
+      { title: "Draft Courses", value: "0", content: [] },
     ],
     icon: GoPlus,
     path: '/app/create-course',
@@ -388,12 +388,12 @@ export const pagesConfig = {
     ],
     tabs: [
       {
-        title: "Published WhatsApp",
+        title: "Live",
         value: "0",
         content: [],
       },
-      { title: "Unpublished WhatsApp", value: "1", content: [] },
-      { title: "Draft WhatsApp", value: "2", content: [] },
+      // { title: "Unpublished WhatsApp", value: "1", content: [] },
+      { title: "Draft WhatsApp", value: "0", content: [] },
     ],
     icon: FaWhatsapp,
     cardData: [
