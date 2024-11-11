@@ -13,6 +13,14 @@
   grid-template-columns: 1fr 320px;
   gap: 24px;
 }
+.main-content.full-width {
+  display: block; /* Changes from grid to block when preview is hidden */
+  padding: 20px; /* Add padding when in full-width mode */
+}
+.content-area.no-preview {
+  max-width: 100%; /* Allow content to take full width */
+  padding-right: 0; /* Remove right padding when preview is hidden */
+}
 
 .content-area {
   width: 100%;

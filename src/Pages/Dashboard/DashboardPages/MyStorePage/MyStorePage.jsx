@@ -1,21 +1,24 @@
 import { useState } from "react";
 import Header from "./Header/Header";
-import MobilePreview from "./MobilePreview/MobilePreview";
+import PreviewSection from "./MobilePreview/MobilePreview";
 import ProfileContent from "./ProfileContent/ProfileContent";
 import AppearanceContent from "./Appreance/AppreanceContent";
+import AnalyticsDashboard from "./Analytics/analytics";
+import SettingsPage from "./Settings/settings";
 import { siteConfig } from "./StoreConfig";
 import "./store.css";
 
 const MyStore = () => {
   const [activeTab, setActiveTab] = useState("profile");
   const [currentTheme, setCurrentTheme] = useState(siteConfig.themes[3]);
+  const shouldShowPreview = !['analytics', 'settings'].includes(activeTab);
 
   return (
     <div className="app-container">
       <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <main className="main-content">
-        <div className="content-area">
+      <main className={`main-content ${!shouldShowPreview ? 'full-width' : ''}`}>
+        <div className={`content-area ${!shouldShowPreview ? 'no-preview' : ''}`}>
           {activeTab === "profile" ? (
             <ProfileContent />
           ) : activeTab === "appearance" ? (
@@ -23,6 +26,10 @@ const MyStore = () => {
               currentTheme={currentTheme}
               onThemeSelect={setCurrentTheme}
             />
+          ) : activeTab === "analytics" ? (
+            <AnalyticsDashboard />
+          ) : activeTab === "settings" ? (
+            <SettingsPage />
           ) : (
             <div className="coming-soon">
               {activeTab} content coming soon...
@@ -30,7 +37,9 @@ const MyStore = () => {
           )}
         </div>
 
-        <MobilePreview theme={currentTheme} profile={siteConfig.profile} />
+        {shouldShowPreview && (
+          <PreviewSection theme={currentTheme} profile={siteConfig.profile} />
+        )}
       </main>
 
       {/* <button className="checklist-button">Your checklist</button> */}
