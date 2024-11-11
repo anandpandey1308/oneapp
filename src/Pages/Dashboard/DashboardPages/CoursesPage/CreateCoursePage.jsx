@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {useState} from "react";
 import {ArrowLeftCircleIcon, MinusCircle, Pencil, PlusCircle, XCircle} from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +12,9 @@ const fakeApiCall = async (data) => {
 };
 
 const NewCoursePage = () => {
+  const [imagePreview, setImagePreview] = useState(null);
+  const navigate = useNavigate();
+  const [modalVideo, setModalVideo] = useState(null);
   const [formData, setFormData] = useState({
     title: "",
     price: "",
@@ -32,7 +34,7 @@ const NewCoursePage = () => {
     },
     faQ: {
       title: "Frequently Asked Questions",
-      isActive: false,
+      isActive: true,
       faQMetaData: [
         {
           question: "",
@@ -44,53 +46,44 @@ const NewCoursePage = () => {
       title: "Gallery",
       isActive: false,
       imageMetaData: [
-        {
-          name: "",
-          image: "",
-        },
-        {
-          name: "",
-          image: "",
-        },
-        {
-          name: "",
-          image: "",
-        },
-        {
-          name: "",
-          image: "",
-        },
-        {
-          name: "",
-          image: "",
-        },
-        {
-          name: "",
-          image: "",
-        },
+        {name: "", image: ""},
+        {name: "", image: ""},
+        {name: "", image: ""},
+        {name: "", image: ""},
+        {name: "", image: ""},
+        {name: "", image: ""},
       ],
     },
     products: {
       title: "Products",
       isActive: false,
       productMetaData: [
+        {name: "", price: "", productLink: ""},
+        {name: "", price: "", productLink: ""},
+      ],
+    },
+    language: {
+      value: "English",
+      isActive: false,
+    },
+    coverImage: {
+      value: null,
+      isActive: false,
+    },
+    lessons: {
+      isActive: false,
+      lessonData: [
         {
-          name: "",
-          price: "",
-          productLink: "",
-        },
-        {
-          name: "",
-          price: "",
-          productLink: "",
+          lessonName: "",
+          videos: [""],
         },
       ],
     },
   });
-
   const [imagePreviews, setImagePreviews] = useState({});
+  const [testimonialImagePreviews, setTestimonialImagePreviews] = useState({});
+  const [videoPreviews, setVideoPreviews] = useState({});
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   const handleAddFeature = () =>
     setFormData({
@@ -192,6 +185,39 @@ const NewCoursePage = () => {
     }
   };
 
+  const handleTestimonialImageUpload = (index, event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const updatedTestimonials = [...formData.testimonials.testimonialsMetaData];
+      updatedTestimonials[index].profilePic = file;
+      setFormData({
+        ...formData,
+        testimonials: {...formData.testimonials, testimonialsMetaData: updatedTestimonials},
+      });
+      setTestimonialImagePreviews({
+        ...testimonialImagePreviews,
+        [index]: URL.createObjectURL(file),
+      });
+    }
+  };
+
+  // const handleGalleryImageUpload = (index, event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     const updatedImages = [...formData.gallery.imageMetaData];
+  //     updatedImages[index].image = file;
+  //     setFormData({
+  //       ...formData,
+  //       gallery: {...formData.gallery, imageMetaData: updatedImages},
+  //     });
+
+  //     setImagePreviews({
+  //       ...imagePreviews,
+  //       [index]: URL.createObjectURL(file),
+  //     });
+  //   }
+  // };
+
   const handleAddFAQ = () => {
     setFormData({
       ...formData,
@@ -260,6 +286,97 @@ const NewCoursePage = () => {
       products: {...formData.products, productMetaData: updatedProducts},
     });
   };
+  const handleCoverImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFormData({...formData, coverImage: file});
+      setImagePreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleVideoPreview = (videoSrc) => {
+    setModalVideo(videoSrc);
+  };
+
+  const handleCloseModal = () => {
+    setModalVideo(null);
+  };
+
+  const handleAddLesson = () => {
+    setFormData((prevState) => ({
+      ...prevState,
+      lessons: {
+        ...prevState.lessons,
+        lessonData: [...prevState.lessons.lessonData, {lessonName: "", videos: [""]}],
+      },
+    }));
+  };
+
+  const handleAddVideo = (lessonIndex) => {
+    setFormData((prevState) => {
+      const updatedLessons = [...prevState.lessons.lessonData];
+      updatedLessons[lessonIndex].videos.push("");
+      return {
+        ...prevState,
+        lessons: {...prevState.lessons, lessonData: updatedLessons},
+      };
+    });
+  };
+
+  const handleVideoUpload = (lessonIndex, videoIndex, event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFormData((prevState) => {
+        const updatedLessons = [...prevState.lessons.lessonData];
+        updatedLessons[lessonIndex].videos[videoIndex] = file;
+        return {
+          ...prevState,
+          lessons: {...prevState.lessons, lessonData: updatedLessons},
+        };
+      });
+
+      setVideoPreviews((prevPreviews) => ({
+        ...prevPreviews,
+        [`${lessonIndex}-${videoIndex}`]: URL.createObjectURL(file),
+      }));
+    }
+  };
+
+  const handleRemoveLesson = (lessonIndex) => {
+    setFormData((prevState) => {
+      const updatedLessons = [...prevState.lessons.lessonData];
+      updatedLessons.splice(lessonIndex, 1);
+      return {
+        ...prevState,
+        lessons: {...prevState.lessons, lessonData: updatedLessons},
+      };
+    });
+
+    setVideoPreviews((prevPreviews) => {
+      const updatedPreviews = {...prevPreviews};
+      Object.keys(updatedPreviews).forEach((key) => {
+        if (key.startsWith(`${lessonIndex}-`)) delete updatedPreviews[key];
+      });
+      return updatedPreviews;
+    });
+  };
+
+  const handleRemoveVideo = (lessonIndex, videoIndex) => {
+    setFormData((prevState) => {
+      const updatedLessons = [...prevState.lessons.lessonData];
+      updatedLessons[lessonIndex].videos.splice(videoIndex, 1);
+      return {
+        ...prevState,
+        lessons: {...prevState.lessons, lessonData: updatedLessons},
+      };
+    });
+
+    setVideoPreviews((prevPreviews) => {
+      const updatedPreviews = {...prevPreviews};
+      delete updatedPreviews[`${lessonIndex}-${videoIndex}`];
+      return updatedPreviews;
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -275,14 +392,27 @@ const NewCoursePage = () => {
 
   return (
     <>
-      <div className="min-h-screen max-w-full ">
+      <div className="min-h-screen max-w-full">
         {/* Left Side */}
+
+        {/* Video Modal */}
+        {modalVideo && (
+          <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
+            <div className="bg-white p-5 rounded-lg  w-11/12 max-w-3xl relative">
+              <button className="absolute top-1 right-3 text-white bg-red-500 rounded-full cursor-pointer" onClick={handleCloseModal}>
+                <XCircle size={30} />
+              </button>
+              <video src={modalVideo} controls className="w-full h-auto rounded-md" />
+            </div>
+          </div>
+        )}
+
+        {/* Main */}
         <div className="flex flex-col pt-8 px-4 sm:px-6 lg:px-8 w-full ">
           <div className="flex flex-col gap-3 w-full md:items-center justify-center">
             <h1 className="font-bold text-3xl font-poppins tracking-tight flex items-center gap-3">
-              <ArrowLeftCircleIcon 
-                className="size-8 cursor-pointer" 
-                onClick={()=>navigate("/dashboard/courses")}
+              <ArrowLeftCircleIcon className="size-8 cursor-pointer "
+              onClick={()=> navigate("/dashboard/courses")}
               />
               Add New Course
             </h1>
@@ -364,48 +494,41 @@ const NewCoursePage = () => {
             </div>
 
             {/* Testimonials*/}
-            <div className=" px-10">
-              <div className="mt-4">
-                <div className="flex items-center justify-between">
-                  <label className="text-md font-medium text-gray-700  font-poppins tracking-tight ">Enable Testimonials</label>
-                  <input
-                    type="checkbox"
-                    checked={formData.testimonials.isActive}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        testimonials: {
-                          ...formData.testimonials,
-                          isActive: e.target.checked,
-                        },
-                      })
-                    }
-                    className="w-5 h-5 rounded focus:ring-purple-300 checked:bg-purple-600 checked:border-purple-600 cursor-pointer"
-                  />
-                </div>
-                {formData.testimonials.isActive && (
-                  <div className="mt-4 space-y-4">
-                    {formData.testimonials.testimonialsMetaData.map((testimonial, index) => (
-                      <div key={index} className="bg-gray-100 p-4 rounded-lg shadow-sm space-y-3">
-                        <div className="flex items-center justify-between">
-                          <input type="text" placeholder="Name" value={testimonial.name} onChange={(e) => handleTestimonialChange(index, "name", e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-lg" />
-                          <button type="button" onClick={() => handleRemoveTestimonial(index)} className="ml-2 text-red-500 hover:text-red-600">
-                            <MinusCircle size={18} />
-                          </button>
-                        </div>
-                        <textarea placeholder="Description" value={testimonial.description} onChange={(e) => handleTestimonialChange(index, "description", e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-lg"></textarea>
-                        <input type="file" onChange={(e) => handleImageUpload(index, e)} className="w-full px-4 py-2 border border-gray-300 rounded-lg" />
-                        {imagePreviews[index] && <img src={imagePreviews[index]} alt={`Profile ${index}`} className="w-16 h-16 rounded-full mt-2" />}
-                        <input type="number" placeholder="Rating (1-5)" value={testimonial.rating} onChange={(e) => handleTestimonialChange(index, "rating", e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-lg" />
-                      </div>
-                    ))}
-                    <button type="button" onClick={handleAddTestimonial} className="inline-flex items-center text-sm font-poppins tracking-tight cursor-pointer px-4 py-2 bg-gray-100 text-gray-600 rounded-lg shadow-sm hover:bg-gray-200">
-                      <PlusCircle size={16} className="mr-2" />
-                      Add Testimonial
-                    </button>
-                  </div>
-                )}
+            <div className="px-10 mt-6">
+              <div className="flex items-center justify-between">
+                <label className="text-md font-medium font-poppins text-gray-700">Enable Testimonials</label>
+                <input
+                  type="checkbox"
+                  checked={formData.testimonials.isActive}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      testimonials: {...formData.testimonials, isActive: e.target.checked},
+                    })
+                  }
+                  className="w-5 h-5 rounded cursor-pointer"
+                />
               </div>
+              {formData.testimonials.isActive && (
+                <div className="mt-4 space-y-4">
+                  {formData.testimonials.testimonialsMetaData.map((testimonial, index) => (
+                    <div key={index} className="bg-gray-100 p-4 rounded-lg shadow-sm space-y-3">
+                      <div className="flex">
+                        <input type="text" placeholder="Name" value={testimonial.name} onChange={(e) => handleTestimonialChange(index, "name", e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-lg" />
+                        <button type="button" onClick={() => handleRemoveTestimonial(index)} className="ml-2 text-red-500 hover:text-red-600">
+                          <MinusCircle size={18} />
+                        </button>
+                      </div>
+                      <textarea placeholder="Description" value={testimonial.description} onChange={(e) => handleTestimonialChange(index, "description", e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-lg"></textarea>
+                      <input type="file" onChange={(e) => handleTestimonialImageUpload(index, e)} className="w-full px-4 py-2 border border-gray-300 rounded-lg" />
+                      {testimonialImagePreviews[index] && <img src={testimonialImagePreviews[index]} alt={`Testimonial ${index}`} className="w-16 h-16 rounded-full mt-2" />}
+                    </div>
+                  ))}
+                  <button type="button" onClick={handleAddTestimonial} className="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-600 rounded-lg shadow-sm hover:bg-gray-200">
+                    <PlusCircle size={16} className="mr-2" /> Add Testimonial
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Course Benefits */}
@@ -424,7 +547,7 @@ const NewCoursePage = () => {
                       },
                     })
                   }
-                  className="w-5 h-5 text-indigo-500 rounded focus:ring-indigo-300 cursor-pointer"
+                  className="w-5 h-5 text-orange-500 rounded focus:ring-orange-300 cursor-pointer"
                 />
               </div>
               {formData.courseBenefits.benefitsActive && (
@@ -468,9 +591,16 @@ const NewCoursePage = () => {
                 <div className="mt-3">
                   {/* <label className="block text-md font-medium text-gray-700 mb-2 font-poppins tracking-tight">Frequently Asked Questions</label> */}
                   {formData.faQ.faQMetaData.map((faq, index) => (
-                    <div key={index} className="mb-4 p-4 bg-gray-100 rounded-lg shadow-sm space-y-2">
-                      <input type="text" placeholder="Enter question" value={faq.question} onChange={(e) => handleFAQChange(index, "question", e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-lg" />
-                      <textarea placeholder="Enter answer" value={faq.answer} onChange={(e) => handleFAQChange(index, "answer", e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-lg"></textarea>
+                    <div key={index} className="  mb-4 p-4 bg-gray-100 rounded-lg shadow-sm space-y-2">
+                      <div className="flex flex-col items-center gap-2">
+                        <div className="flex w-full gap-3 ">
+                          <input type="text" placeholder="Enter question" value={faq.question} onChange={(e) => handleFAQChange(index, "question", e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-lg" />
+                          <button type="button" onClick={() => handleRemoveFAQ(index)} className="text-red-500 hover:text-red-600 text-left">
+                            <MinusCircle size={18} />
+                          </button>
+                        </div>
+                        <textarea placeholder="Enter answer" value={faq.answer} onChange={(e) => handleFAQChange(index, "answer", e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-lg"></textarea>
+                      </div>
                     </div>
                   ))}
                   <button type="button" onClick={handleAddFAQ} className="inline-flex items-center mt-2 text-sm font-poppins tracking-tight cursor-pointer px-4 py-2 bg-gray-100 text-gray-600 rounded-lg shadow-sm hover:bg-gray-200">
@@ -499,7 +629,6 @@ const NewCoursePage = () => {
               </div>
               {formData.gallery.isActive && (
                 <div className="mt-3">
-                  {/* <label className="block text-md font-medium text-gray-700 mb-2 font-poppins tracking-tight">Gallery Images</label> */}
                   <div className="grid md:grid-cols-6 grid-cols-3 gap-2">
                     {formData.gallery.imageMetaData.map((imageData, index) => (
                       <div key={index} className="relative w-32 h-32 border rounded-lg bg-gray-100 flex items-center justify-center">
@@ -533,7 +662,6 @@ const NewCoursePage = () => {
               </div>
               {formData.products.isActive && (
                 <div className="mt-3">
-                  {/* <label className="block text-md font-medium text-gray-700 mb-2 font-poppins tracking-tight">Products</label> */}
                   <div className="space-y-4">
                     {formData.products.productMetaData.map((product, index) => (
                       <div key={index} className="flex flex-col gap-2 bg-gray-100 p-4 rounded-lg shadow-sm">
@@ -559,11 +687,141 @@ const NewCoursePage = () => {
             <div className="my-8 px-10">
               <hr className="text-black" />
             </div>
+
+            {/* Cover Image Toggle */}
+            <div className="px-10 mt-3">
+              <div className="flex justify-between">
+                <label className="block text-md font-medium text-gray-700 mb-2 font-poppins tracking-tight">Enable Cover Image</label>
+                <input
+                  type="checkbox"
+                  checked={formData.coverImage.isActive}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      coverImage: {
+                        ...formData.coverImage,
+                        isActive: e.target.checked,
+                      },
+                    })
+                  }
+                  className="w-5 h-5 rounded cursor-pointer"
+                />
+              </div>
+              {formData.coverImage.isActive && (
+                <div>
+                  <input type="file" onChange={handleCoverImageUpload} className="w-full h-11 pt-2 border px-2 font-poppins tracking-tight text-black text-sm border-gray-400 rounded-lg focus:ring-gray-200 bg-gray-200" />
+                  {imagePreview && <img src={imagePreview} alt="Cover Preview" className="mt-4 w-32 h-32 rounded-lg" />}
+                </div>
+              )}
+            </div>
+
+            {/* Language Toggle */}
+            <div className="px-10 mt-3">
+              <div className="flex justify-between">
+                <label className="block text-md font-medium text-gray-700 mb-2 font-poppins tracking-tight">Enable Language Selection</label>
+                <input
+                  type="checkbox"
+                  checked={formData.language.isActive}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      language: {
+                        ...formData.language,
+                        isActive: e.target.checked,
+                      },
+                    })
+                  }
+                  className="w-5 h-5 rounded cursor-pointer"
+                />
+              </div>
+              {formData.language.isActive && (
+                <div>
+                  <select
+                    value={formData.language.value}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        language: {...formData.language, value: e.target.value},
+                      })
+                    }
+                    className="w-full h-11 border px-2 font-poppins tracking-tight text-black text-sm border-gray-400 rounded-lg focus:ring-gray-200 bg-gray-200"
+                  >
+                    <option value="English">English</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="French">French</option>
+                  </select>
+                </div>
+              )}
+            </div>
+
+            {/* Lessons Toggle */}
+            <div className="px-10 mt-3">
+              <div className="flex justify-between">
+                <label className="block text-md font-medium text-gray-700 mb-2 font-poppins tracking-tight">Enable Lessons</label>
+                <input
+                  type="checkbox"
+                  checked={formData.lessons.isActive}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      lessons: {...formData.lessons, isActive: e.target.checked},
+                    })
+                  }
+                  className="w-5 h-5 rounded cursor-pointer"
+                />
+              </div>
+              {formData.lessons.isActive && (
+                <div>
+                  {formData.lessons.lessonData.map((lesson, lessonIndex) => (
+                    <div key={lessonIndex} className="bg-gray-100 p-4 rounded-lg shadow-sm space-y-3 mt-3">
+                      <div className="flex items-center">
+                        <input
+                          type="text"
+                          placeholder="Lesson Name"
+                          value={lesson.lessonName}
+                          onChange={(e) => {
+                            const updatedLessons = [...formData.lessons.lessonData];
+                            updatedLessons[lessonIndex].lessonName = e.target.value;
+                            setFormData({...formData, lessons: {...formData.lessons, lessonData: updatedLessons}});
+                          }}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                        />
+                        <button type="button" onClick={() => handleRemoveLesson(lessonIndex)} className="ml-2 text-red-500 hover:text-red-600">
+                          <MinusCircle size={18} />
+                        </button>
+                      </div>
+                      {lesson.videos.map((video, videoIndex) => (
+                        <div key={videoIndex} className="flex items-center w-full">
+                          <input type="file" accept="video/*" onChange={(e) => handleVideoUpload(lessonIndex, videoIndex, e)} className="w-full flex items-center px-4 py-2 border border-gray-300 rounded-lg" />
+                          {videoPreviews[`${lessonIndex}-${videoIndex}`] && (
+                            <button type="button" onClick={() => handleVideoPreview(videoPreviews[`${lessonIndex}-${videoIndex}`])} className="ml-2 font-poppins tracking-tight">
+                              View
+                            </button>
+                          )}
+                          <button type="button" onClick={() => handleRemoveVideo(lessonIndex, videoIndex)} className="ml-2 text-red-500 hover:text-red-600">
+                            <MinusCircle size={18} />
+                          </button>
+                        </div>
+                      ))}
+                      <button type="button" onClick={() => handleAddVideo(lessonIndex)} className="mt-2 px-4 flex items-center py-2 bg-gray-100 text-gray-600 rounded-lg shadow-sm hover:bg-gray-200">
+                        <PlusCircle size={16} className="mr-2" />
+                        Add Video
+                      </button>
+                    </div>
+                  ))}
+                  <button type="button" onClick={handleAddLesson} className="flex items-center mt-4 text-sm font-poppins tracking-tight cursor-pointer px-4 py-2 bg-gray-100 text-gray-600 rounded-lg shadow-sm hover:bg-gray-200">
+                    <PlusCircle size={16} className="mr-2" />
+                    Add Lesson
+                  </button>
+                </div>
+              )}
+            </div>
+
             {/* Button */}
             <div>
               <div className="my-8  text-center px-10">
                 <span>
-                  <button type="submit" className="w-full px-6 py-3 bg-orange-600 text-white  text-lg font-semibold rounded-lg shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  <button type="submit" className="w-full px-6 py-3 bg-orange-600 text-white  text-lg font-semibold rounded-lg shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
                     Create Course
                   </button>
                 </span>
