@@ -7,9 +7,9 @@ const BillingTab = () => {
 
 
   const billingHistory = [
-    { id: 1, amount: "$10.00", date: "2024-10-01", status: "Paid" },
-    { id: 2, amount: "$15.00", date: "2024-09-15", status: "Paid" },
-    { id: 3, amount: "$20.00", date: "2024-08-30", status: "Pending" },
+    { id: 1, amount: "Rs 10.00", date: "2024-10-01", status: "Paid" },
+    { id: 2, amount: "Rs 15.00", date: "2024-09-15", status: "Paid" },
+    { id: 3, amount: "Rs 20.00", date: "2024-08-30", status: "Pending" },
   ];
 
   return (
