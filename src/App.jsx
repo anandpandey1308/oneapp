@@ -26,6 +26,7 @@ import PayingUpPage from "./Pages/Dashboard/DashboardPages/PayingUpPage/PayingUp
 import WalletPage from "./Pages/Dashboard/DashboardPages/WalletPage/WalletPage.jsx";
 import NewCourse from "./Pages/Dashboard/DashboardPages/CoursesPage/NewCourse.jsx";
 import WhatsAppPage from "./Pages/Dashboard/DashboardPages/WhatsAppPage/WhatsAppPage.jsx";
+import CreatePayUp from "./Pages/Dashboard/DashboardPages/PayingUpPage/CreatePayUp.jsx";
 
 const App = () => {
   return (
@@ -54,7 +55,7 @@ const App = () => {
           <Route path="your-customers" element={<AudiencePage />} />
           <Route path="wallets" element={<WalletPage />} />
           <Route path="payingup" element={<PayingUpPage />} />
-          <Route path="appointement" element={<AppointementPage />} />
+          <Route path="appointment" element={<AppointementPage />} />
           <Route path="webinar" element={<WebinarPage />} />
           <Route path="courses" element={<CoursesPage />} />
           <Route path="telegram" element={<TelegramPage />} />
@@ -72,6 +73,7 @@ const App = () => {
           <Route path="create-course" element={<CreateCoursePage />} />
           <Route path="create-locked-content" element={<CreateLockedContentPage />} />
           <Route path="create-paying-up" element={<CreatePayingUpPage />} />
+          <Route path="/create-pay-up" element={<CreatePayUp />} />
         </Route>
       </Routes>
     </>
