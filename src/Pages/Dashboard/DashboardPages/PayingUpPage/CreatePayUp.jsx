@@ -36,9 +36,7 @@ const CreatePayUp = () => {
     faQ: {
       title: "Frequently Asked Questions",
       isActive: false,
-      faQMetaData: [
-        
-      ],
+      faQMetaData: [],
     },
     refundPolicies: {
       title: "Refund Policies",
@@ -234,8 +232,8 @@ const CreatePayUp = () => {
   };
 
   return (
-    <div className="max-w-full min-h-screen bg-white flex">
-      <div className="w-1/2 overflow-y-auto h-full">
+    <div className="max-w-full min-h-screen bg-white flex flex flex-col md:flex-row">
+      <div className="md:w-1/2 w:1/2 overflow-y-auto h-full">
         {/* Form Field */}
         {/* Checkout Navbar */}
         <div className="flex py-6 px-5 border-b-gray-200 border-b-2 w-full sticky top-0 bg-white z-10">
@@ -623,8 +621,7 @@ const CreatePayUp = () => {
       </div>
 
       {/* Preview Section */}
-      <div
-        className="w-1/2   h-screen  sticky top-0 flex items-center justify-center"
+      <div className="md:w-1/2  h-screen  sticky top-0 flex items-center justify-center"
         style={{
           backgroundImage: `url(${Pattern})`,
           backgroundSize: "cover",
