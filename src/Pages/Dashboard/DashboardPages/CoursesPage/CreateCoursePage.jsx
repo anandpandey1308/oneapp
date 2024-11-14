@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+
 import { useState } from "react";
 import {
   ArrowLeftCircleIcon,
@@ -466,6 +466,15 @@ const NewCoursePage = () => {
     });
   };
 
+  const handleCourseTitleChange = (e) => {
+    const value = e.target.value;
+    if (/^[a-zA-Z\s]*$/.test(value)) {
+      setFormData({ ...formData, title: value });
+      setError('');
+    } else {
+      setError('Only letters and spaces are allowed');
+    }
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (
@@ -533,13 +542,12 @@ const NewCoursePage = () => {
                 <input
                   type="text"
                   value={formData.title}
-                  onChange={(e) =>
-                    setFormData({ ...formData, title: e.target.value })
-                  }
-                  className=" w-[400px] h-11 border px-2 font-poppins tracking-tight text-black text-sm border-gray-400 rounded-lg focus:ring-gray-200 bg-gray-200"
+                  onChange={handleCourseTitleChange}
+                  className="w-[400px] h-11 border px-2 font-poppins tracking-tight text-black text-sm border-gray-400 rounded-lg focus:ring-gray-200 bg-gray-200"
                   placeholder="Enter course title"
                   required
                 />
+                {error && <p className="text-red-500 text-xs">{error}</p>}
               </div>
               {/* Course Price */}
               <div>
