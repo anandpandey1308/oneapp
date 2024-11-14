@@ -21,7 +21,7 @@ export const dashboardConfig = {
   
   appItems: [
     { label: "Paying Up", icon: FaChartBar, path: "/payingup" },
-    { label: "Appointment", icon: FaCalendarAlt, path: "/appointement" },
+    { label: "Appointment", icon: FaCalendarAlt, path: "/appointment" },
     { label: "Webinar", icon: RiPresentationFill, path: "/webinar" },
     { label: "Courses", icon: FaBookOpen, path: "/courses" },
     { label: "Telegram", icon: FaTelegramPlane, path: "/telegram" },
