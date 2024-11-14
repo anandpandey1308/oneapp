@@ -65,6 +65,8 @@ const CreatePayUp = () => {
 
   const [faqVisibility, setFaqVisibility] = useState(formData.faQ.faQMetaData.map(() => false));
 
+
+
   const toggleFaqAnswer = (index) => {
     setFaqVisibility((prev) => {
       const newVisibility = [...prev];
@@ -227,8 +229,15 @@ const CreatePayUp = () => {
     });
   };
 
+  const fakeApiCall = () => {
+    console.log("Sending data to API...");
+    setTimeout(() => {
+      console.log("API response:", formData);
+    }, 1000);
+  };
+
   const consoleFormData = () => {
-    console.log(formData);
+    fakeApiCall();
   };
 
   return (
@@ -738,11 +747,11 @@ const CreatePayUp = () => {
               <div className="flex gap-4 justify-center">
                 <a href="" className="flex items-center gap-1 text-white text-[10px] font-poppins">
                   <MessageCircle className="size-4" />
-                  owner@example.com
+                 {formData.paymentDetails.ownerEmail}
                 </a>
                 <a href="" className="flex items-center gap-1 text-white text-[10px] font-poppins">
                   <Phone className="size-4" />
-                  9876543210
+                  {formData.paymentDetails.ownerPhone}
                 </a>
               </div>
             </div>
