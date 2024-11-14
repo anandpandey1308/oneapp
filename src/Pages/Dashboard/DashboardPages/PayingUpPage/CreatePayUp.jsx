@@ -1,7 +1,7 @@
-import {MinusCircle} from "lucide-react";
+import {MessageCircle, MinusCircle, Phone} from "lucide-react";
 import {useState} from "react";
 import {BsPlusSquareDotted} from "react-icons/bs";
-import {FaDesktop, FaMobileAlt} from "react-icons/fa";
+import {FaDesktop, FaMobileAlt, FaStar} from "react-icons/fa";
 import {IoCloseCircleOutline} from "react-icons/io5";
 import Pattern from "../../../../assets/pattern.png";
 
@@ -30,7 +30,7 @@ const CreatePayUp = () => {
       testimonialsMetaData: [
         {
           name: "John Doe",
-          profilePic: "",
+          profilePic: "http://localhost:5173/src/assets/oneapp.jpeg",
           description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget nunc faucibus consectetur.",
           rating: 5,
         },
@@ -62,6 +62,16 @@ const CreatePayUp = () => {
       value: "https://dowellfileuploader.uxlivinglab.online/hr/logo-2-min-min.png",
     },
   });
+
+  const [faqVisibility, setFaqVisibility] = useState(formData.faQ.faQMetaData.map(() => false));
+
+  const toggleFaqAnswer = (index) => {
+    setFaqVisibility((prev) => {
+      const newVisibility = [...prev];
+      newVisibility[index] = !newVisibility[index];
+      return newVisibility;
+    });
+  };
 
   // Toggle view function
   const toggleView = () => {
@@ -128,13 +138,102 @@ const CreatePayUp = () => {
     }
   };
 
+  const handleProfilePicUpload = (e, index) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prevData) => {
+          const updatedTestimonials = [...prevData.testimonials.testimonialsMetaData];
+          if (!updatedTestimonials[index]) updatedTestimonials[index] = {}; // Ensure the object exists
+          updatedTestimonials[index].profilePic = reader.result;
+          return {
+            ...prevData,
+            testimonials: {
+              ...prevData.testimonials,
+              testimonialsMetaData: updatedTestimonials,
+            },
+          };
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleFaqChange = (e, index, field) => {
+    const value = e.target.value;
+    setFormData((prevData) => {
+      const updatedFaqs = prevData.faQ.faQMetaData.map((faq, i) => (i === index ? {...faq, [field]: value} : faq));
+      return {
+        ...prevData,
+        faQ: {
+          ...prevData.faQ,
+          faQMetaData: updatedFaqs,
+        },
+      };
+    });
+  };
+
+  const handleToggleFaq = (e) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      faQ: {
+        ...prevData.faQ,
+        isActive: e.target.checked,
+      },
+    }));
+  };
+
+  const handleAddFaq = () => {
+    setFormData((prevData) => ({
+      ...prevData,
+      faQ: {
+        ...prevData.faQ,
+        faQMetaData: [...prevData.faQ.faQMetaData, {question: "", answer: ""}],
+      },
+    }));
+    setFaqVisibility((prev) => [...prev, false]);
+  };
+
+  const handleRemoveFaq = (index) => {
+    setFormData((prevData) => {
+      const updatedFaqs = prevData.faQ.faQMetaData.filter((_, i) => i !== index);
+      return {
+        ...prevData,
+        faQ: {
+          ...prevData.faQ,
+          faQMetaData: updatedFaqs,
+        },
+      };
+    });
+    setFaqVisibility((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const renderStars = (rating) => {
+    return [...Array(5)].map((_, i) => <FaStar key={i} className={i < rating ? "text-yellow-500" : "text-gray-300"} />);
+  };
+
+  const handleRatingChange = (e, index) => {
+    const value = parseInt(e.target.value);
+    setFormData((prevData) => {
+      const updatedTestimonials = prevData.testimonials.testimonialsMetaData.map((testimonial, i) => (i === index ? {...testimonial, rating: value} : testimonial));
+      return {
+        ...prevData,
+        testimonials: {
+          ...prevData.testimonials,
+          testimonialsMetaData: updatedTestimonials,
+        },
+      };
+    });
+  };
+
   const consoleFormData = () => {
     console.log(formData);
   };
 
   return (
     <div className="max-w-full min-h-screen bg-white flex">
-      <div className="w-1/2 overflow-y-auto h-screen">
+      <div className="w-1/2 overflow-y-auto h-full">
         {/* Form Field */}
         {/* Checkout Navbar */}
         <div className="flex py-6 px-5 border-b-gray-200 border-b-2 w-full sticky top-0 bg-white z-10">
@@ -358,24 +457,7 @@ const CreatePayUp = () => {
                         <input
                           type="file"
                           accept="image/*"
-                          onChange={(e) => {
-                            const file = e.target.files[0];
-                            if (file) {
-                              const reader = new FileReader();
-                              reader.onloadend = () => {
-                                const updatedTestimonials = [...formData.testimonials.testimonialsMetaData];
-                                updatedTestimonials[index].profilePic = reader.result;
-                                setFormData((prevData) => ({
-                                  ...prevData,
-                                  testimonials: {
-                                    ...prevData.testimonials,
-                                    testimonialsMetaData: updatedTestimonials,
-                                  },
-                                }));
-                              };
-                              reader.readAsDataURL(file);
-                            }
-                          }}
+                          onChange={(e) => handleProfilePicUpload(e, index)}
                           id={`profilePic-${index}`}
                           className="w-full max-w-md h-12 text-gray-700 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
@@ -385,22 +467,7 @@ const CreatePayUp = () => {
                             <label htmlFor={`rating-${index}`} className="font-poppins font-normal text-sm tracking-tight text-gray-800">
                               Rating
                             </label>
-                            <select
-                              onChange={(e) => {
-                                const updatedTestimonials = [...formData.testimonials.testimonialsMetaData];
-                                updatedTestimonials[index].rating = parseInt(e.target.value);
-                                setFormData((prevData) => ({
-                                  ...prevData,
-                                  testimonials: {
-                                    ...prevData.testimonials,
-                                    testimonialsMetaData: updatedTestimonials,
-                                  },
-                                }));
-                              }}
-                              value={testimonial.rating}
-                              className="w-[150px] py-2 px-1 rounded-lg h-12 border-gray-300  font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                              id={`rating-${index}`}
-                            >
+                            <select onChange={(e) => handleRatingChange(e, index)} value={testimonial.rating} className="w-[150px] py-2 px-1 rounded-lg h-12 border-gray-300 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
                               <option value={1}>1 Star</option>
                               <option value={2}>2 Stars</option>
                               <option value={3}>3 Stars</option>
@@ -422,60 +489,29 @@ const CreatePayUp = () => {
             </div>
 
             {/* FAQs */}
+            {/* Enable FAQ Checkbox */}
+            <div className="flex justify-between items-center">
+              <label className="font-poppins font-semibold text-md text-gray-800">Enable FAQs</label>
+              <input type="checkbox" checked={formData.faQ.isActive} onChange={handleToggleFaq} />
+            </div>
+
+            {/* FAQ Section in Form */}
             <div className="flex flex-col gap-2">
-              <div className="flex justify-between">
-                <label htmlFor="faQEnabled" className="font-poppins font-semibold text-md tracking-tight text-gray-800 flex items-center gap-2">
-                  Enable FAQs
-                </label>
-                <input type="checkbox" checked={formData.faQ.isActive} onChange={(e) => handleInputChange(e, "faQ", "isActive")} />
-              </div>
-              {formData.faQ.isActive && (
-                <div className="flex flex-col gap-2 py-3">
-                  {formData.faQ.faQMetaData.map((faq, index) => (
-                    <div key={index} className="flex flex-col gap-2">
-                      <input
-                        type="text"
-                        onChange={(e) => {
-                          const updatedFAQs = [...formData.faQ.faQMetaData];
-                          updatedFAQs[index].question = e.target.value;
-                          setFormData((prevData) => ({
-                            ...prevData,
-                            faQ: {
-                              ...prevData.faQ,
-                              faQMetaData: updatedFAQs,
-                            },
-                          }));
-                        }}
-                        className="w-full max-w-md h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="FAQ Question"
-                      />
-                      <div className="flex items-center gap-3">
-                        <textarea
-                          onChange={(e) => {
-                            const updatedFAQs = [...formData.faQ.faQMetaData];
-                            updatedFAQs[index].answer = e.target.value;
-                            setFormData((prevData) => ({
-                              ...prevData,
-                              faQ: {
-                                ...prevData.faQ,
-                                faQMetaData: updatedFAQs,
-                              },
-                            }));
-                          }}
-                          className="w-full h-20 rounded-lg text-gray-700 border-gray-300 border-2 px-4 py-2 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          placeholder="FAQ Answer"
-                        />
-                        <MinusCircle className="text-red-500 cursor-pointer size-5" onClick={() => handleRemoveField("faQ", "faQMetaData", index)} />
-                      </div>
-                    </div>
-                  ))}
-                  <div className="mt-1">
-                    <button type="button" className="bg-gray-300 font-poppins tracking-tight py-2 px-3 rounded-lg text-black cursor-pointer text-sm flex items-center gap-3" onClick={() => handleAddField("faQ", "faQMetaData")}>
-                      Add FAQ
+              <h2 className="font-bold tracking-tight font-poppins">FAQs</h2>
+              {formData.faQ.faQMetaData.map((faq, index) => (
+                <div key={index} className="flex flex-col gap-2">
+                  <input type="text" value={faq.question} onChange={(e) => handleFaqChange(e, index, "question")} className="w-full h-12 rounded-lg border-gray-300 border-2 px-4 text-sm shadow-sm" placeholder="FAQ Question" />
+                  <textarea value={faq.answer} onChange={(e) => handleFaqChange(e, index, "answer")} className="w-full h-20 rounded-lg border-gray-300 border-2 px-4 text-sm shadow-sm" placeholder="FAQ Answer" />
+                  <div className="flex justify-end">
+                    <button type="button" onClick={() => handleRemoveFaq(index)} className="text-red-500 flex items-center gap-1 text-sm">
+                      <MinusCircle /> Remove FAQ
                     </button>
                   </div>
                 </div>
-              )}
+              ))}
+              <button type="button" onClick={handleAddFaq} className="bg-gray-300 font-poppins tracking-tight py-2 px-3 rounded-lg text-black cursor-pointer text-sm flex items-center gap-3">
+                <BsPlusSquareDotted /> Add FAQ
+              </button>
             </div>
 
             {/* Refund Policies */}
@@ -584,7 +620,7 @@ const CreatePayUp = () => {
 
       {/* Preview Section */}
       <div
-        className="w-1/2 min-h-screen sticky top-0 flex items-center justify-center"
+        className="w-1/2   h-screen  sticky top-0 flex items-center justify-center"
         style={{
           backgroundImage: `url(${Pattern})`,
           backgroundSize: "cover",
@@ -597,7 +633,7 @@ const CreatePayUp = () => {
         </div>
 
         {/* Mock Browser Preview */}
-        <div className={`relative bg-white rounded-lg shadow-lg ${isMobileView ? "w-[60%] h-[90%]" : "w-[90%] h-[90%]"}`}>
+        <div className={`relative bg-white rounded-lg overflow-y-auto mt-6  shadow-lg ${isMobileView ? "w-[60%] h-[90%]" : "w-[90%] h-[90%]"}`}>
           <div className="flex items-center bg-black p-2 rounded-t-lg justify-between">
             <div className="flex gap-2 ml-2">
               <span className="w-3 h-3 bg-red-500 rounded-full"></span>
@@ -608,30 +644,107 @@ const CreatePayUp = () => {
             <div></div>
           </div>
 
-          <div>
+          <div className="overflow-y-auto h-full">
             <div className="bg-gradient-to-r from-orange-300 to-orange-600 ">
-              <div className="flex items-center flex-col py-3">
+              <div className="flex items-center flex-col py-2">
                 {/* Checkout Title */}
-                <h2 className="text-[18px] font-bold text-white font-poppins ">{formData.title === " " ? "Paying Title" : formData.title}</h2>
+                <h2 className="text-[13px] font-bold text-white font-poppins ">{formData.title === " " ? "Paying Title" : formData.title}</h2>
                 {/* Categories */}
                 <div className="flex items-center gap-1 mt-2">
                   {formData.Category.categoryMetaData.map((category, index) => (
-                    <span key={index} className="bg-gray-200 text-gray-800 text-[11px] font-poppins px-2 py-1 rounded-full">
-                      {category === ""  ? "Categories" : category}
+                    <span key={index} className="bg-gray-200 text-gray-800 text-[8px] font-poppins px-1 py-1 rounded-full">
+                      {category === "" ? "Categories" : category}
                     </span>
                   ))}
                 </div>
                 {/* Payment */}
-                <div className="flex items-center gap-1 mt-3">
-                  <button className="font-poppins text-[11px] px-3 py-1 rounded-full bg-black text-white flex gap-2">{formData.paymentDetails.paymentButtonTitle}<span> ₹ {formData.paymentDetails.totalAmount}</span></button>
+                <div className="flex items-center gap-1 mt-2">
+                  <button className="font-poppins text-[9px] px-3 py-1 rounded-full bg-black text-white flex gap-2">
+                    {formData.paymentDetails.paymentButtonTitle}
+                    <span> ₹ {formData.paymentDetails.totalAmount}</span>
+                  </button>
                 </div>
               </div>
             </div>
+            {/* Overview */}
             <div className="mt-2 px-8 text-center">
-              <h2 className="font-bold tracking-tight font-poppins">
-                Overview
-              </h2>
-              <p className="font-poppins text-[12px] px-4 py-2">{formData.description === " " ? "Description" : formData.description}</p>
+              <h2 className="font-bold tracking-tight font-poppins text-[12px]">Overview</h2>
+              <p className="font-poppins text-[9px] px-4 py-2">{formData.description === " " ? "Description" : formData.description}</p>
+            </div>
+            {/* Testimonial */}
+            <div className="mt-4 px-10 py-2 bg-gray-100 flex flex-col justify-center w-full">
+              <h1 className="text-center font-bold tracking-tight font-poppins text-[12px]">Testimonials</h1>
+              <div className="grid md:grid-cols-2 grid-cols-3 gap-2">
+                {formData.testimonials.testimonialsMetaData.map((testimonial, index) => (
+                  <div className=" bg-white rounded-lg p-2 shadow-md my-4 " key={index}>
+                    <div className="flex gap-3">
+                      <img src={testimonial.profilePic} alt="" className="w-8 h-8 rounded-full object-cover " />
+                      <div>
+                        <p className="text-[11px] font-poppins">{testimonial.name}</p>
+                        <div className="flex text-[10px]">{renderStars(testimonial.rating)}</div>
+                      </div>
+                    </div>
+                    <p className="mt-2 text-sm text-gray-600 px-4 text-[9px] leading-3 font-poppins tracking-tight">{testimonial.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* FaQ */}
+            <div className="mt-2 px-10 py-2 w-full">
+              <div className=" px-10 py-2  flex flex-col w-full">
+                <h2 className="font-semibold text-center text-[12px] font-poppins">Frequently Asked Questions</h2>
+                {formData.faQ.faQMetaData.map((faq, index) => (
+                  <div key={index} className="mt-3  bg-white rounded-lg border border-gray-200">
+                    <div className="flex justify-between items-center bg-gray-100 p-2">
+                      <h3 className="text-[11px] font-medium font-poppins tracking-tight">{faq.question}</h3>
+                      <button onClick={() => toggleFaqAnswer(index)} className="text-blue-500 text-xs">
+                        {faqVisibility[index] ? "Hide" : "Show"}
+                      </button>
+                    </div>
+                    {faqVisibility[index] && <p className="text-[10px] text-gray-600  font-poppins tracking-tight p-2">{faq.answer}</p>}
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Refund Policies */}
+
+            <div className="mt-4  w-full flex flex-col bg-gray-100 px-10 py-6">
+              <h2 className="font-semibold text-center text-[12px] font-poppins">Refund Policies</h2>
+              <div className="flex flex-col gap-2 mt-2">
+                {formData.refundPolicies.refundPoliciesMetaData.map((refund, index) => (
+                  <div key={index} className="bg-white rounded-md px-6 py-2 ">
+                    <p className="font-poppins text-[10px] tracking-tight text-center">{refund}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Terms & condition */}
+            <div className="mt-4 w-full flex flex-col">
+              <p className="font-semibold text-center text-[12px] font-poppins">Terms & Conditions</p>
+              <div className="flex flex-col gap-2 mt-2">
+                {formData.termAndConditions.termAndConditionsMetaData.map((terms, index) => (
+                  <div key={index}>
+                    <p className="font-poppins text-[10px] tracking-tight text-center">{terms}</p>
+                    <hr className="mt-2 mx-16" />
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Footer */}
+            <div className="mt-4 flex flex-col px-10 py-6 gap-4 bg-gray-900 justify-center w-full">
+              <h2 className="font-poppins text-white font-bold text-center text-[12px]">Need help?</h2>
+              <div className="flex gap-4 justify-center">
+                <a href="" className="flex items-center gap-1 text-white text-[10px] font-poppins">
+                  <MessageCircle className="size-4" />
+                  owner@example.com
+                </a>
+                <a href="" className="flex items-center gap-1 text-white text-[10px] font-poppins">
+                  <Phone className="size-4" />
+                  9876543210
+                </a>
+              </div>
             </div>
           </div>
         </div>

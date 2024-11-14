@@ -73,7 +73,7 @@ const App = () => {
           <Route path="create-course" element={<CreateCoursePage />} />
           <Route path="create-locked-content" element={<CreateLockedContentPage />} />
           <Route path="create-paying-up" element={<CreatePayingUpPage />} />
-          <Route path="/create-pay-up" element={<CreatePayUp />} />
+          <Route path="create-pay-up" element={<CreatePayUp />} />
         </Route>
       </Routes>
     </>
