@@ -75,7 +75,6 @@ const CreatePayUp = () => {
     });
   };
 
-  // Toggle view function
   const toggleView = () => {
     setIsMobileView((prev) => !prev);
   };
@@ -125,7 +124,7 @@ const CreatePayUp = () => {
   const handleCoverImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Use FileReader to generate a preview
+
       const reader = new FileReader();
       reader.onloadend = () => {
         setFormData((prevData) => ({
