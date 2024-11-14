@@ -4,62 +4,56 @@ import {BsPlusSquareDotted} from "react-icons/bs";
 import {FaDesktop, FaMobileAlt, FaStar} from "react-icons/fa";
 import {IoCloseCircleOutline} from "react-icons/io5";
 import Pattern from "../../../../assets/pattern.png";
+import { useNavigate } from "react-router-dom";
 
 const CreatePayUp = () => {
   const [isMobileView, setIsMobileView] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: " ",
     paymentDetails: {
       currencySymbol: "IndianRupee",
-      totalAmount: 100,
-      paymentLink: "https://example.com/payment-link",
+      totalAmount: 0,
+      paymentLink: "",
       paymentEnabled: true,
-      paymentButtonTitle: "Pay Now",
-      ownerEmail: "owner@example.com",
-      ownerPhone: "9876543210",
+      paymentButtonTitle: "",
+      ownerEmail: "",
+      ownerPhone: "",
     },
     Category: {
       title: "Category",
-      isActive: true,
+      isActive: false,
       categoryMetaData: [""],
     },
-    description: ["In this section, your goal is to motivate potential students to purchase the course. What valuable knowledge will they gain? What opportunities will they miss if they dont enroll? Why is now the perfect time to sign up?"],
+    description: [""],
     testimonials: {
       title: "Testimonials",
-      isActive: true,
+      isActive: false,
       testimonialsMetaData: [
-        {
-          name: "John Doe",
-          profilePic: "http://localhost:5173/src/assets/oneapp.jpeg",
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget nunc faucibus consectetur.",
-          rating: 5,
-        },
+        
       ],
     },
     faQ: {
       title: "Frequently Asked Questions",
-      isActive: true,
+      isActive: false,
       faQMetaData: [
-        {
-          question: "What is the course about?",
-          answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget nunc faucibus consectetur.",
-        },
+        
       ],
     },
     refundPolicies: {
       title: "Refund Policies",
-      isActive: true,
-      refundPoliciesMetaData: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget nunc faucibus consectetur."],
+      isActive: false,
+      refundPoliciesMetaData: [],
     },
     termAndConditions: {
       title: "Terms & Conditions",
-      isActive: true,
-      termAndConditionsMetaData: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed mauris eget nunc faucibus consectetur."],
+      isActive: false,
+      termAndConditionsMetaData: [],
     },
     coverImage: {
       title: "Cover Image",
       isActive: false,
-      value: "https://dowellfileuploader.uxlivinglab.online/hr/logo-2-min-min.png",
+      value: "",
     },
   });
 
@@ -246,7 +240,9 @@ const CreatePayUp = () => {
         {/* Checkout Navbar */}
         <div className="flex py-6 px-5 border-b-gray-200 border-b-2 w-full sticky top-0 bg-white z-10">
           <div className="flex gap-4 items-center">
-            <IoCloseCircleOutline className="size-9" />
+            <IoCloseCircleOutline className="size-9"
+            onClick={() => navigate("/dashboard/payingup")}
+            />
             <div className="w-[2px] h-9 bg-gray-200"></div>
             <h2 className="font-poppins font-bold tracking-tight text-2xl text-gray-800">New PayUp page</h2>
           </div>

@@ -278,7 +278,7 @@ export const pagesConfig = {
       { title: "Draft Paying up", value: "2", content: [] },
     ],
     icon: FaChartBar,
-    path: '/app/create-paying-up',
+    path: '/app/create-pay-up',
     cardData: [
       {
         title: "TOTAL SALE",

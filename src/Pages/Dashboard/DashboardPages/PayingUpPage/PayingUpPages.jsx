@@ -3,7 +3,7 @@ import * as Icons from "lucide-react";
 import { payingUpConfig } from "./payingUpConfig";
 import oneApp from "../../../../assets/oneapp.jpeg";
 
-const CreatePayingUpPage = () => {
+const PayingUpPages = () => {
   const [openFaq, setOpenFaq] = useState(-1);
   const CurrencyIcon = Icons[payingUpConfig.paymentDetails.currencySymbol];
 
@@ -225,4 +225,4 @@ const CreatePayingUpPage = () => {
   );
 };
 
-export default CreatePayingUpPage;
+export default PayingUpPages;

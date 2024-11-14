@@ -21,12 +21,12 @@ import ChatPage from "./Pages/Dashboard/DashboardPages/ChatPage/ChatPage.jsx";
 import Welcome from "./Pages/Welcome/Welcome.jsx";
 import PluginPage from "./Pages/Dashboard/DashboardPages/PluginPage/PluginPage.jsx";
 import CreateCoursePage from "./Pages/Dashboard/DashboardPages/CoursesPage/CreateCoursePage.jsx";
-import CreatePayingUpPage from "./Pages/Dashboard/DashboardPages/PayingUpPage/CreatePayingUpPage.jsx";
 import PayingUpPage from "./Pages/Dashboard/DashboardPages/PayingUpPage/PayingUpPage.jsx";
 import WalletPage from "./Pages/Dashboard/DashboardPages/WalletPage/WalletPage.jsx";
 import NewCourse from "./Pages/Dashboard/DashboardPages/CoursesPage/NewCourse.jsx";
 import WhatsAppPage from "./Pages/Dashboard/DashboardPages/WhatsAppPage/WhatsAppPage.jsx";
 import CreatePayUp from "./Pages/Dashboard/DashboardPages/PayingUpPage/CreatePayUp.jsx";
+import PayingUpPages from "./Pages/Dashboard/DashboardPages/PayingUpPage/PayingUpPages.jsx";
 
 const App = () => {
   return (
@@ -72,7 +72,7 @@ const App = () => {
           <Route path="new-course" element={<NewCourse />} />
           <Route path="create-course" element={<CreateCoursePage />} />
           <Route path="create-locked-content" element={<CreateLockedContentPage />} />
-          <Route path="create-paying-up" element={<CreatePayingUpPage />} />
+          <Route path="paying-up" element={<PayingUpPages />} />
           <Route path="create-pay-up" element={<CreatePayUp />} />
         </Route>
       </Routes>
