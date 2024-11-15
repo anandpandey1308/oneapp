@@ -62,7 +62,7 @@ const StoreInformationSection = () => (
     <div className="store-url-container">
       <div className="input-group">
         <div className="store-url-field">
-          <span className="url-prefix">superprofile.bio/</span>
+          <span className="url-prefix">oneapp.bio/</span>
           <input
             type="text"
             value="anandpandey1308"
@@ -162,7 +162,7 @@ const ReferralSection = () => {
       <div className="footer-controls">
         <div className="control-row">
           <div className="flex items-center">
-            <span className="control-label">Hide SuperProfile Referral Link</span>
+            <span className="control-label">Hide Ao Referral Link</span>
             <span className="pro-badge">
               <Lock className="pro-icon" />
               PRO feature

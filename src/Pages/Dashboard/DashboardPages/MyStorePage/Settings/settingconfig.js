@@ -9,7 +9,7 @@ export const settingsConfig = {
           {
             id: 'store-url',
             type: 'custom-url',
-            prefix: 'superprofile.bio/',
+            prefix: 'oneapp.bio/',
             value: 'anandpandey1308',
             readOnly: true,
             hasEdit: true
@@ -22,7 +22,7 @@ export const settingsConfig = {
         hasInfo: true,
         previewCard: {
           image: true,
-          text: 'superprofile.bio/anandpandey1308',
+          text: 'oneapp.bio/anandpandey1308',
           changeButton: true
         },
         fields: [
