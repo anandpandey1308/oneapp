@@ -162,7 +162,7 @@ const ReferralSection = () => {
       <div className="footer-controls">
         <div className="control-row">
           <div className="flex items-center">
-            <span className="control-label">Hide Ao Referral Link</span>
+            <span className="control-label">Hide OneApp Referral Link</span>
             <span className="pro-badge">
               <Lock className="pro-icon" />
               PRO feature
