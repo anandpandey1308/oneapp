@@ -54,3 +54,15 @@
 .animate-bounce-slow {
   animation: bounce-slow 2s infinite;
 }
+
+
+.quill-editor .ql-container {
+  border-radius: 8px; 
+  border: 2px solid #ccc; 
+  height: 200px;
+}
+
+.preview-container {
+  border-radius: 8px; 
+  overflow: hidden; 
+}

@@ -1,10 +1,12 @@
 import {MessageCircle, MinusCircle, Phone} from "lucide-react";
 import {useState} from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import {BsPlusSquareDotted} from "react-icons/bs";
 import {FaDesktop, FaMobileAlt, FaStar} from "react-icons/fa";
 import {IoCloseCircleOutline} from "react-icons/io5";
-import Pattern from "../../../../assets/pattern.png";
 import {useNavigate} from "react-router-dom";
+import Pattern from "../../../../assets/pattern.png";
 
 const CreatePayUp = () => {
   const [isMobileView, setIsMobileView] = useState(false);
@@ -12,6 +14,7 @@ const CreatePayUp = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: " ",
+    description: "",
     paymentDetails: {
       currencySymbol: "IndianRupee",
       totalAmount: 0,
@@ -26,7 +29,6 @@ const CreatePayUp = () => {
       isActive: false,
       categoryMetaData: [""],
     },
-    description: [""],
     testimonials: {
       title: "Testimonials",
       isActive: false,
@@ -85,6 +87,13 @@ const CreatePayUp = () => {
         },
       }));
     }
+  };
+
+  const handleOverviewChange = (htmlContent) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      description: htmlContent,
+    }));
   };
 
   const handleAddField = (section, key) => {
@@ -228,7 +237,7 @@ const CreatePayUp = () => {
   };
 
   return (
-    <div className="max-w-full min-h-screen bg-white flex flex flex-col md:flex-row">
+    <div className="max-w-full min-h-screen bg-white flex  flex-col md:flex-row">
       <div className="md:w-1/2 w:1/2 overflow-y-auto h-full">
         {/* Form Field */}
         {/* Checkout Navbar */}
@@ -300,6 +309,7 @@ const CreatePayUp = () => {
                         placeholder="200"
                       />
                     </div>
+                    
                     {/* Payment Button */}
                     <div className="flex flex-col gap-2">
                       <label htmlFor="paymentButtonTitle" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
@@ -326,7 +336,7 @@ const CreatePayUp = () => {
                         onChange={(e) => handleInputChange(e, "paymentDetails", "ownerEmail")}
                         id="ownerEmail"
                         className="w-[300px] h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Owner email"
+                        placeholder="Support email"
                       />
                     </div>
                     {/* Owner Phone number */}
@@ -340,7 +350,7 @@ const CreatePayUp = () => {
                         onChange={(e) => handleInputChange(e, "paymentDetails", "ownerPhone")}
                         id="ownerPhone"
                         className="w-[300px] h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Owner phone number"
+                        placeholder="Support phone number"
                       />
                     </div>
                   </div>
@@ -393,24 +403,15 @@ const CreatePayUp = () => {
               <label htmlFor="overview" className="font-poppins font-semibold text-md tracking-tight text-gray-800 flex items-center gap-2">
                 Overview
               </label>
-              {formData.description.map((desc, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <textarea
-                    onChange={(e) => {
-                      const updatedDescription = [...formData.description];
-                      updatedDescription[index] = e.target.value;
-                      setFormData((prevData) => ({
-                        ...prevData,
-                        description: updatedDescription,
-                      }));
-                    }}
-                    id="overview"
-                    className="w-full h-20 rounded-lg text-gray-700 border-gray-300 border-2 px-4 py-2 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Overview of the content"
-                  />
-                </div>
-              ))}
-              <div className="mt-1"></div>
+              <ReactQuill
+                value={formData.description} // Pass value prop to sync Quill editor with state
+                onChange={handleOverviewChange} // Update the state on change
+                theme="snow"
+                className="quill-editor"
+                modules={{
+                  toolbar: [[{header: [1, 2, false]}], ["bold", "italic", "underline", "strike"], [{list: "ordered"}, {list: "bullet"}], ["link", "image"]],
+                }}
+              />
             </div>
 
             {/* Testimonials */}
@@ -679,7 +680,10 @@ const CreatePayUp = () => {
             {/* Overview */}
             <div className="mt-2 px-8 text-center">
               <h2 className="font-bold tracking-tight font-poppins text-[12px]">Overview</h2>
-              <p className="font-poppins text-[9px] px-4 py-2">{formData.description === " " ? "Description" : formData.description}</p>
+              <div
+                className="font-poppins text-[9px] px-4 py-2"
+                dangerouslySetInnerHTML={{__html: formData.description}} // Render updated description
+              />
             </div>
             {/* Testimonial */}
             <div className="mt-4 px-10 py-2 bg-gray-100 flex flex-col justify-center w-full">
