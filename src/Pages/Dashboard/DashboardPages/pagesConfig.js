@@ -56,7 +56,7 @@ export const pagesConfig = {
       },
       {
         title: "TOTAL REVENUE",
-        value: "$ 0",
+        value: "Rs 0",
         description: "The number of payments currently pending.",
       },
       {
@@ -114,7 +114,7 @@ export const pagesConfig = {
       },
       {
         title: "TOTAL REVENUE",
-        value: "$ 0",
+        value: "Rs 0",
         description: "The number of payments currently pending."
       },
       {
@@ -172,7 +172,7 @@ export const pagesConfig = {
       },
       {
         title: "TOTAL REVENUE",
-        value: "$ 0",
+        value: "Rs 0",
         description: "The number of payments currently pending."
       },
       {
@@ -229,7 +229,7 @@ export const pagesConfig = {
       },
       {
         title: "TOTAL REVENUE",
-        value: "$ 0",
+        value: "Rs 0",
         description: "The number of payments currently pending."
       },
       {
@@ -287,7 +287,7 @@ export const pagesConfig = {
       },
       {
         title: "TOTAL REVENUE",
-        value: "$ 0",
+        value: "Rs 0",
         description: "The number of payments currently pending."
       },
       {
@@ -331,7 +331,7 @@ export const pagesConfig = {
         title: "Live",
         value: "0",
         content: [
-          { title: "Event 1", price: "$100", sale: 50, revenue: "$5000", paymentEnabled: true, shareLink:"" }
+          { title: "Event 1", price: "Rs 100", sale: 50, revenue: "Rs 5000", paymentEnabled: true, shareLink:"" }
         ]
       },
       // { title: "Unpublished Courses", value: "1", content: [] },
@@ -347,7 +347,7 @@ export const pagesConfig = {
       },
       {
         title: "TOTAL REVENUE",
-        value: "$ 0",
+        value: "Rs 0",
         description: "The number of payments currently pending."
       },
       {
@@ -404,7 +404,7 @@ export const pagesConfig = {
       },
       {
         title: "TOTAL REVENUE",
-        value: "$ 0",
+        value: "Rs 0",
         description: "The number of payments currently pending."
       },
       {
