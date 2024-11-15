@@ -4,10 +4,11 @@ import {BsPlusSquareDotted} from "react-icons/bs";
 import {FaDesktop, FaMobileAlt, FaStar} from "react-icons/fa";
 import {IoCloseCircleOutline} from "react-icons/io5";
 import Pattern from "../../../../assets/pattern.png";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const CreatePayUp = () => {
   const [isMobileView, setIsMobileView] = useState(false);
+  const [priceType, setPriceType] = useState("fixed");
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: " ",
@@ -29,9 +30,7 @@ const CreatePayUp = () => {
     testimonials: {
       title: "Testimonials",
       isActive: false,
-      testimonialsMetaData: [
-        
-      ],
+      testimonialsMetaData: [],
     },
     faQ: {
       title: "Frequently Asked Questions",
@@ -56,8 +55,6 @@ const CreatePayUp = () => {
   });
 
   const [faqVisibility, setFaqVisibility] = useState(formData.faQ.faQMetaData.map(() => false));
-
-
 
   const toggleFaqAnswer = (index) => {
     setFaqVisibility((prev) => {
@@ -116,7 +113,6 @@ const CreatePayUp = () => {
   const handleCoverImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-
       const reader = new FileReader();
       reader.onloadend = () => {
         setFormData((prevData) => ({
@@ -238,9 +234,7 @@ const CreatePayUp = () => {
         {/* Checkout Navbar */}
         <div className="flex py-6 px-5 border-b-gray-200 border-b-2 w-full sticky top-0 bg-white z-10">
           <div className="flex gap-4 items-center">
-            <IoCloseCircleOutline className="size-9"
-            onClick={() => navigate("/dashboard/payingup")}
-            />
+            <IoCloseCircleOutline className="size-9" onClick={() => navigate("/dashboard/payingup")} />
             <div className="w-[2px] h-9 bg-gray-200"></div>
             <h2 className="font-poppins font-bold tracking-tight text-2xl text-gray-800">New PayUp page</h2>
           </div>
@@ -271,70 +265,84 @@ const CreatePayUp = () => {
                 <input type="checkbox" checked={formData.paymentDetails.paymentEnabled} onChange={(e) => handleInputChange(e, "paymentDetails", "paymentEnabled")} />
               </div>
               {formData.paymentDetails.paymentEnabled && (
-                <div className="flex gap-3 flex-wrap py-3">
-                  {/* Currency */}
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="currencySymbol" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
-                      Currency
-                    </label>
-                    <select className="w-[150px] py-2 px-1 rounded-lg h-12 border-gray-300 border-2 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500" onChange={(e) => handleInputChange(e, "paymentDetails", "currencySymbol")}>
-                      <option value="INR">Indian Rupees</option>
-                      <option value="USD">USD</option>
-                      <option value="GBP">Pounds</option>
-                    </select>
+                <div className="flex gap-5 flex-col flex-wrap py-3">
+                  {/* Price Type Selection */}
+                  <div className="flex gap-4">
+                    <a className={`px-4 py-2 font-poppins flex items-center rounded-lg ${priceType === "fixed" ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800"}`} onClick={() => setPriceType("fixed")}>
+                      Fixed Price
+                    </a>
+                    <a className={`px-4 py-2 font-poppins flex items-center rounded-lg ${priceType === "variable" ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800"}`} onClick={() => setPriceType("variable")}>
+                      Variable Price
+                    </a>
                   </div>
-                  {/* Payment amount */}
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="totalAmount" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
-                      Amount
-                    </label>
-                    <input
-                      type="number"
-                      onChange={(e) => handleInputChange(e, "paymentDetails", "totalAmount")}
-                      id="totalAmount"
-                      className="w-full max-w-md h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="200"
-                    />
+
+                  <div className="flex gap-2">
+                    {/* Currency (set to Indian Rupees only) */}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="currencySymbol" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
+                        Currency
+                      </label>
+                      <select className="w-[150px] py-2 px-1 rounded-lg h-12 border-gray-300 border-2 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
+                        <option value="INR">Indian Rupees</option>
+                      </select>
+                    </div>
+
+                    {/* Payment amount */}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="totalAmount" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
+                        Amount
+                      </label>
+                      <input
+                        type="number"
+                        onChange={(e) => handleInputChange(e, "paymentDetails", "totalAmount")}
+                        id="totalAmount"
+                        className="w-full max-w-md h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="200"
+                      />
+                    </div>
+                    {/* Payment Button */}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="paymentButtonTitle" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
+                        Payment Button Title
+                      </label>
+                      <input
+                        type="text"
+                        onChange={(e) => handleInputChange(e, "paymentDetails", "paymentButtonTitle")}
+                        id="paymentButtonTitle"
+                        className="w-full max-w-md h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Pay Now"
+                      />
+                    </div>
                   </div>
-                  {/* Payment Button */}
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="paymentButtonTitle" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
-                      Payment Button Title
-                    </label>
-                    <input
-                      type="text"
-                      onChange={(e) => handleInputChange(e, "paymentDetails", "paymentButtonTitle")}
-                      id="paymentButtonTitle"
-                      className="w-full max-w-md h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Pay Now"
-                    />
-                  </div>
-                  {/* Owner email */}
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="ownerEmail" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
-                      Owner Email
-                    </label>
-                    <input
-                      type="email"
-                      onChange={(e) => handleInputChange(e, "paymentDetails", "ownerEmail")}
-                      id="ownerEmail"
-                      className="w-[300px] h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Owner email"
-                    />
-                  </div>
-                  {/* Owner Phone number */}
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="ownerPhone" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
-                      Owner Phone Number
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.paymentDetails.ownerPhone}
-                      onChange={(e) => handleInputChange(e, "paymentDetails", "ownerPhone")}
-                      id="ownerPhone"
-                      className="w-[300px] h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Owner phone number"
-                    />
+
+                  <div className="flex gap-4">
+                    {/* Owner email */}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="ownerEmail" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
+                        Owner Email
+                      </label>
+                      <input
+                        type="email"
+                        onChange={(e) => handleInputChange(e, "paymentDetails", "ownerEmail")}
+                        id="ownerEmail"
+                        className="w-[300px] h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Owner email"
+                      />
+                    </div>
+                    {/* Owner Phone number */}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="ownerPhone" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
+                        Owner Phone Number
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.paymentDetails.ownerPhone}
+                        onChange={(e) => handleInputChange(e, "paymentDetails", "ownerPhone")}
+                        id="ownerPhone"
+                        className="w-[300px] h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Owner phone number"
+                      />
+                    </div>
                   </div>
                 </div>
               )}
@@ -621,7 +629,8 @@ const CreatePayUp = () => {
       </div>
 
       {/* Preview Section */}
-      <div className="md:w-1/2  h-screen  sticky top-0 flex items-center justify-center"
+      <div
+        className="md:w-1/2  h-screen  sticky top-0 flex items-center justify-center"
         style={{
           backgroundImage: `url(${Pattern})`,
           backgroundSize: "cover",
@@ -739,7 +748,7 @@ const CreatePayUp = () => {
               <div className="flex gap-4 justify-center">
                 <a href="" className="flex items-center gap-1 text-white text-[10px] font-poppins">
                   <MessageCircle className="size-4" />
-                 {formData.paymentDetails.ownerEmail}
+                  {formData.paymentDetails.ownerEmail}
                 </a>
                 <a href="" className="flex items-center gap-1 text-white text-[10px] font-poppins">
                   <Phone className="size-4" />
