@@ -12,6 +12,7 @@ import {
   List,
   ShoppingCart,
   Check,
+  IndianRupee,
 } from "lucide-react";
 import { toast } from "react-toastify";
 import Pagination from "@mui/material/Pagination";
@@ -70,8 +71,8 @@ const AudienceTableComponent = ({ data }) => {
 
   const sortOptions = [
     { id: 'alphabetical', label: 'Name (A to Z)', icon: <ArrowUpDown className="h-4 w-4" /> },
-    { id: 'amountAsc', label: 'Amount (Low to High)', icon: <DollarSign className="h-4 w-4" /> },
-    { id: 'amountDesc', label: 'Amount (High to Low)', icon: <DollarSign className="h-4 w-4" /> },
+    { id: 'amountAsc', label: 'Amount (Low to High)', icon: <IndianRupee className="h-4 w-4" /> },
+    { id: 'amountDesc', label: 'Amount (High to Low)', icon: <IndianRupee className="h-4 w-4" /> },
   ];
 
   // Filter and sort data
