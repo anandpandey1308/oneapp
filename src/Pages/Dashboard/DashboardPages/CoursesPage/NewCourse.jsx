@@ -8,7 +8,7 @@ const NewCourse = () => {
   const CurrencyIcon = Icons[courseConfig.currencySymbol];
 
   return (
-    <div className="min-h-screen bg-gray-50 scrollbar-hide overflow-y-scroll">
+    <div className="min-h-screen bg-gradient-to-r from-[#fff7ad] to-[#fffff0] scrollbar-hide overflow-y-scroll">
       <NavBar
         logo={courseConfig.logo}
         profilePhoto={courseConfig.profilePhoto}
@@ -31,7 +31,7 @@ const NewCourse = () => {
       {/* About Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white p-8 rounded-xl shadow-md">
+          <div className="p-8">
             <h2 className="text-3xl font-bold mb-6 text-gray-800">
               About the Course
             </h2>
@@ -68,7 +68,7 @@ const NewCourse = () => {
 
       {/* course language */}
       {courseConfig.language.isActive && (
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#fff7ad] to-[#fffff0]">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-12 text-center text-gray-800">
               {courseConfig.language.title}
@@ -77,7 +77,7 @@ const NewCourse = () => {
               {courseConfig.language.value.map((language, index) => (
                 <div
                   key={index}
-                  className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
+                  className="p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
                 >
                   <span className="text-xl font-semibold text-gray-800">
                     {language}
@@ -91,7 +91,7 @@ const NewCourse = () => {
 
       {/* Course Benefits */}
       {courseConfig.courseBenefits.isActive && (
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#fff7ad] to-[#fffff0]">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-12 text-center text-gray-800">
               {courseConfig.courseBenefits.title}
@@ -101,7 +101,7 @@ const NewCourse = () => {
                 (benefit, index) => (
                   <div
                     key={index}
-                    className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
+                    className="p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
                   >
                     <div className="text-xl font-semibold text-gray-800">
                       {benefit.emoji} {benefit.title}
@@ -116,7 +116,7 @@ const NewCourse = () => {
 
       {/* Testimonials */}
       {courseConfig.testimonials.isActive && (
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#fff7ad] to-[#fffff0]">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-12 text-center text-gray-800">
               {courseConfig.testimonials.title}
@@ -124,7 +124,7 @@ const NewCourse = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {courseConfig.testimonials.testimonialsMetaData.map(
                 (testimonial, index) => (
-                  <div key={index} className="bg-gray-50 p-6 rounded-xl">
+                  <div key={index} className="p-6 rounded-xl">
                     <div className="flex items-center mb-4">
                       <img
                         src={testimonial.profilePic || oneApp}
@@ -156,14 +156,14 @@ const NewCourse = () => {
 
       {/* FAQ Section */}
       {courseConfig.faQ.isActive && (
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#fff7ad] to-[#fffff0]">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-12 text-center text-gray-800">
               {courseConfig.faQ.title}
             </h2>
             <div className="space-y-6">
               {courseConfig.faQ.faQMetaData.map((faq, index) => (
-                <div key={index} className="bg-white p-6 rounded-xl shadow-md">
+                <div key={index} className="p-6 rounded-xl shadow-md">
                   <h3 className="text-xl font-semibold mb-3 text-gray-800">
                     {faq.question}
                   </h3>
@@ -177,7 +177,7 @@ const NewCourse = () => {
 
       {/* Gallery Section */}
       {courseConfig.gallery.isActive && (
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#fff7ad] to-[#fffff0]">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-12 text-center text-gray-800">
               {courseConfig.gallery.title}
@@ -202,7 +202,7 @@ const NewCourse = () => {
 
       {/* Products Section */}
       {courseConfig.products.isActive && (
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#fff7ad] to-[#fffff0]">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-12 text-center text-gray-800">
               {courseConfig.products.title}
@@ -212,7 +212,7 @@ const NewCourse = () => {
                 <a
                   key={index}
                   href={product.productLink}
-                  className="block bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 relative group"
+                  className="block p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 relative group"
                 >
                   <h3 className="text-xl font-semibold mb-3 text-gray-800">
                     {product.name}
@@ -231,7 +231,7 @@ const NewCourse = () => {
 
       {/* lesson section */}
       {courseConfig.lessons.isActive && (
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-[#fff7ad] to-[#fffff0]">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-12 text-center text-gray-800">
               {courseConfig.lessons.title}
@@ -243,7 +243,7 @@ const NewCourse = () => {
                   href={lesson.videoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 relative group"
+                  className="block p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 relative group"
                 >
                   <h3 className="text-xl font-semibold mb-3 text-gray-800">
                     {lesson.title}
@@ -275,3 +275,5 @@ const NewCourse = () => {
 };
 
 export default NewCourse;
+
+// linear gradient 90 #a6a6a6, #ffffff
