@@ -1,12 +1,15 @@
-import {MinusCircle} from "lucide-react";
+import {MessageCircle, MinusCircle, Phone} from "lucide-react";
 import {useState} from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import Quill styles
 import {BsPlusSquareDotted} from "react-icons/bs";
+import {FaDesktop, FaMobileAlt, FaStar} from "react-icons/fa";
 import {IoCloseCircleOutline} from "react-icons/io5";
 import {useNavigate} from "react-router-dom";
+import Pattern from "../../../../assets/pattern.png";
 
 const CreatePayUp = () => {
+  const [isMobileView, setIsMobileView] = useState(false);
   const [priceType, setPriceType] = useState("fixed");
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -58,12 +61,22 @@ const CreatePayUp = () => {
     },
   });
 
-  const handleInputChange = (e, section, field) => {
-    let value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+  const [faqVisibility, setFaqVisibility] = useState(formData.faQ.faQMetaData.map(() => false));
 
-    if (section === "paymentDetails" && field === "totalAmount" && priceType === "variable") {
-      value = value ? `${value}+` : value; // Append '+' if value exists
-    }
+  const toggleFaqAnswer = (index) => {
+    setFaqVisibility((prev) => {
+      const newVisibility = [...prev];
+      newVisibility[index] = !newVisibility[index];
+      return newVisibility;
+    });
+  };
+
+  const toggleView = () => {
+    setIsMobileView((prev) => !prev);
+  };
+
+  const handleInputChange = (e, section, field) => {
+    const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
 
     if (section === "formData") {
       setFormData((prevData) => ({
@@ -182,6 +195,7 @@ const CreatePayUp = () => {
         faQMetaData: [...prevData.faQ.faQMetaData, {question: "", answer: ""}],
       },
     }));
+    setFaqVisibility((prev) => [...prev, false]);
   };
 
   const handleRemoveFaq = (index) => {
@@ -195,6 +209,11 @@ const CreatePayUp = () => {
         },
       };
     });
+    setFaqVisibility((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const renderStars = (rating) => {
+    return [...Array(5)].map((_, i) => <FaStar key={i} className={i < rating ? "text-yellow-500" : "text-gray-300"} />);
   };
 
   const handleRatingChange = (e, index) => {
@@ -223,21 +242,22 @@ const CreatePayUp = () => {
   };
 
   return (
-    <div className="max-w-full min-h-screen bg-gray-200 flex  flex-col md:flex-row">
-      <div className="flex items-center justify-center w-full">
-        <div className="px-9  bg-gray-100 ">
-          {/* Form Field */}
-          <div className="flex py-6 px-5 border-b-2 w-full sticky bg-white top-0  z-10">
-            <div className="flex gap-4 items-center">
-              <IoCloseCircleOutline className="size-9" onClick={() => navigate("/dashboard/payingup")} />
-              <div className="w-[2px] h-9 bg-gray-200"></div>
-              <h2 className="font-poppins font-bold tracking-tight text-2xl text-gray-800">New PayUp page</h2>
-            </div>
+    <div className="max-w-full min-h-screen bg-white flex  flex-col md:flex-row">
+      <div className="md:w-1/2 w:1/2 overflow-y-auto h-full">
+        {/* Form Field */}
+        {/* Checkout Navbar */}
+        <div className="flex py-6 px-5 border-b-gray-200 border-b-2 w-full sticky top-0 bg-white z-10">
+          <div className="flex gap-4 items-center">
+            <IoCloseCircleOutline className="size-9" onClick={() => navigate("/dashboard/payingup")} />
+            <div className="w-[2px] h-9 bg-gray-200"></div>
+            <h2 className="font-poppins font-bold tracking-tight text-2xl text-gray-800">New PayUp page</h2>
           </div>
+        </div>
 
-          <form action="" className="flex flex-col gap-6 py-6">
+        <div className="px-9 py-5 bg-gray-100">
+          <form action="" className="flex flex-col gap-6">
             {/* For Title */}
-            <div className="flex flex-col gap-2 ">
+            <div className="flex flex-col gap-2">
               <label htmlFor="title" className="font-poppins font-semibold text-md tracking-tight text-gray-800 flex gap-2 items-center">
                 Checkout Title
               </label>
@@ -245,7 +265,7 @@ const CreatePayUp = () => {
                 type="text"
                 onChange={(e) => handleInputChange(e, "formData", "title")}
                 id="title"
-                className="w-full  h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full max-w-md h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Welcome to my cooking course"
               />
             </div>
@@ -270,21 +290,17 @@ const CreatePayUp = () => {
                     </a>
                   </div>
 
-                  {/* Payment Button */}
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="paymentButtonTitle" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
-                      Payment Button Title
-                    </label>
-                    <input
-                      type="text"
-                      onChange={(e) => handleInputChange(e, "paymentDetails", "paymentButtonTitle")}
-                      id="paymentButtonTitle"
-                      className="w-full  h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Pay Now"
-                    />
-                  </div>
+                  <div className="flex gap-2">
+                    {/* Currency (set to Indian Rupees only) */}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="currencySymbol" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
+                        Currency
+                      </label>
+                      <select className="w-[150px] py-2 px-1 rounded-lg h-12 border-gray-300 border-2 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500" disabled>
+                        <option value="INR">Indian Rupees</option>
+                      </select>
+                    </div>
 
-                  <div className="flex md:flex-row flex-col gap-4">
                     {/* Payment amount */}
                     <div className="flex flex-col gap-2">
                       <label htmlFor="totalAmount" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
@@ -294,39 +310,53 @@ const CreatePayUp = () => {
                         type="number"
                         onChange={(e) => handleInputChange(e, "paymentDetails", "totalAmount")}
                         id="totalAmount"
-                        className="w-[200px] text-[10px] max-w-md h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full max-w-md h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="200"
                       />
                     </div>
 
-                    <div className="flex gap-4">
-                      {/* Owner email */}
-                      <div className="flex flex-col gap-2">
-                        <label htmlFor="ownerEmail" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
-                          Owner Email
-                        </label>
-                        <input
-                          type="email"
-                          onChange={(e) => handleInputChange(e, "paymentDetails", "ownerEmail")}
-                          id="ownerEmail"
-                          className="w-[200px] text-[10px] h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          placeholder="Support email"
-                        />
-                      </div>
-                      {/* Owner Phone number */}
-                      <div className="flex flex-col gap-2">
-                        <label htmlFor="ownerPhone" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
-                          Owner Phone Number
-                        </label>
-                        <input
-                          type="text"
-                          value={formData.paymentDetails.ownerPhone}
-                          onChange={(e) => handleInputChange(e, "paymentDetails", "ownerPhone")}
-                          id="ownerPhone"
-                          className="w-[200px] text-[10px] h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          placeholder="Support phone number"
-                        />
-                      </div>
+                    {/* Payment Button */}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="paymentButtonTitle" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
+                        Payment Button Title
+                      </label>
+                      <input
+                        type="text"
+                        onChange={(e) => handleInputChange(e, "paymentDetails", "paymentButtonTitle")}
+                        id="paymentButtonTitle"
+                        className="w-full max-w-md h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Pay Now"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    {/* Owner email */}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="ownerEmail" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
+                        Owner Email
+                      </label>
+                      <input
+                        type="email"
+                        onChange={(e) => handleInputChange(e, "paymentDetails", "ownerEmail")}
+                        id="ownerEmail"
+                        className="w-[300px] h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Support email"
+                      />
+                    </div>
+                    {/* Owner Phone number */}
+                    <div className="flex flex-col gap-2">
+                      <label htmlFor="ownerPhone" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
+                        Owner Phone Number
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.paymentDetails.ownerPhone}
+                        onChange={(e) => handleInputChange(e, "paymentDetails", "ownerPhone")}
+                        id="ownerPhone"
+                        className="w-[300px] h-12 rounded-lg text-gray-700 border-gray-300 border-2 px-4 font-poppins text-sm tracking-tight shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Support phone number"
+                      />
                     </div>
                   </div>
                 </div>
@@ -601,63 +631,10 @@ const CreatePayUp = () => {
               )}
             </div>
 
-
-       <div>
-{/* File Upload Section */}
-<div className="flex flex-col gap-4 p-6 border-2 border-gray-300 rounded-lg">
-  <h3 className="text-lg font-poppins font-semibold text-gray-800">Upload your Digital Files</h3>
-  <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-400 rounded-lg p-6 bg-gray-50 relative">
-    <div className="flex flex-col items-center gap-2">
-      <div className="bg-pink-100 p-4 rounded-full">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="pink" className="w-8 h-8">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-        </svg>
-      </div>
-      <p className="text-gray-500 font-poppins">Browse files from your system</p>
-    </div>
-    <input
-      type="file"
-      onChange={(e) => {
-        const files = e.target.files;
-        let fileNames = "";
-        if (files && files.length > 0) {
-          fileNames = Array.from(files).map((file) => file.name).join(", ");
-        }
-        handleInputChange({ target: { value: fileNames } }, "file", "value");
-      }}
-      className="absolute w-full h-full opacity-0 cursor-pointer"
-      multiple
-    />
-  </div>
-  {formData.file.value && (
-    <div className="bg-gray-100 p-3 rounded-lg">
-      <p className="text-gray-700 font-poppins text-sm">Uploaded Files:</p>
-      <p className="text-gray-800 font-poppins text-sm">{formData.file.value}</p>
-    </div>
-  )}
-  <div className="flex items-center gap-4">
-    <input
-      type="text"
-      placeholder="Add link to your files"
-      className="flex-1 border-2 border-gray-300 rounded-lg px-4 py-2 font-poppins text-sm text-gray-700"
-    />
-    <button
-      type="button"
-      className="bg-black text-white px-4 py-2 rounded-lg font-poppins text-sm"
-    >
-      Add
-    </button>
-  </div>
-</div>
-
-
-       </div>
-
-
             {/* Console Form Data Button */}
-            <div className="mt-4 flex items-center justify-center">
+            <div className="mt-4">
               <button type="button" onClick={consoleFormData} className="bg-blue-500 text-white font-poppins tracking-tight py-2 px-4 rounded-lg cursor-pointer text-sm">
-                Submit
+                Console Form Data
               </button>
             </div>
           </form>
@@ -665,6 +642,139 @@ const CreatePayUp = () => {
       </div>
 
       {/* Preview Section */}
+      <div
+        className="md:w-1/2  h-screen  sticky top-0 flex items-center justify-center"
+        style={{
+          backgroundImage: `url(${Pattern})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* View Toggle Button */}
+        <div className="absolute top-4 right-4 flex items-center justify-center bg-gray-800 text-white rounded-full p-2 cursor-pointer z-2" onClick={toggleView}>
+          {isMobileView ? <FaDesktop className="text-xl" /> : <FaMobileAlt className="text-xl" />}
+        </div>
+
+        {/* Mock Browser Preview */}
+        <div className={`relative bg-white rounded-lg overflow-y-auto mt-6  shadow-lg ${isMobileView ? "w-[60%] h-[90%]" : "w-[90%] h-[90%]"}`}>
+          <div className="flex items-center bg-black p-2 rounded-t-lg justify-between">
+            <div className="flex gap-2 ml-2">
+              <span className="w-3 h-3 bg-red-500 rounded-full"></span>
+              <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>
+              <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+            </div>
+            <div className="font-poppins text-sm ml-4 text-white px-8 rounded-full py-1 bg-gray-500">www.oneapp/create-paying-up</div>
+            <div></div>
+          </div>
+
+          <div className="overflow-y-auto h-full">
+            <div className="bg-gradient-to-r from-orange-300 to-orange-600 ">
+              <div className="flex items-center flex-col py-2">
+                {/* Checkout Title */}
+                <h2 className="text-[13px] font-bold text-white font-poppins ">{formData.title === " " ? "Paying Title" : formData.title}</h2>
+                {/* Categories */}
+                <div className="flex items-center gap-1 mt-2">
+                  {formData.Category.categoryMetaData.map((category, index) => (
+                    <span key={index} className="bg-gray-200 text-gray-800 text-[8px] font-poppins px-1 py-1 rounded-full">
+                      {category === "" ? "Categories" : category}
+                    </span>
+                  ))}
+                </div>
+                {/* Payment */}
+                <div className="flex items-center gap-1 mt-2">
+                  <button className="font-poppins text-[9px] px-3 py-1 rounded-full bg-black text-white flex gap-2">
+                    {formData.paymentDetails.paymentButtonTitle}
+                    <span> ₹ {formData.paymentDetails.totalAmount}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            {/* Overview */}
+            <div className="mt-2 px-8 text-center">
+              <h2 className="font-bold tracking-tight font-poppins text-[12px]">Overview</h2>
+              <div
+                className="font-poppins text-[9px] px-4 py-2"
+                dangerouslySetInnerHTML={{__html: formData.description}} // Render updated description
+              />
+            </div>
+            {/* Testimonial */}
+            <div className="mt-4 px-10 py-2 bg-gray-100 flex flex-col justify-center w-full">
+              <h1 className="text-center font-bold tracking-tight font-poppins text-[12px]">Testimonials</h1>
+              <div className="grid md:grid-cols-2 grid-cols-3 gap-2">
+                {formData.testimonials.testimonialsMetaData.map((testimonial, index) => (
+                  <div className=" bg-white rounded-lg p-2 shadow-md my-4 " key={index}>
+                    <div className="flex gap-3">
+                      <img src={testimonial.profilePic} alt="" className="w-8 h-8 rounded-full object-cover " />
+                      <div>
+                        <p className="text-[11px] font-poppins">{testimonial.name}</p>
+                        <div className="flex text-[10px]">{renderStars(testimonial.rating)}</div>
+                      </div>
+                    </div>
+                    <p className="mt-2 text-sm text-gray-600 px-4 text-[9px] leading-3 font-poppins tracking-tight">{testimonial.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* FaQ */}
+            <div className="mt-2 px-10 py-2 w-full">
+              <div className=" px-10 py-2  flex flex-col w-full">
+                <h2 className="font-semibold text-center text-[12px] font-poppins">Frequently Asked Questions</h2>
+                {formData.faQ.faQMetaData.map((faq, index) => (
+                  <div key={index} className="mt-3  bg-white rounded-lg border border-gray-200">
+                    <div className="flex justify-between items-center bg-gray-100 p-2">
+                      <h3 className="text-[11px] font-medium font-poppins tracking-tight">{faq.question}</h3>
+                      <button onClick={() => toggleFaqAnswer(index)} className="text-blue-500 text-xs">
+                        {faqVisibility[index] ? "Hide" : "Show"}
+                      </button>
+                    </div>
+                    {faqVisibility[index] && <p className="text-[10px] text-gray-600  font-poppins tracking-tight p-2">{faq.answer}</p>}
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Refund Policies */}
+
+            <div className="mt-4  w-full flex flex-col bg-gray-100 px-10 py-6">
+              <h2 className="font-semibold text-center text-[12px] font-poppins">Refund Policies</h2>
+              <div className="flex flex-col gap-2 mt-2">
+                {formData.refundPolicies.refundPoliciesMetaData.map((refund, index) => (
+                  <div key={index} className="bg-white rounded-md px-6 py-2 ">
+                    <p className="font-poppins text-[10px] tracking-tight text-center">{refund}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Terms & condition */}
+            <div className="mt-4 w-full flex flex-col">
+              <p className="font-semibold text-center text-[12px] font-poppins">Terms & Conditions</p>
+              <div className="flex flex-col gap-2 mt-2">
+                {formData.termAndConditions.termAndConditionsMetaData.map((terms, index) => (
+                  <div key={index}>
+                    <p className="font-poppins text-[10px] tracking-tight text-center">{terms}</p>
+                    <hr className="mt-2 mx-16" />
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Footer */}
+            <div className="mt-4 flex flex-col px-10 py-6 gap-4 bg-gray-900 justify-center w-full">
+              <h2 className="font-poppins text-white font-bold text-center text-[12px]">Need help?</h2>
+              <div className="flex gap-4 justify-center">
+                <a href="" className="flex items-center gap-1 text-white text-[10px] font-poppins">
+                  <MessageCircle className="size-4" />
+                  {formData.paymentDetails.ownerEmail}
+                </a>
+                <a href="" className="flex items-center gap-1 text-white text-[10px] font-poppins">
+                  <Phone className="size-4" />
+                  {formData.paymentDetails.ownerPhone}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
