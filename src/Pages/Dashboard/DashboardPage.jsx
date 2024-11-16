@@ -59,10 +59,9 @@ const DashboardPage = () => {
             <div className="mb-6">
               {dashboardConfig.generalItems.map((item, index) => (
                 <div key={index}>
-                  {/* Main Menu Item */}
                   <div
                     className="flex items-center text-sm py-3 px-4 cursor-pointer hover:bg-orange-600 hover:rounded-xl transition-all"
-                    onClick={() => navigate(`/dashboard${item.path}`)} // Navigate on main item click
+                    onClick={() => navigate(`/dashboard${item.path}`)} 
                   >
                     <item.icon className="w-5 h-5 mr-3" />
                     <span>{item.label}</span>
