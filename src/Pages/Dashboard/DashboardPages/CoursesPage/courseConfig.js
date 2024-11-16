@@ -119,7 +119,7 @@ export const courseConfig = {
     },
     coverImage:{
         title: "Cover Image",
-        isActive: true,
+        isActive: false,
         value: "https://dowellfileuploader.uxlivinglab.online/hr/logo-2-min-min.png"
     },
     lessons:{
