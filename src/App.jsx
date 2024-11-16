@@ -27,6 +27,9 @@ import NewCourse from "./Pages/Dashboard/DashboardPages/CoursesPage/NewCourse.js
 import WhatsAppPage from "./Pages/Dashboard/DashboardPages/WhatsAppPage/WhatsAppPage.jsx";
 import CreatePayUp from "./Pages/Dashboard/DashboardPages/PayingUpPage/CreatePayUp.jsx";
 import PayingUpPages from "./Pages/Dashboard/DashboardPages/PayingUpPage/PayingUpPages.jsx";
+import WithdrawalPage from './Pages/Dashboard/DashboardPages/WalletPage/SubWalletPages/WithdrawalPage';
+import AllTransactionsPage from './Pages/Dashboard/DashboardPages/WalletPage/SubWalletPages/AllTransactionsPage';
+import KYCpage from './Pages/Dashboard/DashboardPages/WalletPage/SubWalletPages/KYCpage';
 
 const App = () => {
   return (
@@ -66,6 +69,9 @@ const App = () => {
           <Route path="chat" element={<ChatPage />} />
           <Route path="whatsapp" element={<WhatsAppPage />} />
           <Route path="plugin" element={<PluginPage />} />
+          <Route path="withdrawal" element={<WithdrawalPage />} />
+          <Route path="all-transactions" element={<AllTransactionsPage />} />
+          <Route path="kyc-setting" element={<KYCpage />} />
         </Route>
         <Route path="app" element={<Outlet />}>
           <Route path="create-webinar" element={<CreateWebinarPage />} />

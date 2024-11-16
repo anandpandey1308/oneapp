@@ -3,6 +3,9 @@ import { FaHome, FaChartBar, FaUsers, FaCog, FaShoppingCart,FaWhatsapp,FaRocketc
 import { BsPlugin } from "react-icons/bs";
 import logo from '../../assets/oneapp.png';
 import { RiPresentationFill } from "react-icons/ri";
+import { HiOutlineCash } from "react-icons/hi";
+import { PiHandWithdraw } from "react-icons/pi";
+import { LiaIdCardSolid } from "react-icons/lia";
 
 export const dashboardConfig = {
   logo: {
@@ -11,10 +14,14 @@ export const dashboardConfig = {
     title: "MyApp",
   },
   generalItems: [
-    { label: "Home", icon: FaHome, path: "/" },
-    { label: "One Link", icon: FaLink, path: "/mystore" },
-    { label: "Your Customers", icon: FaUsers, path: "/your-customers" },
-    { label: "Wallets", icon: FaWallet, path: "/wallets" },
+    { label: "Home", icon: FaHome, path: "/" , sublabels:[] },
+    { label: "One Link", icon: FaLink, path: "/mystore" ,sublabels:[]},
+    { label: "Your Customers", icon: FaUsers, path: "/your-customers",sublabels:[] },
+    { label: "Wallets", icon: FaWallet, path: "/wallets", sublabels: [
+      {label: "Withdrawal Amount", icon: PiHandWithdraw, path: "/withdrawal" },
+      {label: "All Transactions", icon: HiOutlineCash, path: "/all-transactions" },
+      {label: "KYC Setting", icon: LiaIdCardSolid, path: "/kyc-setting" },
+    ] },
     // commented out for now, as we don't have a superlinks dashboard yet
     // { label: "SuperLinks", icon: FaLink, path: "/superlinks" }
   ],

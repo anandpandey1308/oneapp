@@ -6,6 +6,7 @@ import { dashboardConfig } from "./dashboardConfig";
 const DashboardPage = () => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openSubmenus, setOpenSubmenus] = useState({}); // Tracks open submenus
   const navigate = useNavigate();
 
   const toggleSettings = () => {
@@ -14,6 +15,13 @@ const DashboardPage = () => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
+  };
+
+  const toggleSubmenu = (index) => {
+    setOpenSubmenus((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
   };
 
   const handleSettingItemClick = (item) => {
@@ -37,9 +45,9 @@ const DashboardPage = () => {
       >
         <div className="p-2 flex items-center justify-center">
           <img
-            src={dashboardConfig.logo.src} 
+            src={dashboardConfig.logo.src}
             alt={dashboardConfig.logo.alt}
-            className="h-12" 
+            className="h-12"
           />
           <button onClick={toggleMobileMenu} className="md:hidden">
             ✖️
@@ -50,16 +58,43 @@ const DashboardPage = () => {
           <div className="p-4">
             <div className="mb-6">
               {dashboardConfig.generalItems.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-center text-sm py-3 px-4 cursor-pointer hover:bg-orange-600 hover:rounded-xl transition-all"
-                  onClick={() => {
-                    navigate(`/dashboard${item.path}`);
-                    setIsMobileMenuOpen(false);
-                  }}
-                >
-                  <item.icon className="w-5 h-5 mr-3" />
-                  <span>{item.label}</span>
+                <div key={index}>
+                  {/* Main Menu Item */}
+                  <div
+                    className="flex items-center text-sm py-3 px-4 cursor-pointer hover:bg-orange-600 hover:rounded-xl transition-all"
+                    onClick={() => navigate(`/dashboard${item.path}`)} // Navigate on main item click
+                  >
+                    <item.icon className="w-5 h-5 mr-3" />
+                    <span>{item.label}</span>
+                    {item.sublabels?.length > 0 && (
+                      <button
+                        className="ml-auto"
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent navigation when toggling
+                          toggleSubmenu(index);
+                        }}
+                      >
+                        {openSubmenus[index] ? "▲" : "▼"}
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Sublabels */}
+                  {openSubmenus[index] &&
+                    item.sublabels?.length > 0 && (
+                      <div className="ml-6 mt-2 space-y-1">
+                        {item.sublabels.map((sublabel, subIndex) => (
+                          <div
+                            key={subIndex}
+                            className="flex items-center text-sm py-2 px-4 cursor-pointer hover:bg-orange-500 hover:rounded-lg transition-all"
+                            onClick={() => navigate(`/dashboard${sublabel.path}`)} // Navigate on sublabel click
+                          >
+                            <sublabel.icon className="w-4 h-4 mr-2" />
+                            <span>{sublabel.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                 </div>
               ))}
             </div>
@@ -110,20 +145,20 @@ const DashboardPage = () => {
           )}
         </div>
       </aside>
-      {/* add padding if needed p-10 */}
+
       <main className="flex-1 overflow-y-auto h-screen scrollbar-hide">
         <div className="flex items-center justify-between bg-[#0c1014] text-white p-4 fixed top-0 left-0 right-0 z-40 md:hidden shadow-lg">
           <img
             src={dashboardConfig.logo.src}
             alt={dashboardConfig.logo.alt}
-            className="h-10" 
+            className="h-10"
           />
           <button onClick={toggleMobileMenu} aria-label="Toggle mobile menu">
             ☰
           </button>
         </div>
 
-        <div className="pt-16 md:pt-0"> 
+        <div className="pt-16 md:pt-0">
           <Outlet />
         </div>
       </main>
@@ -132,7 +167,7 @@ const DashboardPage = () => {
         <div
           className="fixed inset-0 z-30 bg-black bg-opacity-50 md:hidden"
           onClick={() => {
-            setIsMobileMenuOpen(false); 
+            setIsMobileMenuOpen(false);
           }}
         ></div>
       )}
