@@ -303,7 +303,7 @@ const CreatePayUp = () => {
                       {/* Owner email */}
                       <div className="flex flex-col gap-2">
                         <label htmlFor="ownerEmail" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
-                          Owner Email
+                          Support Email
                         </label>
                         <input
                           type="email"
@@ -316,7 +316,7 @@ const CreatePayUp = () => {
                       {/* Owner Phone number */}
                       <div className="flex flex-col gap-2">
                         <label htmlFor="ownerPhone" className="font-poppins font-normal text-sm tracking-tight text-gray-800 flex gap-2 items-center">
-                          Owner Phone Number
+                          Support Phone Number
                         </label>
                         <input
                           type="text"
@@ -601,58 +601,49 @@ const CreatePayUp = () => {
               )}
             </div>
 
-
-       <div>
-{/* File Upload Section */}
-<div className="flex flex-col gap-4 p-6 border-2 border-gray-300 rounded-lg">
-  <h3 className="text-lg font-poppins font-semibold text-gray-800">Upload your Digital Files</h3>
-  <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-400 rounded-lg p-6 bg-gray-50 relative">
-    <div className="flex flex-col items-center gap-2">
-      <div className="bg-pink-100 p-4 rounded-full">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="pink" className="w-8 h-8">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-        </svg>
-      </div>
-      <p className="text-gray-500 font-poppins">Browse files from your system</p>
-    </div>
-    <input
-      type="file"
-      onChange={(e) => {
-        const files = e.target.files;
-        let fileNames = "";
-        if (files && files.length > 0) {
-          fileNames = Array.from(files).map((file) => file.name).join(", ");
-        }
-        handleInputChange({ target: { value: fileNames } }, "file", "value");
-      }}
-      className="absolute w-full h-full opacity-0 cursor-pointer"
-      multiple
-    />
-  </div>
-  {formData.file.value && (
-    <div className="bg-gray-100 p-3 rounded-lg">
-      <p className="text-gray-700 font-poppins text-sm">Uploaded Files:</p>
-      <p className="text-gray-800 font-poppins text-sm">{formData.file.value}</p>
-    </div>
-  )}
-  <div className="flex items-center gap-4">
-    <input
-      type="text"
-      placeholder="Add link to your files"
-      className="flex-1 border-2 border-gray-300 rounded-lg px-4 py-2 font-poppins text-sm text-gray-700"
-    />
-    <button
-      type="button"
-      className="bg-black text-white px-4 py-2 rounded-lg font-poppins text-sm"
-    >
-      Add
-    </button>
-  </div>
-</div>
-
-
-       </div>
-
+            <div>
+              {/* File Upload Section */}
+              <div className="flex flex-col gap-4 p-6 border-2 border-gray-300 rounded-lg">
+                <h3 className="text-lg font-poppins font-semibold text-gray-800">Upload your Digital Files</h3>
+                <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-400 rounded-lg p-6 bg-gray-50 relative">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="bg-pink-100 p-4 rounded-full">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="pink" className="w-8 h-8">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                      </svg>
+                    </div>
+                    <p className="text-gray-500 font-poppins">Browse files from your system</p>
+                  </div>
+                  <input
+                    type="file"
+                    onChange={(e) => {
+                      const files = e.target.files;
+                      let fileNames = "";
+                      if (files && files.length > 0) {
+                        fileNames = Array.from(files)
+                          .map((file) => file.name)
+                          .join(", ");
+                      }
+                      handleInputChange({target: {value: fileNames}}, "file", "value");
+                    }}
+                    className="absolute w-full h-full opacity-0 cursor-pointer"
+                    multiple
+                  />
+                </div>
+                {formData.file.value && (
+                  <div className="bg-gray-100 p-3 rounded-lg">
+                    <p className="text-gray-700 font-poppins text-sm">Uploaded Files:</p>
+                    <p className="text-gray-800 font-poppins text-sm">{formData.file.value}</p>
+                  </div>
+                )}
+                <div className="flex items-center gap-4">
+                  <input type="text" placeholder="Add link to your files" className="flex-1 border-2 border-gray-300 rounded-lg px-4 py-2 font-poppins text-sm text-gray-700" />
+                  <button type="button" className="bg-black text-white px-4 py-2 rounded-lg font-poppins text-sm">
+                    Add
+                  </button>
+                </div>
+              </div>
+            </div>
 
             {/* Console Form Data Button */}
             <div className="mt-4 flex items-center justify-center">
