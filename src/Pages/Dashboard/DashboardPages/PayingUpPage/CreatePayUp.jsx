@@ -648,7 +648,7 @@ const CreatePayUp = () => {
                 )}
                 <div className="flex items-center gap-4">
                   <input type="text" placeholder="Add link to your files" className="flex-1 border-2 border-gray-300 rounded-lg px-4 py-2 font-poppins text-sm text-gray-700" />
-                  <button type="button" className="bg-black text-white px-4 py-2 rounded-lg font-poppins text-sm">
+                  <button type="button" className="bg-orange-500 text-white px-4 py-2 rounded-lg font-poppins text-sm">
                     Add
                   </button>
                 </div>
@@ -657,7 +657,7 @@ const CreatePayUp = () => {
 
             {/* Console Form Data Button */}
             <div className="mt-4 flex items-center justify-center">
-              <button type="button" onClick={consoleFormData} className="bg-blue-500 text-white font-poppins tracking-tight py-2 px-4 rounded-lg cursor-pointer text-sm">
+              <button type="button" onClick={consoleFormData} className="bg-orange-500 text-white font-poppins tracking-tight py-2 px-4 rounded-lg cursor-pointer text-sm">
                 Submit
               </button>
             </div>
