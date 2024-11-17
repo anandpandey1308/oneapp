@@ -1,6 +1,7 @@
 import { ChevronLeft, Video } from "lucide-react";
 import { useState } from "react";
 import dayjs from "dayjs"; // import dayjs for date management
+import { useNavigate } from "react-router-dom";
 
 const CreateWebinarPage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -8,6 +9,7 @@ const CreateWebinarPage = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [activeTab, setActiveTab] = useState(0);
   const [eventTab, setEventTab] = useState(0);
+  const navigate = useNavigate();
 
   const [occurDropdownOpen, setOccurDropdownOpen] = useState(false);
   const [selectedOccurrence, setSelectedOccurrence] = useState("Weekly");
@@ -66,7 +68,9 @@ const CreateWebinarPage = () => {
       {/* Navbar */}
       <div className="flex items-center justify-between w-full pb-4 border-b border-gray-300">
         <div className="flex items-center gap-2">
-          <ChevronLeft />
+          <ChevronLeft 
+          onClick={() => navigate('/dashboard/webinar')}
+          />
           <p className="text-lg font-medium">New Event</p>
         </div>
         <button

@@ -62,6 +62,7 @@ const WebinarPage = () => {
             description={noContent[activeTab].description}
             isbutton={noContent[activeTab].isButton}
             button_title={noContent[activeTab].buttonTitle}
+            path= {path}
           />
         )}
       </div>

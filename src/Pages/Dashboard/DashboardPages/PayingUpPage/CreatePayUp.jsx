@@ -379,12 +379,22 @@ const CreatePayUp = () => {
                 Overview
               </label>
               <ReactQuill
-                value={formData.description} // Pass value prop to sync Quill editor with state
+                value={formData.description}
                 onChange={handleOverviewChange} // Update the state on change
                 theme="snow"
                 className="quill-editor"
                 modules={{
-                  toolbar: [[{header: [1, 2, false]}], ["bold", "italic", "underline", "strike"], [{list: "ordered"}, {list: "bullet"}], ["link", "image"]],
+                  toolbar: [
+                    [{header: [1, 2,3,4,5,6, false]}], 
+                    ["bold", "italic", "underline", "strike"], 
+                    [{list: "ordered"}, {list: "bullet"},{ 'list': 'check' }], 
+                    ["link", "image"],
+                    [{ 'size': ['small', false, 'large', 'huge'] }],
+                    [{ 'color': [] }, { 'background': [] }],     
+                    [{ 'font': [] }],
+                    [{ 'align': [] }]                   
+                  ]
+                    
                 }}
               />
             </div>

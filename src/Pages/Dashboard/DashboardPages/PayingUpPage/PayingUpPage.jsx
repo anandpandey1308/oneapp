@@ -9,6 +9,8 @@ const PayingUpPage = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   const { title, button, bgGradient, noContent, tabs, cardData, path } = pagesConfig.payingUp;
+  console.log("Dynamic path:", path);
+  
   const navigate = useNavigate()
   return (
     <div className="min-h-screen">
@@ -24,6 +26,7 @@ const PayingUpPage = () => {
           <button.icon className="font-bold" />
           {button.label}
         </button>
+        
       </div>
 
       <div className="flex md:justify-center items-center gap-6 p-6 overflow-x-auto md:overflow-visible flex-nowrap w-full relative -mt-24 z-10 scrollbar-hide">
@@ -56,6 +59,7 @@ const PayingUpPage = () => {
             description={noContent[activeTab].description}
             isbutton={noContent[activeTab].isButton}
             button_title={noContent[activeTab].buttonTitle}
+            path= {path}
           />
         )}
       </div>
