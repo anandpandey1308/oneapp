@@ -11,6 +11,13 @@ import {
 import { toast } from "react-toastify";
 import SubscriptionPage from "./SubscriptionsPage";
 
+import Photo1 from "../../../assets/1.png"
+import Photo2 from "../../../assets/2.png"
+import Photo3 from "../../../assets/3.png"
+import Photo4 from "../../../assets/4.png"
+import Photo5 from "../../../assets/5.png"
+import Photo6 from "../../../assets/6.png"
+
 const SignUpPage = () => {
   const [selectedCountryCode, setSelectedCountryCode] = useState("+1");
   const [selectedSocialMedia, setSelectedSocialMedia] = useState("instagram");
@@ -42,13 +49,17 @@ const SignUpPage = () => {
     { value: "linkedin", label: "LinkedIn", icon: faLinkedin },
   ];
 
+  // const images = [
+  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46944GlobalSignin4.png",
+  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46942GlobalSignin2.png",
+  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46943GlobalSignin3.png",
+  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46945GlobalSignin.png",
+  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46942GlobalSignin2.png",
+  // ];
+
   const images = [
-    "https://d3qp9zvlyuxos1.cloudfront.net/Group+46944GlobalSignin4.png",
-    "https://d3qp9zvlyuxos1.cloudfront.net/Group+46942GlobalSignin2.png",
-    "https://d3qp9zvlyuxos1.cloudfront.net/Group+46943GlobalSignin3.png",
-    "https://d3qp9zvlyuxos1.cloudfront.net/Group+46945GlobalSignin.png",
-    "https://d3qp9zvlyuxos1.cloudfront.net/Group+46942GlobalSignin2.png",
-  ];
+    Photo1,Photo2, Photo3, Photo4, Photo5, Photo6
+   ];
 
   const goals = [
     "Improve your social media presence",
@@ -426,7 +437,7 @@ const SignUpPage = () => {
                   <img
                     src={images[currentImageIndex]}
                     alt={`Slide ${currentImageIndex + 1}`}
-                    className={`w-full h-full object-contain transition-opacity duration-1000 ${
+                    className={`w-full h-[45em] object-contain transition-opacity duration-1000 ${
                       fadeOut ? "opacity-0" : "opacity-100"
                     }`}
                   />

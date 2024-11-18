@@ -5,6 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faMobileScreenButton, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
+import Photo1 from "../../../assets/1.png"
+import Photo2 from "../../../assets/2.png"
+import Photo3 from "../../../assets/3.png"
+import Photo4 from "../../../assets/4.png"
+import Photo5 from "../../../assets/5.png"
+import Photo6 from "../../../assets/6.png"
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");
@@ -18,14 +24,16 @@ const SignInPage = () => {
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
 
+  // const images = [
+  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46944GlobalSignin4.png",
+  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46942GlobalSignin2.png",
+  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46943GlobalSignin3.png",
+  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46945GlobalSignin.png",
+  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46942GlobalSignin2.png",
+  // ];
   const images = [
-    "https://d3qp9zvlyuxos1.cloudfront.net/Group+46944GlobalSignin4.png",
-    "https://d3qp9zvlyuxos1.cloudfront.net/Group+46942GlobalSignin2.png",
-    "https://d3qp9zvlyuxos1.cloudfront.net/Group+46943GlobalSignin3.png",
-    "https://d3qp9zvlyuxos1.cloudfront.net/Group+46945GlobalSignin.png",
-    "https://d3qp9zvlyuxos1.cloudfront.net/Group+46942GlobalSignin2.png",
-  ];
-
+    Photo1,Photo2, Photo3, Photo4, Photo5, Photo6
+   ];
   useEffect(() => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setIsEmailValid(emailRegex.test(email));
@@ -225,7 +233,7 @@ const SignInPage = () => {
                   key={index}
                   src={image}
                   alt={`Slide ${index}`}
-                  className="w-full h-full object-contain"
+                  className="w-full h-[40em] object-contain"
                   style={{ flex: "0 0 auto" }}
                 />
               ))}
