@@ -235,7 +235,6 @@ const SignInPage = () => {
                   alt={`Slide ${index}`}
                   className="w-full h-[40em] object-contain"
                   style={{ flex: "0 0 auto" }}
-                  
                 />
               ))}
             </div>
