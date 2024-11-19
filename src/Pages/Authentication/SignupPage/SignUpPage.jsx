@@ -77,8 +77,8 @@ const SignUpPage = () => {
           prevIndex === images.length - 1 ? 0 : prevIndex + 1
         );
         setFadeOut(false);
-      }, 1000);
-    }, 10000);
+      }, 300);
+    }, 5000);
 
     return () => clearInterval(intervalId);
   }, [images.length]);
