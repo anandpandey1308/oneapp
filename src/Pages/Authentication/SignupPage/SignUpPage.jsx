@@ -275,11 +275,11 @@ const SignUpPage = () => {
               ) : (
                 <div className="w-full flex flex-col items-center justify-center gap-6 mt-4">
                   <div className="flex flex-col items-center justify-center gap-1">
-                    <h2 className="text-xl md:text-2xl font-bold">
-                      Let's create your OneApp profile!
+                    <h2 className="text-xl md:text-xl font-bold">
+                    Welcome you all on OneApp profile Creation
                     </h2>
                     <p className="text-base font-semibold text-gray-500">
-                      Your all-in-one digital store to showcase and sell
+                    Let's starts your New journey with OneApp <span className="text-xl font-bold›">⚡️</span>
                     </p>
                   </div>
   
