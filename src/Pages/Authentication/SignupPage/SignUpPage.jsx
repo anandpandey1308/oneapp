@@ -1,11 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import {
   faInstagram,
   faTwitter,
   faFacebook,
-  faTiktok,
+  faTelegram,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import { toast } from "react-toastify";
@@ -17,6 +18,7 @@ import Photo3 from "../../../assets/3.png"
 import Photo4 from "../../../assets/4.png"
 import Photo5 from "../../../assets/5.png"
 import Photo6 from "../../../assets/6.png"
+import { faEarthOceania } from "@fortawesome/free-solid-svg-icons";
 
 const SignUpPage = () => {
   const [selectedCountryCode, setSelectedCountryCode] = useState("+1");
@@ -35,38 +37,42 @@ const SignUpPage = () => {
   const [username, setUsername] = useState("");
   const [heardFrom, setHeardFrom] = useState("");
   const containerRef = useRef(null);
+  const heardFromRef = useRef(null);
   const [nameError, setNameError] = useState("");
   const [phoneError, setPhoneError] = useState("");
   const [emailError, setEmailError] = useState("");
 
+  const [heardFromDropdownOpen, setHeardFromDropdownOpen] = useState(false);
+  const [customHeardFrom, setCustomHeardFrom] = useState(false);
 
   const countryCodes = ["+1", "+91", "+44", "+61"];
   const socialMediaOptions = [
     { value: "instagram", label: "Instagram", icon: faInstagram },
     { value: "twitter", label: "Twitter", icon: faTwitter },
     { value: "facebook", label: "Facebook", icon: faFacebook },
-    { value: "tiktok", label: "TikTok", icon: faTiktok },
+    { value: "telegram", label: "Telegram", icon: faTelegram },
     { value: "linkedin", label: "LinkedIn", icon: faLinkedin },
+    { value: "website", label: "Website", icon: faEarthOceania},
   ];
-
-  // const images = [
-  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46944GlobalSignin4.png",
-  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46942GlobalSignin2.png",
-  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46943GlobalSignin3.png",
-  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46945GlobalSignin.png",
-  //   "https://d3qp9zvlyuxos1.cloudfront.net/Group+46942GlobalSignin2.png",
-  // ];
 
   const images = [
     Photo1,Photo2, Photo3, Photo4, Photo5, Photo6
-   ];
+  ];
 
   const goals = [
-    "Improve your social media presence",
-    "Increase website traffic",
-    "Boost engagement on content",
-    "Grow your email list",
-    "Enhance your personal brand",
+    "Community Monetisation",
+    "Event /webinar",
+    "Course",
+    "Digital product",
+    "Website Api",
+    "Appointment",
+  ];
+
+  const heardFromOptions = [
+    "Facebook",
+    "Instagram", 
+    "YouTube",
+    "Other"
   ];
 
   useEffect(() => {
@@ -87,6 +93,9 @@ const SignUpPage = () => {
     const handleClickOutside = (event) => {
       if (containerRef.current && !containerRef.current.contains(event.target)) {
         setGoalDropdownOpen(false);
+      }
+      if (heardFromRef.current && !heardFromRef.current.contains(event.target)) {
+        setHeardFromDropdownOpen(false);
       }
     };
 
@@ -154,23 +163,6 @@ const SignUpPage = () => {
     };
     console.log("User Data:", userData);
     setOtpScreen(true);
-
-    // fetch("https://fakapi.com/signup", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(userData),
-    // })
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     console.log("API Response:", data);
-    //     setOtpScreen(true);
-    //   })
-    //   .catch(error => {
-    //     console.error("API Error:", error);
-    //     toast.error("An error occurred. Please try again.");
-    //   });
   };
 
   const handleOTPSubmit = () => {
@@ -210,6 +202,22 @@ const SignUpPage = () => {
     return name && phoneNumber && email && username && selectedGoals.length > 0 && heardFrom;
   };
 
+  const toggleHeardFromDropdown = () => {
+    setHeardFromDropdownOpen((prev) => !prev);
+  };
+  
+  const handleHeardFromSelection = (option) => {
+    if (option === "Other") {
+      setCustomHeardFrom(true);
+      setHeardFrom("");
+    } else {
+      setCustomHeardFrom(false);
+      setHeardFrom(option);
+    }
+    setHeardFromDropdownOpen(false);
+  };
+  
+
   return (
     <div
       className="bg-cover bg-center min-h-screen flex flex-col justify-start"
@@ -235,7 +243,7 @@ const SignUpPage = () => {
                   <p className="text-gray-500">
                     We've sent an OTP to your phone number
                   </p>
-
+  
                   <div className="flex space-x-2 justify-center mt-4">
                     {otp.map((digit, i) => (
                       <input
@@ -249,14 +257,14 @@ const SignUpPage = () => {
                       />
                     ))}
                   </div>
-
+  
                   <button
                     className="mt-6 w-[85%] bg-orange-600 text-white py-2 px-4 rounded-full text-sm font-semibold active:bg-orange-600 transition duration-200"
                     onClick={handleOTPSubmit}
                   >
                     Confirm OTP
                   </button>
-
+  
                   <p className="text-gray-600 text-sm mt-4">
                     Didn't receive the OTP?{" "}
                     <a href="#" className="text-blue-500 hover:underline">
@@ -274,7 +282,7 @@ const SignUpPage = () => {
                       Your all-in-one digital store to showcase and sell
                     </p>
                   </div>
-
+  
                   <div className="flex flex-col gap-1 w-[85%]">
                     <input
                       type="text"
@@ -285,6 +293,7 @@ const SignUpPage = () => {
                       className="w-full mt-2 p-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     {nameError && <span className="text-red-500 text-xs">{nameError}</span>}
+  
                     <div className="flex border border-gray-300 rounded mt-2.5 text-sm">
                       <select
                         className="p-2"
@@ -305,8 +314,9 @@ const SignUpPage = () => {
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         className="p-2 flex-1"
                       />
-                      {phoneError && <span className="text-red-500 text-xs">{phoneError}</span>}
                     </div>
+                    {phoneError && <span className="text-red-500 text-xs">{phoneError}</span>}
+  
                     <input
                       type="email"
                       placeholder="Email"
@@ -316,6 +326,7 @@ const SignUpPage = () => {
                       className="w-full mt-2.5 text-sm p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     {emailError && <span className="text-red-500 text-xs">{emailError}</span>}
+  
                     <div className="flex items-center justify-start border border-gray-300 rounded-lg relative w-full mt-2.5 text-sm">
                       <button
                         type="button"
@@ -335,6 +346,7 @@ const SignUpPage = () => {
                           <span>Select Platform</span>
                         )}
                       </button>
+                      
                       {dropdownOpen && (
                         <div className="absolute z-10 bg-white border border-gray-300 rounded-lg shadow-md mt-2.5 text-sm w-full">
                           {socialMediaOptions.map((platform) => (
@@ -354,6 +366,7 @@ const SignUpPage = () => {
                           ))}
                         </div>
                       )}
+                      
                       <input
                         type="text"
                         placeholder="@username"
@@ -362,7 +375,7 @@ const SignUpPage = () => {
                         className="p-2 flex-1 rounded-r-lg w-[80%]"
                       />
                     </div>
-
+  
                     <div className="relative mt-2.5" ref={containerRef}>
                       <button
                         type="button"
@@ -371,6 +384,7 @@ const SignUpPage = () => {
                       >
                         {selectedGoals.length > 0 ? `${selectedGoals.length} goals selected` : "select goals"}
                       </button>
+                      
                       {goalDropdownOpen && (
                         <div className="absolute z-10 bg-white border border-gray-300 rounded-lg shadow-md mt-2.5 w-full">
                           {goals.map((goal) => (
@@ -395,15 +409,43 @@ const SignUpPage = () => {
                         </div>
                       )}
                     </div>
-
-                    <input
-                      type="text"
-                      placeholder="How did you hear about us?"
-                      value={heardFrom}
-                      onChange={(e) => setHeardFrom(e.target.value)}
-                      className="w-full mt-2.5 text-sm p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
+  
+                    <div className="relative mt-2.5" ref={heardFromRef}>
+                      <button
+                        type="button"
+                        className="w-full p-2 border border-gray-300 rounded-lg flex justify-between items-center"
+                        onClick={toggleHeardFromDropdown}
+                      >
+                        <span>{heardFrom || "How did you hear about us?"}</span>
+                        <FontAwesomeIcon icon={faChevronDown} className="text-gray-400" />
+                      </button>
+                      
+                      {heardFromDropdownOpen && (
+                        <div className="absolute z-10 bg-white border border-gray-300 rounded-lg shadow-md mt-2.5 w-full">
+                          {heardFromOptions.map((option) => (
+                            <div
+                              key={option}
+                              className="p-2 hover:bg-gray-100 cursor-pointer"
+                              onClick={() => handleHeardFromSelection(option)}
+                            >
+                              {option}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+  
+                    {customHeardFrom && (
+                      <input
+                        type="text"
+                        placeholder="Please specify"
+                        value={heardFrom}
+                        onChange={(e) => setHeardFrom(e.target.value)}
+                        className="w-full mt-2.5 text-sm p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                    )}
                   </div>
+                  
                   <button
                     className={`w-[85%] flex justify-center text-sm items-center gap-2 bg-orange-600 text-white py-2 px-4 rounded-full ${
                       !isFormValid() ? "opacity-50 cursor-not-allowed" : ""
@@ -413,6 +455,7 @@ const SignUpPage = () => {
                   >
                     Get Started
                   </button>
+                  
                   <p className="text-center text-gray-600 font-medium text-sm mt-2">
                     Already have an account?{" "}
                     <a href="/signin" className="text-blue-500">
@@ -422,8 +465,7 @@ const SignUpPage = () => {
                 </div>
               )}
             </div>
-
-
+  
             <div className="relative flex flex-1 lg:w-1/2 rounded-tr-[24px] rounded-br-[24px] w-full overflow-hidden hidden lg:flex">
               <div
                 className="absolute inset-0 bg-cover bg-center"
