@@ -1,10 +1,26 @@
-const AllTransactionsPage = () => {
-  return (
-    <div>
-      <h2 className="text-2xl font-bold">Wallet All Transactions Page</h2>
-      <p>Track your Wallet withdrawal All Transactions page insights here.</p>
-    </div>
-  )
-}
+import { PiHandWithdraw } from "react-icons/pi";
+import { walletConfig } from "../WalletConfig";
+import { FaCog } from "react-icons/fa";
+import WalletTableComponent from "../../../../../components/Table/WalletTableComponent";
 
-export default AllTransactionsPage
+const AllTransactionsPage = () => {
+  const { title, tableHeader, tableData } = walletConfig.allTransactionsPage;
+
+  return (
+    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+      <section className="flex justify-between items-center bg-white p-4 rounded-lg shadow-md">
+        <div className="flex items-center space-x-2">
+          <PiHandWithdraw className="text-orange-600 h-6 w-6" />
+          <h1 className="text-lg font-semibold text-gray-800">{title}</h1>
+        </div>
+        <FaCog className="text-gray-500 h-6 w-6 cursor-pointer hover:text-gray-700" />
+      </section>
+
+      <section>
+        <WalletTableComponent title={title} headers={tableHeader} data={tableData} />
+      </section>
+    </div>
+  );
+};
+
+export default AllTransactionsPage;
