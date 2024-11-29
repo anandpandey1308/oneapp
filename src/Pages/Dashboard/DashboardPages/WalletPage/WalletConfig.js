@@ -60,16 +60,42 @@ export const walletConfig = {
         ],
         totalEarnings: "1684580",
         totalWithDrawals: "125382",
-        KYCStatus: false,
+        KYCStatus: true,
         recentWithdrawals: [
             {
+                status: "paid",
                 date: "2022-01-01 10:00 AM",
                 amount: "500",
             },
             {
+                status: "paid",
                 date: "2022-01-02 11:30 AM",
                 amount: "1000"
-            }
+            },
+            {
+                status: "paid",
+                date: "2022-01-02 1:30 AM",
+                amount: "2000"
+            },
+            {
+                status: "decline",
+                date: "2022-01-02 2:30 AM",
+                amount: "3000"
+            },
+            {
+                status: "paid",
+                date: "2022-01-02 5:30 AM",
+                amount: "5000"
+            },
+            {
+                status: "decline",
+                date: "2022-01-02 5:30 AM",
+                amount: "5000"
+            },
+            {
+                date: "2022-01-02 5:30 AM",
+                amount: "5000"
+            },
         ],
         allTransactions: {
             tableHeader: [

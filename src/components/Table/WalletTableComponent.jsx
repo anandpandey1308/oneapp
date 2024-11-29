@@ -2,8 +2,9 @@
 import { useState } from "react";
 import { Search, Download, Filter, Table as TableIcon } from "lucide-react";
 import { Pagination } from "@mui/material";
+import { MdTableChart } from "react-icons/md";
 
-const TableComponent = ({ title, headers, data }) => {
+const TableComponent = ({ title, headers, data, page }) => {
   const [filterText, setFilterText] = useState("");
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "ascending" });
   const [currentPage, setCurrentPage] = useState(1);
@@ -77,12 +78,12 @@ const TableComponent = ({ title, headers, data }) => {
   };
 
   return (
-    <div className="bg-gray-50 p-6 rounded-xl shadow-2xl max-w-full mx-auto">
+    <div className=" p-4 rounded-xl max-w-full mx-auto">
       {/* Header Section */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
         <div className="flex items-center space-x-4 w-full md:w-auto">
-          <TableIcon className="text-blue-600 h-8 w-8" />
-          <h2 className="text-2xl font-bold text-gray-800">{title}</h2>
+         {page === "Wallet" ? <MdTableChart className="text-[#FA6E25] size-8"></MdTableChart> :  <TableIcon className="text-blue-600 h-8 w-8" />}
+          <h2 className={`${page === "Wallet" ? "md:text-2xl text-xl" : "text-2xl"} font-bold text-gray-800 font-poppins tracking-tight`}>{title}</h2>
         </div>
 
         {/* Filter and Export Section */}
@@ -119,7 +120,7 @@ const TableComponent = ({ title, headers, data }) => {
                     onClick={() => handleSort(header)}
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-200 transition duration-300 group"
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between font-poppins ">
                       {header}
                       <Filter className="h-4 w-4 text-gray-400 opacity-0 group-hover:opacity-100 transition" />
                     </div>
@@ -131,7 +132,7 @@ const TableComponent = ({ title, headers, data }) => {
               {paginatedData.map((row, rowIndex) => (
                 <tr
                   key={rowIndex}
-                  className="hover:bg-gray-50 transition-colors duration-200"
+                  className="hover:bg-gray-50 transition-colors duration-200 font-poppins text-sm tracking-tight"
                 >
                   {row.map((cell, cellIndex) => (
                     <td
@@ -180,10 +181,10 @@ const TableComponent = ({ title, headers, data }) => {
 
       {/* Summary Section */}
       <div className="mt-4 flex justify-between items-center text-sm text-gray-600">
-        <p>
+        <p className="font-poppins tracking-tight text-sm">
           Showing {paginatedData.length} of {processedData.length} filtered entries
         </p>
-        <p className="hidden md:block">Tip: Click column headers to sort</p>
+        <p className="hidden md:block font-poppins tracking-tight">Tip: Click column headers to sort</p>
       </div>
     </div>
   );
