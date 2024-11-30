@@ -29,45 +29,72 @@ const KYCpage = () => {
         </div>
 
         {/* Tab Section */}
-        <div className="mt-6 flex flex-col md:flex-row justify-between md:items-center gap-6">
-          <div className="border-b border-gray-300 w-full">
-            <div className="flex justify-center space-x-6 md:space-x-10 mb-4">
-              <button
-                className={`pb-2 transition-all duration-200 text-xs md:text-xl ${
-                  value === "1"
-                    ? "border-b-2 border-orange-500 text-orange-500"
-                    : ""
-                }`}
-                onClick={() => handleChange("1")}
-              >
-                Business Information
-              </button>
-              <button
-                className={`pb-2 transition-all duration-200 text-xs md:text-xl ${
-                  value === "2"
-                    ? "border-b-2 border-orange-500 text-orange-500"
-                    : ""
-                }`}
-                onClick={() => handleChange("2")}
-              >
-                Verification
-              </button>
-              <button
-                className={`pb-2 transition-all duration-200 text-xs md:text-xl ${
-                  value === "3"
-                    ? "border-b-2 border-orange-500 text-orange-500"
-                    : ""
-                }`}
-                onClick={() => handleChange("3")}
-              >
-                Banking Details
-              </button>
+        <div className="mt-6">
+          <div className="flex flex-col">
+            {/* Centered tabs with responsive layout */}
+            <div className="flex flex-col md:flex-row items-center justify-center w-full">
+              <div className="flex flex-col md:flex-row md:space-x-8 border-b border-gray-300">
+                <button
+                  className={`
+                    w-full md:w-auto 
+                    py-3 md:py-2 
+                    text-center 
+                    transition-all 
+                    duration-200 
+                    text-base md:text-xl 
+                    ${
+                      value === "1"
+                        ? "border-b-2 border-orange-500 text-orange-500"
+                        : "text-gray-600 hover:text-gray-900"
+                    }
+                  `}
+                  onClick={() => handleChange("1")}
+                >
+                  Personal and Business Information
+                </button>
+                <button
+                  className={`
+                    w-full md:w-auto 
+                    py-3 md:py-2 
+                    text-center 
+                    transition-all 
+                    duration-200 
+                    text-base md:text-xl 
+                    ${
+                      value === "2"
+                        ? "border-b-2 border-orange-500 text-orange-500"
+                        : "text-gray-600 hover:text-gray-900"
+                    }
+                  `}
+                  onClick={() => handleChange("2")}
+                >
+                  Identity and Verification
+                </button>
+                <button
+                  className={`
+                    w-full md:w-auto 
+                    py-3 md:py-2 
+                    text-center 
+                    transition-all 
+                    duration-200 
+                    text-base md:text-xl 
+                    ${
+                      value === "3"
+                        ? "border-b-2 border-orange-500 text-orange-500"
+                        : "text-gray-600 hover:text-gray-900"
+                    }
+                  `}
+                  onClick={() => handleChange("3")}
+                >
+                  Banking Details
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div>
-        {value === "1" && < BusinessInformationTab/>}
+        {value === "1" && <BusinessInformationTab/>}
         {value === "2" && <VerificationTab />}
         {value === "3" && <BankDetailsTab />}
       </div>
