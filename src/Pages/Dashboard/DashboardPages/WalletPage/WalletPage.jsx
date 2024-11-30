@@ -156,7 +156,7 @@ const WalletPage = () => {
       </div>
 
       {/* KYC */}
-      {walletConfig.walletPage.KYCStatus && (
+      {!walletConfig.walletPage.KYCStatus && (
         <div className="bg-white w-full  py-3 px-3 mt-5 rounded-xl">
           <div className="flex bg-[#eff4f5] py-3 justify-between items-center rounded-xl px-3 ">
             <div className="flex gap-3 items-center">
