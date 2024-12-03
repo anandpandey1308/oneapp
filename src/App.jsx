@@ -5,7 +5,7 @@ import SignInPage from "./Pages/Authentication/SigninPage/SignInPage";
 import SignUpPage from "./Pages/Authentication/SignupPage/SignUpPage";
 import DashboardPage from "./Pages/Dashboard/DashboardPage";
 import HomePage from "./Pages/Dashboard/DashboardPages/HomePage/HomePage.jsx";
-import MyStorePage from "./Pages/Dashboard/DashboardPages/MyStorePage/MyStorePage.jsx";
+import MyStorePage from "./Pages/Dashboard/DashboardPages/MyStorePage/MyStore.jsx";
 import AudiencePage from "./Pages/Dashboard/DashboardPages/YourCustomerPage/YourCustomerPage.jsx";
 import AppointementPage from "./Pages/Dashboard/DashboardPages/AppointementPage/AppointementPage.jsx";
 import WebinarPage from "./Pages/Dashboard/DashboardPages/WebinarPage/WebinarPage.jsx";

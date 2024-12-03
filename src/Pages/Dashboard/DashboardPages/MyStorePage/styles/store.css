@@ -1,0 +1,922 @@
+/* MyStorePage/styles/store.css */
+
+/* Main Container Styles */
+.mystore-container {
+  padding: 24px;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.store-layout {
+  display: flex;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Left Panel Styles */
+.left-panel {
+  flex: 1;
+  max-width: 600px;
+}
+
+.profile-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.profile-main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.profile-info-container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.profile-image {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: 500;
+  color: #111;
+  margin: 0;
+}
+
+.profile-tagline {
+  font-size: 14px;
+  color: #666;
+  margin: 4px 0;
+}
+
+.profile-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.instagram-icon {
+  color: #666;
+}
+
+.button-count {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #666;
+  font-size: 14px;
+}
+
+.edit-header-button {
+  padding: 6px 12px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Highlights Section Styles */
+.highlights-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.highlights-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.highlights-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #111;
+  font-size: 15px;
+}
+
+/* Action Buttons Styles */
+.add-content-btn {
+  background: #000;
+  color: #fff;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.add-header-btn {
+  background: #fff;
+  color: #666;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* Headers List Styles */
+.header-item {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.character-count {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.header-text {
+  font-size: 15px;
+  color: #111;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Switch Styles */
+.MuiSwitch-root {
+  padding: 8px;
+}
+
+.MuiSwitch-track {
+  background-color: #e0e0e0 !important;
+}
+
+.MuiSwitch-thumb {
+  background-color: #fff;
+}
+
+.Mui-checked + .MuiSwitch-track {
+  background-color: #4caf50 !important;
+}
+
+/* Right Panel Styles */
+.right-panel {
+  width: 375px;
+  position: sticky;
+  top: 24px;
+  align-self: flex-start;
+}
+
+.mobile-preview {
+  background: #fff;
+  border-radius: 16px;
+  height: 600px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.mobile-content {
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.mobile-profile-image {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.mobile-name {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.mobile-tagline {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.contact-button {
+  background: #f5f5f5;
+  color: #111;
+  border: none;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.mobile-header {
+  background: #f5f5f5;
+  color: #111;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .store-layout {
+    flex-direction: column;
+  }
+
+  .right-panel {
+    width: 100%;
+    max-width: 375px;
+    margin: 0 auto;
+    position: relative;
+    top: 0;
+  }
+}
+/* Add to MyStorePage/styles/store.css */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.edit-header-modal {
+  background: #fff;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 800px;
+  height: 90vh;
+  max-height: 600px;
+  display: flex;
+  overflow: hidden;
+}
+
+.modal-sidebar {
+  width: 200px;
+  background: #f5f5f5;
+  padding: 20px 0;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #666;
+  text-align: left;
+}
+
+.sidebar-item.active {
+  background: #e6f4ea;
+  color: #1a73e8;
+}
+
+.modal-content {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+}
+
+.profile-editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.profile-image-editor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-preview {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bio-field {
+  position: relative;
+}
+
+.character-count {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 24px;
+}
+/* Add to MyStorePage/styles/store.css */
+.contact-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.contact-modal {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  padding: 24px;
+}
+
+.contact-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.contact-modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: #666;
+}
+
+.contact-description {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #f5f5f5;
+  border-radius: 12px;
+}
+
+.contact-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-info span {
+  font-size: 12px;
+  color: #666;
+}
+
+.contact-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #111;
+}
+
+.copy-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-button:hover {
+  color: #333;
+}
+.edit-header-modal {
+  display: flex;
+  width: 90%;
+  max-width: 800px;
+  height: 90vh;
+  max-height: 600px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.edit-header-nav {
+  width: 240px;
+  background: #f5f5f5;
+  padding: 16px 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 12px;
+  color: #666;
+}
+
+.nav-item.active {
+  background: rgba(27, 196, 125, 0.1);
+  color: #1bc47d;
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-label {
+  font-size: 15px;
+}
+
+.edit-header-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.edit-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.edit-header-top h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.edit-header-body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.profile-image-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.profile-image-preview {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-field {
+  position: relative;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #1bc47d;
+}
+
+textarea.form-input {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.character-count {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.edit-header-footer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+.action-buttons {
+  margin-top: 24px; /* Space after Highlights section */
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.add-content-btn {
+  padding: 14px;
+  border-radius: 12px;
+  background: #000;
+  color: white;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.add-header-btn {
+  padding: 14px;
+  border-radius: 12px;
+  background: #fff;
+  color: #666;
+  border: 1px solid #e0e0e0;
+  font-size: 15px;
+  cursor: pointer;
+}
+/* MyStorePage/components/Layout/RightPanel.css */
+.right-panel {
+  width: 375px;
+  position: sticky;
+  top: 24px;
+  align-self: flex-start;
+}
+
+.mobile-preview {
+  background: #fff;
+  border-radius: 16px;
+  height: 700px; /* Adjusted height */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Added subtle border */
+  overflow: hidden;
+}
+
+.mobile-content {
+  padding: 32px 24px; /* Increased padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.mobile-profile-image {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.mobile-name {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #111;
+}
+
+.mobile-tagline {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+/* Contact button styling */
+.contact-button {
+  background: #f5f5f5;
+  color: #111;
+  border: none;
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+/* Modal base styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.edit-header-modal {
+  background: white;
+  border-radius: 16px;
+  width: 800px;
+  max-width: 95vw;
+  max-height: 90vh;
+  display: flex;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation sidebar */
+.edit-header-nav {
+  width: 200px;
+  background: #f8f8f8;
+  padding: 20px 0;
+  border-right: 1px solid #eee;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  gap: 12px;
+}
+
+.nav-item.active {
+  background-color: rgba(255, 186, 0, 0.1);
+  color: #ffba00;
+}
+
+.nav-icon {
+  font-size: 20px;
+}
+
+/* Main content area */
+.edit-header-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.edit-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #eee;
+}
+
+.edit-header-top h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-button:hover {
+  background-color: #f5f5f5;
+}
+
+/* Follow content specific styles */
+.follow-content {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.follow-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.follow-subheader {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+/* Accordion styles */
+.accordion-section {
+  margin-bottom: 16px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+.accordion-header {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.accordion-icon {
+  transition: transform 0.2s;
+}
+
+.accordion-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  padding: 16px;
+  border-top: 1px solid #eee;
+}
+
+/* Form elements */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 8px;
+}
+
+.input-icon {
+  font-size: 20px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.form-input.disabled {
+  background-color: #f5f5f5;
+  color: #666;
+}
+
+/* Gift section */
+.gift-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+/* Followers info */
+.followers-info {
+  margin-top: 24px;
+  padding: 16px;
+  background-color: #f8f9fe;
+  border-radius: 8px;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Footer */
+.edit-header-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+}
