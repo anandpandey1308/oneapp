@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+import { toast } from "react-toastify";
 import Card from "../../../../components/Cards/Card";
 import NoContentComponent from "../../../../components/NoContent/NoContentComponent";
 import Table from "../../../../components/Table/TableComponent";
@@ -6,12 +8,24 @@ import { useState } from "react";
 
 const TelegramPage = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [mobileNumber, setMobileNumber] = useState('');
 
   const { title, button, bgGradient, noContent, tabs, cardData } = pagesConfig.telegramPage;
 
   const handleModalToggle = () => {
     setIsModalOpen((prev) => !prev); // Toggle modal state
+  };
+
+  const handleSubmit = () => {
+    if (!mobileNumber) {
+      toast.error('Please enter a mobile number');
+      return;
+    }
+    
+    toast.success('OTP has been sent to your mobile number');
+    handleModalToggle();
+    setMobileNumber('')
   };
 
   return (
@@ -64,23 +78,61 @@ const TelegramPage = () => {
         )}
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-1/3">
-            <h2 className="text-xl font-bold mb-4">Telegram</h2>
-            <p className="text-gray-600">This is the modal content.</p>
-            <div className="flex justify-end mt-4">
-              <button
-                onClick={handleModalToggle}
-                className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400"
-              >
-                Close
-              </button>
-            </div>
+  <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 overflow-y-auto p-4">
+    <div className="bg-white rounded-xl p-8 w-full max-w-md mx-auto shadow-2xl border border-gray-100 relative transform transition-all duration-300 ease-in-out hover:shadow-xl">
+      {/* Close Button */}
+      <button 
+        onClick={handleModalToggle}
+        className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition-colors duration-200 rounded-full p-2 hover:bg-gray-100"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      {/* Modal Content */}
+      <h2 className="text-3xl font-bold mb-6 text-gray-800 text-center">
+        Join Telegram
+      </h2>
+
+      <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
+        <div className="space-y-4">
+          <div>
+            <label 
+              htmlFor="mobile" 
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Mobile Number
+            </label>
+            <input
+              type="tel"
+              id="mobile"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-300 ease-in-out"
+              placeholder="Enter your mobile number"
+              value={mobileNumber}
+              onChange={(e) => setMobileNumber(e.target.value)}
+              required
+              pattern="[+]?[0-9]{10,14}"
+            />
+            <p className="text-xs text-gray-500 mt-1 ml-1">
+              We'll send a verification code
+            </p>
+          </div>
+
+          <div className="flex space-x-4">
+            <button
+              type="submit"
+              className="flex-grow bg-orange-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300 ease-in-out transform active:scale-95"
+            >
+              Send Verification
+            </button>
           </div>
         </div>
-      )}
+      </form>
+    </div>
+  </div>
+)}
     </div>
   );
 };
