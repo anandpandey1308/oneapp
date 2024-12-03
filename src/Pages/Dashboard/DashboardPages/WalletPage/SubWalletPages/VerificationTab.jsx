@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const VerificationTab = () => {
   const [socialMediaLinks, setSocialMediaLinks] = useState({
@@ -32,17 +33,52 @@ const VerificationTab = () => {
     }
   };
 
-  const handleSave = () => {
-    alert("Information saved successfully!");
+  const validateInputs = () => {
+    if (!idVerification.aadhaarNumber.trim() || !/^\d{12}$/.test(idVerification.aadhaarNumber)) {
+      toast.error("Aadhaar Number must be a 12-digit numeric value.");
+      return false;
+    }
+
+    if (!idVerification.aadhaarImage) {
+      toast.error("Please upload Aadhaar Card Front & Back Image.");
+      return false;
+    }
+
+    if (!idVerification.panCard) {
+      toast.error("Please upload your PAN Card.");
+      return false;
+    }
+
+    if (!idVerification.selfie) {
+      toast.error("Please upload your selfie.");
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSave = async () => {
+    if (!validateInputs()) return;
+
+    setTimeout(() => {
+      toast.success("Information saved successfully!");
+    }, 2000);
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-100 py-10">
+    <div className="flex flex-col items-center min-h-screen bg-gray-100 py-10 px-4">
       {/* Social Media Links Section */}
       <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-4xl mb-8">
         <h1 className="text-lg font-semibold mb-4">Social Media Links</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
-          {["instagram", "facebook", "youtube", "twitter", "telegram", "discord"].map((platform) => (
+          {[
+            "instagram",
+            "facebook",
+            "youtube",
+            "twitter",
+            "telegram",
+            "discord",
+          ].map((platform) => (
             <div key={platform}>
               <label className="block text-sm font-medium text-gray-700 mb-1 capitalize">
                 {platform}
@@ -57,7 +93,7 @@ const VerificationTab = () => {
               />
             </div>
           ))}
-          <div className="col-span-2">
+          <div className="col-span-1 sm:col-span-2">
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Other
             </label>

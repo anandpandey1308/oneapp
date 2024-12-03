@@ -10,6 +10,7 @@ import { LuSmilePlus } from "react-icons/lu";
 import { IoBookmarkOutline } from "react-icons/io5";
 import Drawer from "@mui/material/Drawer";
 import PaymentDrawer from "./PaymentDrawer";
+import { useNavigate } from "react-router-dom";
 
 const PaymentTab = () => {
   const [userKYCStatus, setUserKYCStatus] = useState(KYCStatus[0]);
@@ -17,6 +18,7 @@ const PaymentTab = () => {
   const [isGSTNumber, setIsGSTNumber] = useState("");
   const [open, setOpen] = useState(false);
   const drawerRef = useRef(null);
+  const navigate = useNavigate();
 
   const paymentCardData = [
     {
@@ -93,7 +95,7 @@ const PaymentTab = () => {
           <button
             type="button"
             className="bg-orange-600 text-white rounded-full text-sm px-6 py-2 transition duration-200 w-full md:w-auto hover:bg-orange-700"
-            onClick={toggleDrawer(true)}
+            onClick={() => navigate('/dashboard/kyc-setting')}
           >
             Set up payment
           </button>
@@ -119,10 +121,10 @@ const PaymentTab = () => {
           </p>
         </div>
 
-        <hr className="border-gray-100" />
+        {/* <hr className="border-gray-100" /> */}
 
         {/* Scrollable Payment Cards */}
-        <div className="flex overflow-x-auto gap-4 p-2 scrollbar-hide">
+        {/* <div className="flex overflow-x-auto gap-4 p-2 scrollbar-hide">
           {paymentCardData.map((card, index) => (
             <PaymentCard
               key={index}
@@ -131,7 +133,7 @@ const PaymentTab = () => {
               description={card.description}
             />
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* GST Section */}

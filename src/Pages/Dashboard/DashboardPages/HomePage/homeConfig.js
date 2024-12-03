@@ -10,7 +10,7 @@ export const HomePageConfig = {
         description: "A community of 10k+ aspiring creators.",
         link: "https://t.me/YourChannel",
         buttonLabel: "Join Now",
-        buttonColor: "bg-white",
+        buttonColor: "bg-orange-500",
         textColor: "text-black"
     },
     whatsApp: {

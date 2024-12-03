@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IoSettingsOutline } from "react-icons/io5";
+// import { IoSettingsOutline } from "react-icons/io5";
 import { PiIdentificationCardThin } from "react-icons/pi";
 import BusinessInformationTab from './BusinessInformationTab';
 import VerificationTab from './VerificationTab';
@@ -23,9 +23,9 @@ const KYCpage = () => {
               KYC Section
             </p>
           </div>
-          <div className="w-8 h-8 rounded-full bg-white cursor-pointer flex items-center justify-center relative">
+          {/* <div className="w-8 h-8 rounded-full bg-white cursor-pointer flex items-center justify-center relative">
             <IoSettingsOutline className="size-5" />
-          </div>
+          </div> */}
         </div>
 
         {/* Tab Section */}

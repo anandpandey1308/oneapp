@@ -1,6 +1,6 @@
 import { PiHandWithdraw } from "react-icons/pi";
 import { walletConfig } from "../WalletConfig";
-import { FaCog } from "react-icons/fa";
+// import { FaCog } from "react-icons/fa";
 import WalletTableComponent from "../../../../../components/Table/WalletTableComponent";
 
 const AllTransactionsPage = () => {
@@ -13,7 +13,7 @@ const AllTransactionsPage = () => {
           <PiHandWithdraw className="text-orange-600 h-6 w-6" />
           <h1 className="text-lg font-semibold text-gray-800">{title}</h1>
         </div>
-        <FaCog className="text-gray-500 h-6 w-6 cursor-pointer hover:text-gray-700" />
+        {/* <FaCog className="text-gray-500 h-6 w-6 cursor-pointer hover:text-gray-700" /> */}
       </section>
 
       <section>

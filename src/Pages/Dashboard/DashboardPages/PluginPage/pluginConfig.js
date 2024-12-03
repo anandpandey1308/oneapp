@@ -8,7 +8,7 @@ export const pluginConfig = [
         buttonText: "Get Started",
         buttonColor: "bg-white",
         feature: [
-            "Difalut %",
+            "Defalut %",
             "Unlock All One app Service",
             "Access to Insider Support"
         ]

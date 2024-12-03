@@ -1,11 +1,58 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const BusinessInformationTab = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [gstNumber, setGstNumber] = useState("");
+  const [sebiNumber,setSebiNumber] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSave = () => {
-    alert("Information saved successfully!");
+  const businessStructure = [
+    "sole proprietorship",
+    "Limited Liability Company",
+    "Corporation",
+  ];
+
+  const validateInputs = () => {
+    if (!firstName.trim()) {
+      toast.error("First Name is required.");
+      return false;
+    }
+    if (!lastName.trim()) {
+      toast.error("Last Name is required.");
+      return false;
+    }
+    if (!/^\d+$/.test(gstNumber.trim())) {
+      // GST Number must be numeric
+      toast.error("GST Number must be a valid number.");
+      return false;
+    }
+    if (!/^\d+$/.test(setSebiNumber.trim())) {
+      // GST Number must be numeric
+      toast.error("SEBI Number must be a valid number.");
+      return false;
+    }
+    return true;
+  };
+
+  const handleSave = async () => {
+    if (!validateInputs()) return;
+
+    setLoading(true);
+
+    // Simulating a fake API call
+    setTimeout(() => {
+      setLoading(false);
+
+      const isSuccess = Math.random() > 0.2; 
+
+      if (isSuccess) {
+        toast.success("Information saved successfully!");
+      } else {
+        toast.error("Failed to save information. Please try again later.");
+      }
+    }, 2000); 
   };
 
   return (
@@ -53,9 +100,11 @@ const BusinessInformationTab = () => {
             <select
               className="w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200 focus:outline-none"
             >
-              <option value="single-owner">Single Owner</option>
-              <option value="partnership">Partnership</option>
-              <option value="corporation">Corporation</option>
+              {businessStructure.map((structure, index) => (
+                <option key={index} value={structure}>
+                  {structure}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -65,7 +114,9 @@ const BusinessInformationTab = () => {
               GST Number
             </label>
             <input
-              type="text"
+              type="number"
+              value={gstNumber}
+              onChange={(e) => setGstNumber(e.target.value)}
               placeholder="GST Number"
               className="w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200 focus:outline-none"
             />
@@ -76,13 +127,13 @@ const BusinessInformationTab = () => {
             <label className="block text-sm font-medium text-gray-700 mb-1">
               SEBI Number
             </label>
-            <select
+            <input
+              type="number"
+              value={sebiNumber}
+              onChange={(e) => setSebiNumber(e.target.value)}
+              placeholder="SEBI Number"
               className="w-full border border-gray-300 rounded-lg p-2 focus:ring focus:ring-blue-200 focus:outline-none"
-            >
-              <option value="single-owner">Single Owner</option>
-              <option value="partnership">Partnership</option>
-              <option value="corporation">Corporation</option>
-            </select>
+            />
           </div>
 
           {/* SEBI Certificate */}
@@ -103,9 +154,12 @@ const BusinessInformationTab = () => {
         <button
           type="button"
           onClick={handleSave}
-          className="bg-[#FA6E25] text-white py-2 px-6 rounded-lg hover:bg-orange-600 focus:ring focus:ring-orange-300"
+          disabled={loading}
+          className={`${
+            loading ? "bg-gray-400" : "bg-[#FA6E25] hover:bg-orange-600"
+          } text-white py-2 px-6 rounded-lg focus:ring focus:ring-orange-300`}
         >
-          Save
+          {loading ? "Saving..." : "Save"}
         </button>
       </div>
     </div>

@@ -60,7 +60,7 @@ export const walletConfig = {
         ],
         totalEarnings: "1684580",
         totalWithDrawals: "125382",
-        KYCStatus: true,
+        KYCStatus: false,
         recentWithdrawals: [
             {
                 status: "paid",

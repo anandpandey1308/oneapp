@@ -1,4 +1,22 @@
 /* eslint-disable react/prop-types */
+import { Users, MessageCircle } from "lucide-react";
+
+const getIcon = (iconName) => {
+  const icons = {
+    Users: Users,
+    MessageCircle: MessageCircle
+  };
+  return icons[iconName] || Users;
+};
+
+const CommunityButton = ({ label, link, color }) => (
+  <a 
+    href={link} 
+    className={`inline-block px-6 py-3 rounded-full text-white font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 ${color}`}
+  >
+    {label}
+  </a>
+);
 
 const CardSkeleton = () => (
   <div className="animate-pulse">
@@ -9,39 +27,39 @@ const CardSkeleton = () => (
   </div>
 );
 
-const CommunityCard = ({
-  icon: Icon,
-  title,
-  description,
-  buttonLabel,
+const CommunityCard = ({ 
+  icon, 
+  title, 
+  description, 
+  link, 
+  buttonLabel, 
   buttonColor,
-  textColor,
-  link,
-  isLoading
+  isLoading 
 }) => {
-  if (isLoading) return (
-    <div className="flex flex-col items-center border border-gray-300 rounded-lg shadow-lg p-2 bg-white">
-      <CardSkeleton />
-    </div>
-  );
+  const Icon = getIcon(icon);
+
+  if (isLoading) {
+    return <CardSkeleton />;
+  }
 
   return (
-    <div className="flex flex-col items-center border border-gray-300 rounded-lg p-2 bg-white transition hover:shadow-xl">
-      <div className="mb-4">
-        <Icon className={`h-10 w-10`} />
+    <div className="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
+      <div className="p-6 pb-0">
+        <div className="flex items-center mb-4">
+          <div className="bg-blue-50 p-3 rounded-full mr-4">
+            <Icon className="w-8 h-8 text-blue-600" />
+          </div>
+          <h2 className="text-xl font-bold text-gray-800">{title}</h2>
+        </div>
+        <p className="text-gray-600 mb-6">{description}</p>
+        <div className="pb-6 flex justify-center">
+          <CommunityButton 
+            label={buttonLabel} 
+            link={link} 
+            color={buttonColor}
+          />
+        </div>
       </div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-3">
-        {title}
-      </h3>
-      <p className="text-sm text-gray-600 mb-4 text-center">
-        {description}
-      </p>
-      <button 
-        onClick={() => window.open(link, '_blank')}
-        className={`w-full max-w-xs px-6 py-2.5 ${buttonColor} ${textColor} rounded-md font-semibold hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-2 border border-sm`}
-      >
-        {buttonLabel}
-      </button>
     </div>
   );
 };

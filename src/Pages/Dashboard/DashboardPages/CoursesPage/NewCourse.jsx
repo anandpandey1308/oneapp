@@ -1,5 +1,5 @@
 import * as Icons from "lucide-react";
-import NavBar from "./NavBar";
+// import NavBar from "./NavBar";
 import { courseConfig } from "./courseConfig";
 
 import oneApp from "../../../../assets/oneapp.jpeg";
@@ -9,10 +9,10 @@ const NewCourse = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#fff7ad] to-[#fffff0] scrollbar-hide overflow-y-scroll">
-      <NavBar
+      {/* <NavBar
         logo={courseConfig.logo}
         profilePhoto={courseConfig.profilePhoto}
-      />
+      /> */}
 
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-orange-500 to-orange-600 text-white py-16 px-4 sm:px-6 lg:px-8">
