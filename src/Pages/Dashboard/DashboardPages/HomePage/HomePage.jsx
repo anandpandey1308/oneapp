@@ -9,26 +9,25 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-white flex flex-col">
-      {/* Centered and Lowered Title Section */}
-      <div className="flex-grow flex items-center justify-center -mt-20">
-        <div className="text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 tracking-tight mb-12">
+      <div className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="text-center w-full max-w-6xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 tracking-tight mb-8 sm:mb-12">
             {HomePageConfig.title}
           </h1>
 
           {/* Notice Banner */}
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-            <div className="bg-gradient-to-r from-blue-100 via-white to-blue-100 border border-blue-200 rounded-2xl p-4 flex items-center justify-center space-x-4 shadow-sm">
-              <Sparkles className="h-6 w-6 text-blue-600 animate-pulse" />
-              <p className="text-gray-700 font-medium text-center">
+          <div className="max-w-4xl mx-auto mb-8 sm:mb-12">
+            <div className="bg-gradient-to-r from-blue-100 via-white to-blue-100 border border-blue-200 rounded-2xl p-3 sm:p-4 flex items-center justify-center space-x-4 shadow-sm">
+              <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 animate-pulse" />
+              <p className="text-sm sm:text-base text-gray-700 font-medium text-center">
                 {HomePageConfig.noticeText}
               </p>
             </div>
           </div>
 
           {/* Community Cards Section */}
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
               <CommunityCard
                 icon={HomePageConfig.telegram.icon}
                 title={HomePageConfig.telegram.title}
