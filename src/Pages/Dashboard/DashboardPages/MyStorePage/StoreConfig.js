@@ -1,4 +1,10 @@
+import instagramImage from "../../../../assets/instagramImage.svg";
+import emailImage from "../../../../assets/emailIcon.svg";
+import facebookImage from "../../../../assets/facebook.svg";
+import youtubeImage from "../../../../assets/youtube.svg";
+
 // src/config/siteConfig.js
+
 export const siteConfig = {
   tabs: [
     { id: "profile", label: "Profile" },
@@ -75,4 +81,11 @@ export const siteConfig = {
       lineColors: ["#FCA5A5", "#F9A8D4", "#93C5FD"],
     },
   ],
+};
+
+export const socialLogos = {
+  1: instagramImage,
+  2: facebookImage,
+  3: emailImage,
+  4: youtubeImage,
 };

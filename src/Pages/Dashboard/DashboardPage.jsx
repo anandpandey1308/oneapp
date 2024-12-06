@@ -157,7 +157,7 @@ const DashboardPage = () => {
           </button>
         </div>
 
-        <div className="pt-16 md:pt-0">
+        <div className="pt-[4.5rem] md:pt-0">
           <Outlet />
         </div>
       </main>

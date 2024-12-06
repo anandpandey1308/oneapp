@@ -7,8 +7,10 @@ import AnalyticsDashboard from "./Analytics/analytics";
 import SettingsPage from "./Settings/settings";
 import { siteConfig } from "./StoreConfig";
 import "./store.css";
+import { useStore } from "../../../../context/StoreContext/StoreState";
 
 const MyStore = () => {
+  const { socials, user } = useStore();
   const [activeTab, setActiveTab] = useState("profile");
   const [currentTheme, setCurrentTheme] = useState(siteConfig.themes[3]);
   const shouldShowPreview = !['analytics', 'settings'].includes(activeTab);
@@ -38,7 +40,7 @@ const MyStore = () => {
         </div>
 
         {shouldShowPreview && (
-          <PreviewSection theme={currentTheme} profile={siteConfig.profile} />
+          <PreviewSection theme={currentTheme} profile={{user, socials}} />
         )}
       </main>
 

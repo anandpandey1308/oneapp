@@ -1,14 +1,17 @@
 /* eslint-disable react/prop-types */
 // src/components/MobilePreview/MobilePreview.jsx
 import { useState } from "react";
-import { Instagram, Share2, Copy } from "lucide-react";
+import { Instagram, Share2, Copy, LinkIcon } from "lucide-react";
 import Snackbar from "@mui/material/Snackbar";
 import Button from "@mui/material/Button";
 import "./MobilePreview.css";
+import { socialLogos } from "../StoreConfig";
+import { useStore } from "../../../../../context/StoreContext/StoreState";
 const ASTRONAUT_IMAGE =
   "https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Astronaut.png";
 
 const PreviewSection = ({ profile, theme }) => {
+
   const [showSnackbar, setShowSnackbar] = useState(false);
 
   const handleCopyUrl = () => {
@@ -32,16 +35,6 @@ const PreviewSection = ({ profile, theme }) => {
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       />
 
-      <div className="preview-header">
-        <div className="profile-url">
-          oneapp.bio/manish
-          <button className="copy-button" onClick={handleCopyUrl}>
-            <Copy size={16} />
-          </button>
-        </div>
-        <button className="share-button">Share</button>
-      </div>
-
       <MobilePreview
         profile={profile}
         theme={theme}
@@ -52,6 +45,9 @@ const PreviewSection = ({ profile, theme }) => {
 };
 
 const MobilePreview = ({ profile, theme, onCopyUrl }) => {
+  const { header, links } = useStore();
+
+  console.log({ links })
   return (
     <div className="mobile-frame">
       <div
@@ -67,20 +63,37 @@ const MobilePreview = ({ profile, theme, onCopyUrl }) => {
         <div className="preview-content">
           <div className="preview-avatar">
             <img
-              src="ASTRONAUT_IMAGE_URL"
+              src={profile.user.image}
               alt="Profile"
               className="preview-avatar-image"
             />
           </div>
-          <h3 className="preview-name">{profile.username}</h3>
-          <p className="preview-tagline">{profile.tagline}</p>
+          <h3 className="preview-name">{profile.user.username}</h3>
+          <p className="preview-tagline">{profile.user.tagline}</p>
 
-          <button className="preview-contact">Contact me</button>
+          {/* <button className="preview-contact">Contact me</button> */}
 
-          {profile.socials?.instagram?.enabled && (
-            <div className="preview-social">
-              <Instagram size={20} />
-            </div>
+          <div className="social-links">
+            {
+              profile.socials.map((social) =>
+                social.enabled && (<><img className='social-logos' src={socialLogos[social.id]} alt="instagram" /></>
+                )
+              )
+            }
+          </div>
+
+          {header?.length > 0 && header?.map((item, index) =>
+            item.enable ? <div key={index} className="manual-header">
+              <p>{item.value}</p>
+            </div> : <></>
+          )}
+
+          {links?.length > 0 && links?.map((item, index) =>
+            item?.enabled ? <div key={index} className="product-links">
+              <LinkIcon size={12} className="mr-2" />
+              <a href={item.url} target="_blank">{item.title}</a>
+            </div> :
+              <></>
           )}
         </div>
       </div>

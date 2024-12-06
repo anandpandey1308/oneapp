@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "./header.css";
+import { Button, Snackbar } from "@mui/material";
+import { Copy } from "lucide-react";
+import ShareIcon from '@mui/icons-material/Share';
+import LanguageIcon from '@mui/icons-material/Language';
 
 const Header = ({ activeTab, setActiveTab }) => {
+  const [showSnackbar, setShowSnackbar] = useState(false);
+
+  const handleCopyUrl = () => {
+    const url = "oneapp.bio/manish";
+    navigator.clipboard.writeText(url).then(() => {
+      setShowSnackbar(true);
+    });
+  };
+
+  const handleCloseSnackbar = () => {
+    setShowSnackbar(false);
+  };
+
   const tabs = [
     { id: "profile", label: "Profile" },
     { id: "appearance", label: "Appearance" },
@@ -22,6 +39,46 @@ const Header = ({ activeTab, setActiveTab }) => {
               {tab.label}
             </button>
           ))}
+        </nav>
+
+        <nav className="link-section">
+        <Snackbar
+        open={showSnackbar}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        message="Copied to clipboard!"
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      />
+
+      <div className="preview-header">
+            <div className="profile-url">
+              <LanguageIcon/>
+              <p>
+          oneapp.bio/manish
+              </p>
+          <button className="copy-button" onClick={handleCopyUrl}>
+            <Copy size={16} />
+          </button>
+            </div>
+            
+            <Button
+              component="label"
+              role={undefined}
+              tabIndex={-1}
+              startIcon={<ShareIcon fontSize={"16px"} />}
+              className="share-button"
+              sx={{
+                backgroundColor: "#16a34a",
+                padding: "6px 12px",
+                color: "white",
+                borderRadius: "18px"
+              }}
+            >
+              Share
+            </Button>
+            {/* <button className="share-button">
+              Share</button> */}
+      </div>
         </nav>
       </div>
     </div>

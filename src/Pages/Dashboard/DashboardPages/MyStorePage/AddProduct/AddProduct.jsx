@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { productConfig } from "./ProductConfig";
 import "./AddProduct.css";
+import { useStore } from "../../../../../context/StoreContext/StoreState";
 
 const iconMap = {
   link: Link,
@@ -24,6 +25,8 @@ const iconMap = {
 
 const AddProductModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
+
+  const { links, setLinks } = useStore();
 
   const renderIcon = (option) => {
     const IconComponent = iconMap[option.icon];
@@ -40,6 +43,16 @@ const AddProductModal = ({ isOpen, onClose }) => {
       </div>
     );
   };
+  const handleClick = (id) => {
+    if (id === "add-link") {
+      setLinks([{
+        title: "Test Link",
+        url: "https://www.google.com",
+        enabled: true
+      }, ...(links || [])])
+    }
+    onClose();
+  }
 
   return (
     <div className="modal-overlay">
@@ -59,7 +72,7 @@ const AddProductModal = ({ isOpen, onClose }) => {
 
                 <div className="options-grid">
                   {section.options.map((option) => (
-                    <button key={option.id} className="option-card">
+                    <button key={option.id} className="option-card" onClick={() => handleClick(option.id)}>
                       {renderIcon(option)}
                       <div className="option-content">
                         <h4>{option.title}</h4>
